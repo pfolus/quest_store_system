@@ -11,3 +11,8 @@ abstract class AbstractItem<T>{
         this.ID = nextID++;
         this.category = category;
     }
+
+    public String getName() {
+        return this.name;
+    }
+
