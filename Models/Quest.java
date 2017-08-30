@@ -7,3 +7,8 @@ public class Quest extends AbstractItem<QuestCategory>{
         this.prize = prize;
 
     }
+
+    public Integer getPrize() {
+        return this.prize;
+    }
+}
