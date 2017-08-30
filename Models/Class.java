@@ -30,3 +30,17 @@ public class Class{
         }
     }
 
+    public Iterator getMentorsIterator() {
+        return this.mentorsList.iterator();
+    }
+
+    public void removeMentor(Integer id) {
+        Iterator iter = this.getMentorsIterator();
+
+        while (iter.hasNext()) {
+            if (next().getID().equals(id)) {
+                iter.remove();
+            }
+        }
+    }
+
