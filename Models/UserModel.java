@@ -1,3 +1,6 @@
+package models;
+
+
 public class UserModel {
 
     private String name;
