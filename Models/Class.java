@@ -44,3 +44,11 @@ public class Class{
         }
     }
 
+    public void addMentor(MentorModel mentor) {
+        this.mentorsList.add(mentor);
+    }
+
+    public void addStudent(StudentModel student) {
+        this.studentsList.add(student);
+    }
+}
