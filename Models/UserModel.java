@@ -9,7 +9,7 @@ public class UserModel {
 
     private static Integer nextID = 1;
 
-    UserModel(String name, String surname,
+    public UserModel(String name, String surname,
               String login, String password, String email) {
 
         this.name = name;
