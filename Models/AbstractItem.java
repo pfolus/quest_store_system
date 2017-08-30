@@ -6,3 +6,8 @@ abstract class AbstractItem<T>{
 
     private static Integer nextID;
 
+    public AbstractItem(String name, T category) {
+        this.name = name;
+        this.ID = nextID++;
+        this.category = category;
+    }
