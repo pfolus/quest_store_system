@@ -1,3 +1,6 @@
+package models;
+
+
 public class Store {
 
     public addArtifact() {
@@ -13,6 +16,6 @@ public class Store {
     }
 
     public boolean hasEnoughCoins() {
-        
+
     }
 }
