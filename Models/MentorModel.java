@@ -1,3 +1,6 @@
+package models;
+
+
 public class MentorModel extends UserModel {
 
     public MentorModel(String name, String surname,
