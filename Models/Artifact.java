@@ -7,3 +7,8 @@ public class Artifact extends AbstractItem<ArtifactCategory>{
         this.price = price;
 
     }
+
+    public Integer getPrice() {
+        return this.price;
+    }
+}
