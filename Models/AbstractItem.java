@@ -16,3 +16,7 @@ abstract class AbstractItem<T>{
         return this.name;
     }
 
+    public Integer getID() {
+        return this.ID;
+    }
+}
