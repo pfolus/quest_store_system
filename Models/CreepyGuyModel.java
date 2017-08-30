@@ -1,3 +1,6 @@
+package models;
+
+
 public class CreepyGuyModel extends UserModel {
 
     public CreepyGuyModel(String name, String surname,
