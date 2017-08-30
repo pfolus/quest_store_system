@@ -16,3 +16,17 @@ public class Class{
         this.id = nextID++;
     }
 
+    public Iterator getStudentsIterator() {
+        return this.studentsList.iterator();
+    }
+
+    public void removeStudent(Integer id) {
+        Iterator iter = this.getStudentsIterator();
+
+        while (iter.hasNext()) {
+            if (next().getID().equals(id)) {
+                iter.remove();
+            }
+        }
+    }
+
