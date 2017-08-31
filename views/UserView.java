@@ -33,3 +33,13 @@ public class UserView {
         String password = getStringInput();
         return password;
     }
+
+    public static String getStringInput() {
+        String input;
+        scan = new Scanner(System.in);
+        input = scan.nextLine();
+
+        return input;
+    }
+
+}
