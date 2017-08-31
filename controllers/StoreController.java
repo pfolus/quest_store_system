@@ -4,7 +4,7 @@ package controllers;
 public class StoreController {
 
 
-    public BoughtArtifactModel buyArtifact(ArtifactsBoughtDao boughtArtifacts,
+    public void buyArtifact(ArtifactsBoughtDao boughtArtifacts,
                                            ArtifactsDao artifacts, StudentModel student) {
 
         Integer id;
