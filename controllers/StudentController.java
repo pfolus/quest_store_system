@@ -7,4 +7,9 @@ public class StudentController {
     public buyArtifactWithTeammates() {
 
     }
+
+    public void showCoinsBalance(StudentModel student, WalletsDao walletsDao) {
+        WalletModel wallet = student.getWallet(walletsDao);
+        StudentView.showCoinsBalance(wallet.getBalance());
+    }
 }
