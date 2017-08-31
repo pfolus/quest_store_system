@@ -30,8 +30,8 @@ public class StudentModel extends UserModel {
         return boughArtifactsDao.get(this.id);
     }
 
-    public WalletModel getWallet() {
-        return this.wallet;
+    public Wallet getWallet(WalletsDao walletsDao) {
+        return walletsDao.get(this.id);
     }
 
     private void setWallet(WalletModel wallet) {
