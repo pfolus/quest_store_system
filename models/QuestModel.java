@@ -1,4 +1,4 @@
-public class Quest extends AbstractItem<QuestCategory>{
+public class QuestModel extends AbstractItemModel<QuestCategory>{
 
     private Integer prize;
 
