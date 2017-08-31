@@ -38,4 +38,8 @@ public class StudentModel extends UserModel {
         return this.boughtArtifacts;
     }
 
+    public WalletModel getWallet() {
+        return this.wallet;
+    }
+
 }
