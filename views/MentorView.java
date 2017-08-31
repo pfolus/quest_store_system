@@ -23,6 +23,14 @@ public class MentorView {
         return integer;
    }
 
+   public static String getStringInput() {
+
+       String input;
+       scan = new Scanner(System.in);
+       input = scan.nextLine();
+
+       return input;
+   }
    public static void showExistLoginMessage(){
        System.out.println("Login already exists, try again!");
    }
