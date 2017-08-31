@@ -26,3 +26,7 @@ public class MentorView {
    public static void showExistLoginMessage(){
        System.out.println("Login already exists, try again!");
    }
+
+   public static void showInputError() {
+       System.out.println("Wrong option provided, try again!");
+   }
