@@ -50,4 +50,8 @@ public class StudentModel extends UserModel {
         this.doneQuests.add(doneQuest);
     }
 
+    public void addBoughtArtifact(BoughtArtifactModel boughtArtifact) {
+        this.boughtArtifacts.add(boughtArtifact);
+    }
+
 }
