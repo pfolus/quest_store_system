@@ -1,8 +1,8 @@
 package models.dao;
 
-import models.ArtifactBoughtModel;
+import models.BoughtArtifactModel;
 
-public class ArtifactsBoughtDao extends Dao<ArtifactBoughtModel> {
+public class ArtifactsBoughtDao extends Dao<BoughtArtifactModel> {
 
     public void read() {}
 
