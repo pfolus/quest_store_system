@@ -19,3 +19,7 @@ public class WalletModel {
         return this.id;
     }
 
+    public Integer getBalance() {
+        return this.balance;
+    }
+
