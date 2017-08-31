@@ -54,7 +54,40 @@ public class MentorController {
 
     }
 
-    public addQuest() {
+    public addQuest(QuestsDao questsDao, QuestCategoriesDao questsCategoryDao) {
+        String name;
+        String description;
+        QuestCategory category;
+        Integer id;
+        Integer prize;
+
+        // get quest name
+        MentorView.provideQuestNameMessage();
+        name = MentorView.getStringInput();
+
+        // get quest description
+        MentorView.provideQuestDescriptionMessage();
+        description = MentorView.getStringInput();
+
+        // lists quests categories
+        Iterator categoryIterator = questsCategoryDao.getIterator();
+        while (categoryIterator.hasNext()) {
+            MentorView.showString(categoryIterator.next().toString());
+        }
+
+        // get category correct ID from input
+        id = null;
+        while (id.equals(null)) {
+            MentorView.askForCategoryId();
+            Integer id = getIntInput();
+        }
+        category = questsCategoryDao.get(id);
+
+        // get quest prize from input
+        MentorView.provideQuestPrizeMessage();
+        prize = MentorView.getIntInput();
+
+        questsDao.add(new QuestsModel(name, category, description, prize));
 
     }
 
