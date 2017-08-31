@@ -27,3 +27,7 @@ public class StoreView {
         return id;
     }
 
+    public void printWrongChoiceInfo() {
+        System.out.println("Wrong choice.");
+    }
+
