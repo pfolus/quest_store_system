@@ -35,6 +35,23 @@ public class MentorController {
         }
     }
 
+    public void createStudent(StudentsDao studentsDao) {
+        String name, surname, login,
+                password, email;
+
+        name = userView.getName();
+        surname = userView.getSurname();
+        login = userView.getLogin();
+
+        while(!loginExist(login)) {
+            MentorView.showExistLoginMessage();
+            login = userView.getLogin();
+        }
+        password = userView.getPassword();
+        email = userView.getEmail();
+
+        studentsDao.add(new StudentModel(name, surname, login, password, email));
+
     }
 
     public addQuest() {
