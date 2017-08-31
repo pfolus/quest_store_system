@@ -84,7 +84,7 @@ public class MentorController {
         id = null;
         while (id.equals(null)) {
             MentorView.askForCategoryId();
-            Integer id = getIntInput();
+            id = MentorView.getIntInput();
         }
         category = questsCategoryDao.get(id);
 
