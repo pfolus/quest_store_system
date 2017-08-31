@@ -1,10 +1,12 @@
 public class QuestModel extends AbstractItemModel<QuestCategory>{
 
     private Integer prize;
+    private String description;
 
-    public Artifact(String name, QuestCategory category, Integer prize) {
+    public QuestModel(String name, QuestCategory category, String description, Integer prize) {
         super(name, category);
         this.prize = prize;
+        this.description = description;
 
     }
 
