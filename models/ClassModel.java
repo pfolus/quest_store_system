@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 
-public class Class{
+public class ClassModel {
 
     private ArrayList<MentorModel> mentorsList;
     private ArrayList<StudentModel> studentsList;
