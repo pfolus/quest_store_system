@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.Iterator;
 import models.UserModel;
 // import models.AdminModel;
 import models.MentorModel;
@@ -29,7 +30,7 @@ public class MainController {
         chooseController(user);
     }
 
-    private static UserModel findUser(MentorsDao MentorsDao) {
+    private static UserModel findUser(MentorsDao mentorsDao) {
         String login = MainView.getLogin();
         String password = MainView.getPassword();
 
