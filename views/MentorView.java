@@ -22,3 +22,7 @@ public class MentorView {
         }
         return integer;
    }
+
+   public static void showExistLoginMessage(){
+       System.out.println("Login already exists, try again!");
+   }
