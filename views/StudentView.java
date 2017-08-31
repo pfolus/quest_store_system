@@ -13,6 +13,18 @@ public class StudentView {
         }
     }
 
+    public static Integer chooseOption() {
+        Scanner in = new Scanner();
+        System.out.println("Choose function number: ");
+        id = in.nextInt();
+
+        return id;
+    }
+
+    public static void printLevelInfo(String level) {
+        System.out.println("Your current level is " + level + ".");
+    }
+
     public static void showCoinsBalance(Integer balance) {
         System.out.println("You have " + balance + " coolcoins.");
     }
