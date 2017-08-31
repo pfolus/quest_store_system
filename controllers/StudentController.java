@@ -26,6 +26,12 @@ public class StudentController {
         }
     }
 
+    public static void showWallet(StudentModel student, WalletsDao walletsDao) {
+        WalletModel wallet = student.getWallet(walletsDao);
+        Integer balance = wallet.getBalance();
+        StudentView.showCoinsBalance(balance);
+    }
+
     public static void enterStore() {
         StoreView.showMenu();
     }
