@@ -1,8 +1,8 @@
 package models;
 
-public class QuestCategory extends Category {
+public class QuestCategoryModel extends CategoryModel {
 
-    public QuestCategory(String name, String id) {
+    public QuestCategoryModel(String name, String id) {
         super(name, id);
     }
 

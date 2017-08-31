@@ -22,10 +22,6 @@ public class StudentModel extends UserModel {
         return this.level;
     }
 
-    public ArrayList<OrderWithTeammatesModel> getOrdersWithTeammates() {
-        return this.ordersWithTeammates;
-    }
-
     public ArrayList<BoughtArtifactModel> getBoughtArtifacts(ArtifactsBoughtDao boughtArtifactsDao) {
         return boughArtifactsDao.get(this.id);
     }

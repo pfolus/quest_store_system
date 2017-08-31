@@ -5,6 +5,8 @@ import models.StudentModel;
 import views.MentorView;
 import models.dao.StudentsDao;
 import models.QuestModel;
+import models.dao.QuestsDao;
+import models.dao.QuestCategoriesDao;
 
 import java.util.InputMismatchException;
 import java.util.Iterator;
@@ -56,7 +58,7 @@ public class MentorController {
 
     }
 
-    public addQuest(QuestsDao questsDao, QuestCategoriesDao questsCategoryDao) {
+    public void addQuest(QuestsDao questsDao, QuestCategoriesDao questsCategoryDao) {
         String name;
         String description;
         QuestCategory category;
@@ -93,19 +95,19 @@ public class MentorController {
 
     }
 
-    public addArtifact() {
+    public void addArtifact() {
 
     }
 
-    public markStudentDoneQuest() {
+    public void markStudentDoneQuest() {
 
     }
 
-    public markStudentUsedArtifact() {
+    public void markStudentUsedArtifact() {
 
     }
 
-    public seeStudentsWallets() {
+    public void seeStudentsWallets() {
 
     }
 }
