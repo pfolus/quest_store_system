@@ -27,3 +27,9 @@ public class UserView {
         String email = getStringInput();
         return email;
     }
+
+    public static String getPassword() {
+        System.out.println("Provide password: ");
+        String password = getStringInput();
+        return password;
+    }
