@@ -7,6 +7,7 @@ import views.UserView;
 import models.dao.StudentsDao;
 import models.QuestModel;
 import models.dao.QuestsDao;
+import models.QuestCategoryModel;
 import models.dao.QuestCategoriesDao;
 
 import java.util.InputMismatchException;
