@@ -21,4 +21,8 @@ abstract class AbstractItemModel<T> {
     public Integer getID() {
         return this.ID;
     }
+
+    public T getCategory() {
+        return this.category;
+    }
 }

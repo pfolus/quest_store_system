@@ -10,7 +10,7 @@ public class ClassModel {
     private ArrayList<StudentModel> studentsList;
     private Integer id;
 
-    private static Integer nextID = 1;
+    private static Integer nextId = 1;
 
     public Class() {
         this.mentorsList = new ArrayList<MentorModel>();
