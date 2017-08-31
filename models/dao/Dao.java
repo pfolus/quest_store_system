@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 public abstract class Dao<T> implements ItemsIterator {
 
-    private ArrayList<T> itemsList = new ArrayList<T>();
+    protected ArrayList<T> itemsList = new ArrayList<T>();
 
     public void add(T item) {
         this.itemsList.add(item);
