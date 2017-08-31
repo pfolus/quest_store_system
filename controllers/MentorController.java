@@ -7,6 +7,7 @@ import views.UserView;
 import models.dao.StudentsDao;
 import models.QuestModel;
 import models.dao.QuestsDao;
+import models.QuestCategoryModel;
 import models.dao.QuestCategoriesDao;
 
 import java.util.InputMismatchException;
@@ -83,7 +84,7 @@ public class MentorController {
         id = null;
         while (id.equals(null)) {
             MentorView.askForCategoryId();
-            Integer id = getIntInput();
+            id = MentorView.getIntInput();
         }
         category = questsCategoryDao.get(id);
 
@@ -91,7 +92,7 @@ public class MentorController {
         MentorView.provideQuestPrizeMessage();
         prize = MentorView.getIntInput();
 
-        questsDao.add(new QuestsModel(name, category, description, prize));
+        questsDao.add(new QuestModel(name, category, description, prize));
 
     }
 

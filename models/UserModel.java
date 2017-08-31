@@ -8,7 +8,7 @@ public class UserModel {
     private String login;
     private String password;
     private String email;
-    private Integer id;
+    protected Integer id;
 
     private static Integer nextId = 1;
 

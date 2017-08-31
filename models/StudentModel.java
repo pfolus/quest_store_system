@@ -32,7 +32,7 @@ public class StudentModel extends UserModel {
     }
 
     public ArrayList<BoughtArtifactModel> getBoughtArtifacts(ArtifactsBoughtDao boughtArtifactsDao) {
-        return boughArtifactsDao.get(this.id);
+        return boughtArtifactsDao.get(this.id);
     }
 
     public WalletModel getWallet(WalletsDao walletsDao) {
