@@ -3,14 +3,14 @@ package models;
 abstract class AbstractItemModel<T> {
 
     private String name;
-    private Integer ID;
+    private Integer id;
     private T category;
 
-    private static Integer nextID;
+    private static Integer nextId;
 
     public AbstractItem(String name, T category) {
         this.name = name;
-        this.ID = nextID++;
+        this.id = nextId++;
         this.category = category;
     }
 
@@ -19,7 +19,7 @@ abstract class AbstractItemModel<T> {
     }
 
     public Integer getID() {
-        return this.ID;
+        return this.id;
     }
 
     public T getCategory() {
