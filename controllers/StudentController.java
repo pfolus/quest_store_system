@@ -26,6 +26,10 @@ public class StudentController {
         }
     }
 
+    public static void enterStore() {
+        StoreView.showMenu();
+    }
+
 
     }
 
