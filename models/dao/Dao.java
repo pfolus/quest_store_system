@@ -28,7 +28,7 @@ public abstract class Dao<T> implements ItemsIterator {
             if (iter.next().getId().equals(id)) {
                 return iter.next();
             }
-        }
+        } return null;
     }
 
     public Iterator getIterator() {
