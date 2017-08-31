@@ -18,3 +18,7 @@ public class BoughtArtifactModel {
         this.isUsed = isUsed;
     }
 
+    public void markAsUsed() {
+        this.isUsed = true;
+    }
+}
