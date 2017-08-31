@@ -1,4 +1,6 @@
-public class Artifact extends AbstractItem<ArtifactCategory>{
+package models;
+
+public class ArtifactModel extends AbstractItem<ArtifactCategory> {
 
     private Integer price;
 
