@@ -21,7 +21,11 @@ public class StoreView {
         System.out.println("Wrong choice.");
     }
 
-    public void notEnoughMoneyInfo() {
+    public static void notEnoughMoneyInfo() {
         System.out.println("You can't buy this artifact. You do not have enough coolcoins.");
+    }
+
+    public static void itemBoughtSuccesfully() {
+        System.out.println("You bought an artifact.");
     }
 }
