@@ -4,12 +4,14 @@ import models.MentorModel;
 import models.StudentModel;
 import views.MentorView;
 import models.dao.StudentsDao;
+import models.QuestModel;
 
 import java.util.InputMismatchException;
+import java.util.Iterator;
 
 public class MentorController {
 
-    public void run(StudentsDao studentsDao) {
+    public void runController(StudentsDao studentsDao, QuestsDao questsDao, QuestCategoriesDao questsCategoryDao) {
         int choice = 0;
         final int EXIT = 9;
 
