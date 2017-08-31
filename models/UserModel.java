@@ -43,5 +43,11 @@ public class UserModel {
                + " Email: " + this.email;
     }
 
+    public String getLogin() {
+        return this.login;
+    }
 
+    public String getPassword() {
+        return this.password;
+    }
 }
