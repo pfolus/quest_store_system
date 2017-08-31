@@ -1,5 +1,6 @@
 package models.dao;
 
+import java.util.Iterator;
 import models.WalletModel;
 
 public class WalletsDao extends Dao<WalletModel> {
