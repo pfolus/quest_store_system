@@ -22,3 +22,8 @@ public class UserView {
         return login;
     }
 
+    public static String getEmail() {
+        System.out.println("Provide email: ");
+        String email = getStringInput();
+        return email;
+    }
