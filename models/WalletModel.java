@@ -14,3 +14,8 @@ public class WalletModel {
         this.studentId = studentId;
         this.id = nextId++;
     }
+
+    public Integer getId() {
+        return this.id;
+    }
+
