@@ -23,3 +23,7 @@ public class WalletModel {
         return this.balance;
     }
 
+    public Integer getStudentId() {
+        return this.studentId;
+    }
+}
