@@ -23,6 +23,23 @@ public class MentorView {
         return integer;
    }
 
+   public static String getStringInput() {
+
+       String input;
+       scan = new Scanner(System.in);
+       input = scan.nextLine();
+
+       return input;
+   }
+
+   public static void provideQuestNameMessage() {
+       System.out.print("Provide name of a quest: ");
+   }
+
+   public static void provideQuestDescriptionMessage() {
+       System.out.print("Provide Quest's description: ");
+   }
+
    public static void showExistLoginMessage(){
        System.out.println("Login already exists, try again!");
    }
@@ -39,6 +56,14 @@ public class MentorView {
        for (String item : menuList) {
            System.out.print(item);
        }
+   }
+
+   public static void showString(String string) {
+       System.out.print(string);
+   }
+
+   public static void askForCategoryId() {
+       System.out.println(" Pick ID of category: ");
    }
 
 
