@@ -92,7 +92,7 @@ public class MentorController {
         MentorView.provideQuestPrizeMessage();
         prize = MentorView.getIntInput();
 
-        questsDao.add(new QuestsModel(name, category, description, prize));
+        questsDao.add(new QuestModel(name, category, description, prize));
 
     }
 
