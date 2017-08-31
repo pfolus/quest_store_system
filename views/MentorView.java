@@ -1,7 +1,7 @@
 package views;
 
 import java.util.Scanner;
-import java.lang.Integer;
+import java.util.InputMismatchException;
 
 public class MentorView {
 

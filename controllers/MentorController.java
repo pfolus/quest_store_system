@@ -3,6 +3,7 @@ package controllers;
 import models.MentorModel;
 import models.StudentModel;
 import views.MentorView;
+import views.UserView;
 import models.dao.StudentsDao;
 import models.QuestModel;
 import models.dao.QuestsDao;
@@ -43,16 +44,15 @@ public class MentorController {
         String name, surname, login,
                 password, email;
 
-        name = userView.getName();
-        surname = userView.getSurname();
-        login = userView.getLogin();
+        name = UserView.getName();
+        surname = UserView.getSurname();
+        login = UserView.getLogin();
 
-        while(!loginExist(login)) {
-            MentorView.showExistLoginMessage();
-            login = userView.getLogin();
-        }
-        password = userView.getPassword();
-        email = userView.getEmail();
+        MentorView.showExistLoginMessage();
+        login = UserView.getLogin();
+
+        password = UserView.getPassword();
+        email = UserView.getEmail();
 
         studentsDao.add(new StudentModel(name, surname, login, password, email));
 
@@ -61,7 +61,7 @@ public class MentorController {
     public void addQuest(QuestsDao questsDao, QuestCategoriesDao questsCategoryDao) {
         String name;
         String description;
-        QuestCategory category;
+        QuestCategoryModel category;
         Integer id;
         Integer prize;
 

@@ -3,7 +3,7 @@ package models;
 abstract class AbstractItemModel<T> {
 
     private String name;
-    private Integer id;
+    protected Integer id;
     private T category;
 
     private static Integer nextId;
