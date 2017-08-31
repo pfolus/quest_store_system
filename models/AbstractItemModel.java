@@ -8,7 +8,7 @@ abstract class AbstractItemModel<T> {
 
     private static Integer nextId;
 
-    public AbstractItem(String name, T category) {
+    public AbstractItemModel(String name, T category) {
         this.name = name;
         this.id = nextId++;
         this.category = category;
@@ -18,7 +18,7 @@ abstract class AbstractItemModel<T> {
         return this.name;
     }
 
-    public Integer getID() {
+    public Integer getId() {
         return this.id;
     }
 
