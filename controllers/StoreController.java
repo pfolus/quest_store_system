@@ -25,3 +25,15 @@ public class StoreController {
     }
 
 
+    public buyArtifactWithTeammates() {
+
+    }
+
+    private static boolean hasEnoughCoins(Wallet wallet, ArtifactModel artifactToBuy) {
+        if (wallet.getBalance() >= artifactToBuy.getPrice()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
