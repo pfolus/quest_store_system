@@ -31,6 +31,11 @@ public class MentorView {
 
        return input;
    }
+
+   public static void provideQuestNameMessage() {
+       System.out.print("Provide name of a quest: ");
+   }
+
    public static void showExistLoginMessage(){
        System.out.println("Login already exists, try again!");
    }
