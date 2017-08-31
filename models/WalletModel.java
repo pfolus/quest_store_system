@@ -33,4 +33,8 @@ public class WalletModel {
     public Integer getStudentId() {
         return this.studentId;
     }
+
+    public void reduceBalance(Integer amount) {
+        this.balance -= amount;
+    }
 }
