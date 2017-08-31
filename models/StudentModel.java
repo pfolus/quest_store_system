@@ -42,4 +42,8 @@ public class StudentModel extends UserModel {
         return this.wallet;
     }
 
+    private void setWallet(WalletModel wallet) {
+        this.wallet = wallet;
+    }
+
 }
