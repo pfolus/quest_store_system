@@ -20,7 +20,7 @@ public class MentorController {
             if(choice == 1){
                 createStudent(studentsDao);
             } else if(choice == 2){
-                addQuest();
+                addQuest(questsDao, questsCategoryDao);
             } else if(choice == 3){
                 addArtifact();
             } else if(choice == 4){
