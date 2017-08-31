@@ -11,4 +11,8 @@ public class QuestModel extends AbstractItemModel<QuestCategory>{
     public Integer getPrize() {
         return this.prize;
     }
+
+    public Integer getId() {
+        return this.id;
+    }
 }
