@@ -16,10 +16,14 @@ public class StoreController {
             student.getWallet().reduceBalance(artifact.getPrice());
         } else {
             StoreView.notEnoughMoneyInfo();
-            return null;
         }
     }
 
+    private void addBoughtItemToDao(ArtifactModel artifact, StudentModel student) {
+        BoughtArtifactModel boughtArtifact =
+                new BoughtArtifactModel(artifact, student.getId());
+        boughtArtifacts.add(boughtArtifact);
+    }
 
     public buyArtifactWithTeammates() {
 
