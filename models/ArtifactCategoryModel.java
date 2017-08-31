@@ -1,6 +1,6 @@
 package models;
 
-public class ArtifactCategory extends Category {
+public class ArtifactCategoryModel extends CategoryModel {
 
     public ArtifactCategory(String name, String id) {
         super(name, id);
