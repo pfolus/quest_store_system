@@ -15,3 +15,10 @@ public class UserView {
         String surname = getStringInput();
         return surname;
     }
+
+    public static String getLogin() {
+        System.out.println("Provide login: ");
+        String login = getStringInput();
+        return login;
+    }
+
