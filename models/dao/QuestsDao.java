@@ -1,5 +1,7 @@
 package models.dao;
 
+import java.util.Iterator;
+
 import models.QuestModel;
 
 public class QuestsDao extends Dao<QuestModel> {
@@ -8,8 +10,10 @@ public class QuestsDao extends Dao<QuestModel> {
         Iterator iter = this.getIterator();
 
         while (iter.hasNext()) {
-            if (iter.next().getId().equals(id)) {
-                return iter.next();
+            QuestModel user = (QuestModel) iter.next();
+
+            if (user.getId().equals(id)) {
+                return user;
             }
         }
         return null;

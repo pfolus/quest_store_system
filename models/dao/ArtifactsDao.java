@@ -1,5 +1,7 @@
 package models.dao;
 
+import java.util.Iterator;
+
 import models.ArtifactModel;
 
 public class ArtifactsDao extends Dao<ArtifactModel> {
@@ -8,8 +10,10 @@ public class ArtifactsDao extends Dao<ArtifactModel> {
         Iterator iter = this.getIterator();
 
         while (iter.hasNext()) {
-            if (iter.next().getId().equals(id)) {
-                return iter.next();
+            ArtifactModel user = (ArtifactModel) iter.next();
+
+            if (user.getId().equals(id)) {
+                return user;
             }
         }
         return null;

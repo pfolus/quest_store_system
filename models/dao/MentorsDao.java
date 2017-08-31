@@ -1,5 +1,7 @@
 package models.dao;
 
+import java.util.Iterator;
+
 import models.MentorModel;
 
 public class MentorsDao extends Dao<MentorModel> {
@@ -8,8 +10,10 @@ public class MentorsDao extends Dao<MentorModel> {
         Iterator iter = this.getIterator();
 
         while (iter.hasNext()) {
-            if (iter.next().getId().equals(id)) {
-                return iter.next();
+            MentorModel user = (MentorModel) iter.next();
+
+            if (user.getId().equals(id)) {
+                return user;
             }
         }
         return null;

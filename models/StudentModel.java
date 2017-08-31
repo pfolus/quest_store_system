@@ -35,7 +35,7 @@ public class StudentModel extends UserModel {
         return this.level;
     }
 
-    public ArrayList<BoughtArtifactModel> getBoughtArtifacts(ArtifactsBoughtDao boughtArtifactsDao) {
+    public BoughtArtifactModel getBoughtArtifacts(ArtifactsBoughtDao boughtArtifactsDao) {
         return boughtArtifactsDao.get(this.id);
     }
 
