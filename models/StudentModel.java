@@ -26,5 +26,8 @@ public class StudentModel extends UserModel {
         this.ordersWithTeammates = null;
     }
 
+    public String getLevel() {
+        return this.level;
     }
+
 }
