@@ -1,16 +1,16 @@
 package controllers;
 
 import models.UserModel;
-import models.AdminModel;
+// import models.AdminModel;
 import models.MentorModel;
-import models.StudentModel;
-import models.dao.AdminsDao;
+// import models.StudentModel;
+// import models.dao.AdminsDao;
 import models.dao.MentorsDao;
-import models.dao.StudentsDao;
+// import models.dao.StudentsDao;
 import views.MainView;
-import controllers.AdminController;
+// import controllers.AdminController;
 import controllers.MentorController;
-import controllers.StudentController;
+// import controllers.St udentController;
 
 public class MainController {
 
@@ -49,7 +49,7 @@ public class MainController {
         // if (user instanceof AdminModel) {
         //     AdminController.runController(user);
         // }
-        else if (user instanceof MentorModel) {
+        if (user instanceof MentorModel) {
             MentorController.runController(user);
         }
     }
