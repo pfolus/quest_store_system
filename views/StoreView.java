@@ -9,3 +9,21 @@ public class StoreView {
         System.out.println(artifact);
     }
 
+    public Integer chooseArtifactId() {
+        Integer id;
+        boolean isCorrect = false;
+
+        while(!isCorrect) {
+
+            try {
+                Scanner in = new Scanner();
+                System.out.println("Provide artifact id: ");
+                id = in.nextInt();
+                isCorrect = true;
+            } catch (InputMismatchException e) {
+                printWrongChoiceInfo();
+            }
+        }
+        return id;
+    }
+
