@@ -36,6 +36,11 @@ public class StudentController {
         StoreView.showMenu();
     }
 
+    public static void showLevel(Student student) {
+        String level = student.getLevel();
+        StudentView.printLevelInfo(level);
+    }
+
 
     }
 
