@@ -41,10 +41,25 @@ public class StudentController {
         StudentView.printLevelInfo(level);
     }
 
+    private Integer chooseOption() {
+        Integer option;
+        final Integer[] CHOICES = {0, 1, 2, 3, 4, 5};
+
+        while (!Arrays.asList(choices).contains(choice)){
+            try {
+                option = StudentView.chooseOption();
+            } catch (InputMismatchException e) {
+                StudentView.printWrongChoiceInfo();
+            }
+        }
+        return option;
+    }
+
+    public void buyArtifact() {
 
     }
 
-    public buyArtifactWithTeammates() {
+    public void buyArtifactWithTeammates(); {
 
     }
 
