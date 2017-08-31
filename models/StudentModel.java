@@ -46,4 +46,8 @@ public class StudentModel extends UserModel {
         this.wallet = wallet;
     }
 
+    public void addDoneQuest(DoneQuestModel doneQuest) {
+        this.doneQuests.add(doneQuest);
+    }
+
 }
