@@ -10,6 +10,15 @@ public class StudentModel extends UserModel {
 
     public StudentModel(String name,
                         String surname, String login,
+                        String password, String email) {
+
+        super(name, surname, login, password, email);
+        this.level = "Beginner";
+        this.score = 0;
+    }
+
+    public StudentModel(String name,
+                        String surname, String login,
                         String password, String email,
                         String level, Integer score) {
 
