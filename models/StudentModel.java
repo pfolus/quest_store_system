@@ -1,6 +1,10 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+
+import models.dao.WalletsDao;
+import models.dao.ArtifactsBoughtDao;
 
 
 public class StudentModel extends UserModel {
