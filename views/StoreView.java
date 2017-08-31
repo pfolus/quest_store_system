@@ -4,6 +4,15 @@ import java.util.Scanner;
 
 public class StoreView {
 
+    public static void showStoreMenu() {
+        String[] menuList = {"1. Buy an artifact",
+                             "2. Buy an artifact with teammates",
+                             "0. Exit"};
+
+        for (String item : menuList) {
+            System.out.print(item);
+        }
+    }
 
     public static void showArtifact(String artifact) {
         System.out.println(artifact);
