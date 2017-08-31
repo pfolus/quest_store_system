@@ -1,4 +1,6 @@
-public class QuestModel extends AbstractItemModel<QuestCategory>{
+package models;
+
+public class QuestModel extends AbstractItemModel<QuestCategoryModel>{
 
     private Integer prize;
     private String description;
