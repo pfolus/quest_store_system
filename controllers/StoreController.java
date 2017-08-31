@@ -25,7 +25,27 @@ public class StoreController {
         boughtArtifacts.add(boughtArtifact);
     }
 
-    public buyArtifactWithTeammates() {
+    private ArtifactModel chooseArtifactById(ArtifactsDao artifacts) {
+        Integer id = chooseArtifactId();
+        ArtifactModel artifact = artifacts.get(id);
+    }
+
+    private Integer chooseArtifactId() {
+        Integer id;
+        boolean isCorrect = false;
+
+        while(!isCorrect) {
+
+            try {
+                id = StoreView.chooseArtifactId();
+                isCorrect = true;
+            } catch (InputMismatchException e) {
+                StoreView.printWrongChoiceInfo();
+            }
+        }
+    }
+
+    public BoughtArtifactModel buyArtifactWithTeammates() {
 
     }
 
