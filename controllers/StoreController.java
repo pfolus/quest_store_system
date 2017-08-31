@@ -7,17 +7,13 @@ public class StoreController {
     public void buyArtifact(ArtifactsBoughtDao boughtArtifacts,
                                            ArtifactsDao artifacts, StudentModel student) {
 
-        Integer id;
-        boolean hasEnoughCoins;
-
         showArtifactsInStore(artifacts);
-        id = chooseArtifactId;
-        ArtifactModel artifact = artifacts.get(id);
+        ArtifactModel artifact = chooseArtifactById(artifacts);
 
         if (hasEnoughCoins(student.getWallet(), artifact)) {
-            BoughtArtifactModel boughtArtifact =
-                    new BoughtArtifactModel(artifact, student.getId());
-            return boughtArtifact;
+            addBoughtItemToDao(artifact, student);
+            StoreView.itemBoughtSuccesfully();
+            student.getWallet().reduceBalance(artifact.getPrice());
         } else {
             StoreView.notEnoughMoneyInfo();
             return null;
