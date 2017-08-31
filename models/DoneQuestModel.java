@@ -4,10 +4,14 @@ public class DoneQuestModel {
 
     private QuestModel quest;
     private Integer timesDone;
+    private Integer id;
+
+    private static Integer nextId = 1;
 
     public DoneQuestModel(QuestModel quest) {
         this.quest = quest;
         this.timesDone = 1;
+        this.id = nextId++;
     }
 
     public void increaseTimesDone() {
