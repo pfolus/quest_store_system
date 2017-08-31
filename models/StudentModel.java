@@ -33,5 +33,4 @@ public class StudentModel extends UserModel {
     public WalletModel getWallet(WalletsDao walletsDao) {
         return walletsDao.get(this.id);
     }
-
 }
