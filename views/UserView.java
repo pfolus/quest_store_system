@@ -36,7 +36,7 @@ public class UserView {
 
     public static String getStringInput() {
         String input;
-        scan = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         input = scan.nextLine();
 
         return input;

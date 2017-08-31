@@ -6,7 +6,7 @@ public class QuestCategoryModel extends CategoryModel {
         super(name, id);
     }
 
-    public void toString() {
+    public String toString() {
         return this.id + ". " + this.name;
     }
 }
