@@ -37,3 +37,10 @@ public class StoreController {
         }
     }
 
+    public static void showArtifactsInStore(ArtifactsDao artifacts) {
+        Iterator iter = artifacts.getIterator();
+        while (iter.hasNext()) {
+            StoreView.showArtifact(iter.next().toString());
+        }
+    }
+}
