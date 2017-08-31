@@ -34,4 +34,8 @@ public class StudentModel extends UserModel {
         return this.ordersWithTeammates;
     }
 
+    public ArrayList<BoughtArtifactModel> getBoughtArtifacts() {
+        return this.boughtArtifacts;
+    }
+
 }
