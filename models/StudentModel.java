@@ -7,10 +7,6 @@ public class StudentModel extends UserModel {
 
     String level;
     Integer score;
-    WalletModel wallet;
-    ArrayList<DoneQuestModel> doneQuests;
-    ArrayList<BoughtArtifactModel> boughtArtifacts;
-    ArrayList<OrderWithTeammatesModel> ordersWithTeammates;
 
     public StudentModel(String name,
                         String surname, String login,
@@ -20,10 +16,6 @@ public class StudentModel extends UserModel {
         super(name, surname, login, password, email);
         this.level = level;
         this.score = score;
-        this.wallet = null;
-        this.doneQuests = null;
-        this.boughtArtifacts = null;
-        this.ordersWithTeammates = null;
     }
 
     public String getLevel() {
@@ -34,29 +26,12 @@ public class StudentModel extends UserModel {
         return this.ordersWithTeammates;
     }
 
-    public ArrayList<BoughtArtifactModel> getBoughtArtifacts() {
-        return this.boughtArtifacts;
+    public ArrayList<BoughtArtifactModel> getBoughtArtifacts(ArtifactsBoughtDao boughtArtifactsDao) {
+        return boughArtifactsDao.get(this.id);
     }
 
-    public WalletModel getWallet() {
-        return this.wallet;
+    public Wallet getWallet(WalletsDao walletsDao) {
+        return walletsDao.get(this.id);
     }
-
-    private void setWallet(WalletModel wallet) {
-        this.wallet = wallet;
-    }
-
-    public void addDoneQuest(DoneQuestModel doneQuest) {
-        this.doneQuests.add(doneQuest);
-    }
-
-    public void addBoughtArtifact(BoughtArtifactModel boughtArtifact) {
-        this.boughtArtifacts.add(boughtArtifact);
-    }
-
-    public void addOrderWithTeammates(OrderWithTeammatesModel orderWithTeammates) {
-        this.ordersWithTeammates.add(orderWithTeammates);
-    }
-
 
 }
