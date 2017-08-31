@@ -9,3 +9,9 @@ public class UserView {
         String name = getStringInput();
         return name;
     }
+
+    public static String getSurname() {
+        System.out.println("Provide surname: ");
+        String surname = getStringInput();
+        return surname;
+    }
