@@ -21,16 +21,6 @@ public abstract class Dao<T> implements ItemsIterator {
         }
     }
 
-    public T get(Integer id) {
-        Iterator iter = this.getIterator();
-
-        while (iter.hasNext()) {
-            if (iter.next().getId().equals(id)) {
-                return iter.next();
-            }
-        } return null;
-    }
-
     public Iterator getIterator() {
         return this.itemsList.iterator();
     }
