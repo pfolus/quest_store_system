@@ -10,7 +10,7 @@ public class UserModel {
     private String email;
     private Integer id;
 
-    private static Integer nextID = 1;
+    private static Integer nextId = 1;
 
     public UserModel(String name, String surname,
               String login, String password, String email) {
@@ -20,7 +20,7 @@ public class UserModel {
         this.login = login;
         this.password = password;
         this.email = email;
-        this.id = nextID++;
+        this.id = nextId++;
     }
 
     public String getEmail() {
