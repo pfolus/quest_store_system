@@ -30,7 +30,7 @@ public class StudentModel extends UserModel {
         return boughArtifactsDao.get(this.id);
     }
 
-    public Wallet getWallet(WalletsDao walletsDao) {
+    public WalletModel getWallet(WalletsDao walletsDao) {
         return walletsDao.get(this.id);
     }
 
