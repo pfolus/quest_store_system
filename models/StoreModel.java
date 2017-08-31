@@ -1,7 +1,7 @@
 package models;
 
 
-public class Store {
+public class StoreModel {
 
     public addArtifact() {
 
