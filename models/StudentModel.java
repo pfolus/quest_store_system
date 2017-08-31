@@ -54,4 +54,9 @@ public class StudentModel extends UserModel {
         this.boughtArtifacts.add(boughtArtifact);
     }
 
+    public void addOrderWithTeammates(OrderWithTeammatesModel orderWithTeammates) {
+        this.ordersWithTeammates.add(orderWithTeammates);
+    }
+
+
 }
