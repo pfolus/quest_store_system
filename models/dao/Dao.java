@@ -11,14 +11,8 @@ public abstract class Dao<T> implements ItemsIterator {
         this.itemsList.add(item);
     }
 
-    public void remove(Integer id) {
-        Iterator iter = this.getIterator();
-
-        while (iter.hasNext()) {
-            if (iter.next().getId().equals(id)) {
-                iter.remove();
-            }
-        }
+    public void remove(T item) {
+        this.itemsList.remove(item);
     }
 
     public Iterator getIterator() {

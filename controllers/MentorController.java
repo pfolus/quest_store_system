@@ -15,7 +15,7 @@ import java.util.Iterator;
 
 public class MentorController {
 
-    public void runController(StudentsDao studentsDao, QuestsDao questsDao, QuestCategoriesDao questsCategoryDao) {
+    public static void runController(MentorModel mentor, StudentsDao studentsDao) {
         int choice = 0;
         final int EXIT = 9;
 

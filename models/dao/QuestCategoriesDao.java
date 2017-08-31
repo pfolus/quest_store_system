@@ -1,5 +1,7 @@
 package models.dao;
 
+import java.util.Iterator;
+
 import models.QuestCategoryModel;
 
 public class QuestCategoriesDao extends Dao<QuestCategoryModel> {
@@ -8,8 +10,10 @@ public class QuestCategoriesDao extends Dao<QuestCategoryModel> {
         Iterator iter = this.getIterator();
 
         while (iter.hasNext()) {
-            if (iter.next().getId().equals(id)) {
-                return iter.next();
+            QuestCategoryModel user = (QuestCategoryModel) iter.next();
+
+            if (user.getId().equals(id)) {
+                return user;
             }
         }
         return null;

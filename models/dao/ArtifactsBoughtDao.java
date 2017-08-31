@@ -1,15 +1,19 @@
 package models.dao;
 
+import java.util.Iterator;
+
 import models.BoughtArtifactModel;
 
 public class ArtifactsBoughtDao extends Dao<BoughtArtifactModel> {
 
-    public ArtifactBoughtModel get(Integer id) {
+    public BoughtArtifactModel get(Integer id) {
         Iterator iter = this.getIterator();
 
         while (iter.hasNext()) {
-            if (iter.next().getId().equals(id)) {
-                return iter.next();
+            BoughtArtifactModel user = (BoughtArtifactModel) iter.next();
+
+            if (user.getId().equals(id)) {
+                return user;
             }
         }
         return null;

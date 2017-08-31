@@ -9,8 +9,10 @@ public class WalletsDao extends Dao<WalletModel> {
         Iterator iter = this.getIterator();
 
         while (iter.hasNext()) {
-            if (iter.next().getId().equals(id)) {
-                return iter.next();
+            WalletModel user = (WalletModel) iter.next();
+
+            if (user.getId().equals(id)) {
+                return user;
             }
         }
         return null;

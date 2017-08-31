@@ -7,7 +7,7 @@ import models.MentorModel;
 // import models.StudentModel;
 // import models.dao.AdminsDao;
 import models.dao.MentorsDao;
-// import models.dao.StudentsDao;
+import models.dao.StudentsDao;
 import views.MainView;
 // import controllers.AdminController;
 import controllers.MentorController;
@@ -22,12 +22,13 @@ public class MainController {
         // adminsDao.read();
         MentorsDao mentorsDao = new MentorsDao();
         mentorsDao.add(new MentorModel("Kamil", "Postrożny", "ajax", "qwerty", "lol"));
+        StudentsDao studentsDao = new StudentsDao();
 
         while (user == null) {
             user = findUser(mentorsDao);
         }
 
-        chooseController(user);
+        chooseController(user, studentsDao);
     }
 
     private static UserModel findUser(MentorsDao mentorsDao) {
@@ -37,7 +38,7 @@ public class MainController {
         Iterator iter = mentorsDao.getIterator();
 
         while (iter.hasNext()) {
-            UserModel user = iter.next();
+            UserModel user = (UserModel) iter.next();
 
             if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
                 return user;
@@ -46,12 +47,12 @@ public class MainController {
         return null;
     }
 
-    private static void chooseController(UserModel user) {
+    private static void chooseController(UserModel user, StudentsDao studentsDao) {
         // if (user instanceof AdminModel) {
         //     AdminController.runController(user);
         // }
         if (user instanceof MentorModel) {
-            MentorController.runController(user);
+            MentorController.runController((MentorModel) user, studentsDao);
         }
     }
 }

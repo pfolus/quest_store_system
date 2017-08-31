@@ -1,5 +1,7 @@
 package models.dao;
 
+import java.util.Iterator;
+
 import models.LevelModel;
 
 public class LevelsDao extends Dao<LevelModel> {
@@ -8,8 +10,10 @@ public class LevelsDao extends Dao<LevelModel> {
         Iterator iter = this.getIterator();
 
         while (iter.hasNext()) {
-            if (iter.next().getId().equals(id)) {
-                return iter.next();
+            LevelModel user = (LevelModel) iter.next();
+
+            if (user.getId().equals(id)) {
+                return user;
             }
         }
         return null;

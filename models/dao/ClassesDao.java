@@ -1,5 +1,7 @@
 package models.dao;
 
+import java.util.Iterator;
+
 import models.ClassModel;
 
 public class ClassesDao extends Dao<ClassModel> {
@@ -8,8 +10,10 @@ public class ClassesDao extends Dao<ClassModel> {
         Iterator iter = this.getIterator();
 
         while (iter.hasNext()) {
-            if (iter.next().getId().equals(id)) {
-                return iter.next();
+            ClassModel user = (ClassModel) iter.next();
+
+            if (user.getId().equals(id)) {
+                return user;
             }
         }
         return null;
