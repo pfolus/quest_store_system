@@ -7,10 +7,6 @@ public class StudentModel extends UserModel {
 
     String level;
     Integer score;
-    WalletModel wallet;
-    ArrayList<DoneQuestModel> doneQuests;
-    ArrayList<BoughtArtifactModel> boughtArtifacts;
-    ArrayList<OrderWithTeammatesModel> ordersWithTeammates;
 
     public StudentModel(String name,
                         String surname, String login,
@@ -20,10 +16,6 @@ public class StudentModel extends UserModel {
         super(name, surname, login, password, email);
         this.level = level;
         this.score = score;
-        this.wallet = null;
-        this.doneQuests = null;
-        this.boughtArtifacts = null;
-        this.ordersWithTeammates = null;
     }
 
     public String getLevel() {
