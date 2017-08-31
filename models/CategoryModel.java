@@ -1,6 +1,6 @@
 package models;
 
-public abstract class Category {
+public abstract class CategoryModel {
 
     protected Integer id;
     protected String name;
