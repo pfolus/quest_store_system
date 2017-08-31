@@ -34,21 +34,4 @@ public class StudentModel extends UserModel {
         return walletsDao.get(this.id);
     }
 
-    private void setWallet(WalletModel wallet) {
-        this.wallet = wallet;
-    }
-
-    public void addDoneQuest(DoneQuestModel doneQuest) {
-        this.doneQuests.add(doneQuest);
-    }
-
-    public void addBoughtArtifact(BoughtArtifactModel boughtArtifact) {
-        this.boughtArtifacts.add(boughtArtifact);
-    }
-
-    public void addOrderWithTeammates(OrderWithTeammatesModel orderWithTeammates) {
-        this.ordersWithTeammates.add(orderWithTeammates);
-    }
-
-
 }
