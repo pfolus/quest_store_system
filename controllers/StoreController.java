@@ -4,28 +4,48 @@ package controllers;
 public class StoreController {
 
 
-    public BoughtArtifactModel buyArtifact(ArtifactsBoughtDao boughtArtifacts,
+    public void buyArtifact(ArtifactsBoughtDao boughtArtifacts,
                                            ArtifactsDao artifacts, StudentModel student) {
 
-        Integer id;
-        boolean hasEnoughCoins;
-
         showArtifactsInStore(artifacts);
-        id = chooseArtifactId;
-        ArtifactModel artifact = artifacts.get(id);
+        ArtifactModel artifact = chooseArtifactById(artifacts);
 
         if (hasEnoughCoins(student.getWallet(), artifact)) {
-            BoughtArtifactModel boughtArtifact =
-                    new BoughtArtifactModel(artifact, student.getId());
-            return boughtArtifact;
+            addBoughtItemToDao(artifact, student);
+            StoreView.itemBoughtSuccesfully();
+            student.getWallet().reduceBalance(artifact.getPrice());
         } else {
             StoreView.notEnoughMoneyInfo();
-            return null;
         }
     }
 
+    private void addBoughtItemToDao(ArtifactModel artifact, StudentModel student) {
+        BoughtArtifactModel boughtArtifact =
+                new BoughtArtifactModel(artifact, student.getId());
+        boughtArtifacts.add(boughtArtifact);
+    }
 
-    public buyArtifactWithTeammates() {
+    private ArtifactModel chooseArtifactById(ArtifactsDao artifacts) {
+        Integer id = chooseArtifactId();
+        ArtifactModel artifact = artifacts.get(id);
+    }
+
+    private Integer chooseArtifactId() {
+        Integer id;
+        boolean isCorrect = false;
+
+        while(!isCorrect) {
+
+            try {
+                id = StoreView.chooseArtifactId();
+                isCorrect = true;
+            } catch (InputMismatchException e) {
+                StoreView.printWrongChoiceInfo();
+            }
+        }
+    }
+
+    public BoughtArtifactModel buyArtifactWithTeammates() {
 
     }
 
