@@ -39,7 +39,7 @@ public class MentorController {
             } else if(choice == 3){
                 addArtifact(artifactsDao, artifactCategoriesDao);
             } else if(choice == 4){
-                markStudentDoneQuest();
+                markStudentDoneQuest(studentsDao);
             } else if(choice == 5){
                 markStudentUsedArtifact();
             } else if(choice == 6){
