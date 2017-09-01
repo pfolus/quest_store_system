@@ -67,13 +67,15 @@ public class StoreController {
         boughtArtifacts.add(boughtArtifact);
     }
 
-    private ArtifactModel chooseArtifactById(ArtifactsDao artifacts) {
+    private static ArtifactModel chooseArtifactById(ArtifactsDao artifacts) {
         Integer id = chooseArtifactId();
         ArtifactModel artifact = artifacts.get(id);
+
+        return artifact;
     }
 
-    private Integer chooseArtifactId() {
-        Integer id;
+    private static Integer chooseArtifactId() {
+        Integer id = null;
         boolean isCorrect = false;
 
         while(!isCorrect) {
