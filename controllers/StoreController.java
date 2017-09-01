@@ -87,14 +87,15 @@ public class StoreController {
                 StoreView.printWrongChoiceInfo();
             }
         }
+        return id;
     }
 
-    public BoughtArtifactModel buyArtifactWithTeammates() {
+    //private static BoughtArtifactModel buyArtifactWithTeammates() {
 
-    }
+    //}
 
-    private static boolean hasEnoughCoins(Wallet wallet, ArtifactModel artifactToBuy) {
-        if (wallet.getBalance() >= artifactToBuy.getPrice()) {
+    private static boolean hasEnoughCoins(WalletModel wallet, ArtifactModel artifactToBuy) {
+        if (wallet.getBalance() > artifactToBuy.getPrice()) {
             return true;
         } else {
             return false;
@@ -106,5 +107,19 @@ public class StoreController {
         while (iter.hasNext()) {
             StoreView.showArtifact(iter.next().toString());
         }
+    }
+
+    private static Integer chooseOption() {
+        Integer choice = null;
+        final Integer[] CHOICES = {0, 1, 2};
+
+        while (!Arrays.asList(CHOICES).contains(choice)){
+            try {
+                choice = StoreView.chooseOption();
+            } catch (InputMismatchException e) {
+                StoreView.printWrongChoiceInfo();
+            }
+        }
+        return choice;
     }
 }
