@@ -22,4 +22,12 @@ public class ArtifactsBoughtDao extends Dao<BoughtArtifactModel> {
     public void read() {}
 
     public void save() {}
+
+    // public BoughtArtifactModel getByStudentId(Integer id) {
+    //     Iterator iter = getIterator();
+    //     while (iter.hasNext()) {
+    //         if (id.equals(iter.next().getStudentId()));
+    //         System.out.println(iter.next());
+    //     }
+    // }
 }
