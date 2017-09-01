@@ -10,8 +10,9 @@ public class StoreView {
                              "0. Exit"};
 
         for (String item : menuList) {
-            System.out.print(item);
+            System.out.println(item);
         }
+        System.out.println("");
     }
 
     public static void showArtifact(String artifact) {
