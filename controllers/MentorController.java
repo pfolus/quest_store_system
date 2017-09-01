@@ -136,7 +136,28 @@ public class MentorController {
 
     }
 
-    public static void markStudentDoneQuest() {
+    public static void markStudentDoneQuest(StudentsDao studentsDao) {
+        Integer id;
+        Iterator studentsIterator = studentsDao.getIterator();
+        StudentModel student;
+
+        if(studentsIterator.hasNext()) {
+            // lists Studends details
+            while (studentsIterator.hasNext()) {
+                MentorView.showString(studentsIterator.next().toString());
+            }
+            // get category correct ID from input
+            student = null;
+            while (student == null) {
+                MentorView.provideStudentIdMessage();
+                id = MentorView.getIntInput();
+                student = studentsDao.get(id);
+            }
+
+        } else {
+            MentorView.showNoStudentsMessage();
+        }
+
 
     }
 
