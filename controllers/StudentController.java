@@ -12,7 +12,7 @@ public class StudentController {
 
     public static void runController(StudentModel student) {
         WalletsDao walletsDao = new WalletsDao();
-        walletsDao.add(new WalletModel(1));
+        walletsDao.add(new WalletModel(2));
 
         int choice = -1;
         final int EXIT = 0;
