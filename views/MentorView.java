@@ -66,6 +66,10 @@ public class MentorView {
        System.out.println("Wrong option provided, try again!");
    }
 
+   public static void showNoStudentsMessage() {
+       System.out.println("There are no students in students list yet!");
+   }
+
    public static void showMenu() {
        String[] menuList = {"1.create Student", "2.add Quest", "3. add Artifact",
                 "4. mark Students Done Quests", "5. mark Students Used Artifacts",
