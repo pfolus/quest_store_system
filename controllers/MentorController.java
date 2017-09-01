@@ -22,6 +22,8 @@ public class MentorController {
     public static void runController(MentorModel mentor, StudentsDao studentsDao) {
         QuestsDao questsDao = new QuestsDao();
         QuestCategoriesDao questCategoriesDao = new QuestCategoriesDao();
+        ArtifactsDao artifactsDao = new ArtifactsDao();
+        ArtifactCategoriesDao artifactCategoriesDao = new ArtifactCategoriesDao();
 
         int choice = 0;
         final int EXIT = 9;
