@@ -84,8 +84,12 @@ public class MentorView {
        System.out.print(string);
    }
 
-   public static void askForCategoryId() {
+   public static void provideCategoryIdMessage() {
        System.out.println(" Pick ID of category: ");
+   }
+
+   public static void provideStudentIdMessage() {
+       System.out.println(" Pick ID of student: ");
    }
 
 
