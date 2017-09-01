@@ -1,5 +1,20 @@
 package controllers;
 
+import java.util.Iterator;
+import java.util.Arrays;
+import java.util.InputMismatchException;
+
+import views.StoreView;
+import models.ArtifactModel;
+import models.StudentModel;
+import models.WalletModel;
+import models.BoughtArtifactModel;
+import models.ArtifactCategoryModel;
+import models.dao.ArtifactsBoughtDao;
+import models.dao.ArtifactsDao;
+import models.dao.WalletsDao;
+import models.dao.ArtifactCategoriesDao;
+
 
 public class StoreController {
 
