@@ -39,7 +39,7 @@ public class MentorController {
             } else if(choice == 3){
                 addArtifact(artifactsDao, artifactCategoriesDao);
             } else if(choice == 4){
-                markStudentDoneQuest();
+                markStudentDoneQuest(studentsDao);
             } else if(choice == 5){
                 markStudentUsedArtifact();
             } else if(choice == 6){
@@ -88,7 +88,7 @@ public class MentorController {
         // get category correct ID from input
         category = null;
         while (category == null) {
-            MentorView.askForCategoryId();
+            MentorView.provideCategoryIdMessage();
             id = MentorView.getIntInput();
             category = questsCategoryDao.get(id);
         }
@@ -124,7 +124,7 @@ public class MentorController {
         // get category correct ID from input
         category = null;
         while (category == null) {
-            MentorView.askForCategoryId();
+            MentorView.provideCategoryIdMessage();
             id = MentorView.getIntInput();
             category = artifactCategoriesDao.get(id);
         }
@@ -136,7 +136,28 @@ public class MentorController {
 
     }
 
-    public static void markStudentDoneQuest() {
+    public static void markStudentDoneQuest(StudentsDao studentsDao) {
+        Integer id;
+        Iterator studentsIterator = studentsDao.getIterator();
+        StudentModel student;
+
+        if(studentsIterator.hasNext()) {
+            // lists Studends details
+            while (studentsIterator.hasNext()) {
+                MentorView.showString(studentsIterator.next().toString());
+            }
+            // get category correct ID from input
+            student = null;
+            while (student == null) {
+                MentorView.provideStudentIdMessage();
+                id = MentorView.getIntInput();
+                student = studentsDao.get(id);
+            }
+
+        } else {
+            MentorView.showNoStudentsMessage();
+        }
+
 
     }
 
