@@ -60,7 +60,8 @@ public class StoreController {
         }
     }
 
-    private void addBoughtItemToDao(ArtifactModel artifact, StudentModel student) {
+    private static void addBoughtItemToDao(ArtifactModel artifact,
+                                    StudentModel student, ArtifactsBoughtDao boughtArtifacts) {
         BoughtArtifactModel boughtArtifact =
                 new BoughtArtifactModel(artifact, student.getId());
         boughtArtifacts.add(boughtArtifact);
