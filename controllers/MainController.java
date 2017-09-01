@@ -4,14 +4,14 @@ import java.util.Iterator;
 import models.UserModel;
 // import models.AdminModel;
 import models.MentorModel;
-// import models.StudentModel;
+import models.StudentModel;
 // import models.dao.AdminsDao;
 import models.dao.MentorsDao;
 import models.dao.StudentsDao;
 import views.MainView;
 // import controllers.AdminController;
 import controllers.MentorController;
-// import controllers.St udentController;
+import controllers.StudentController;
 
 public class MainController {
 
@@ -23,15 +23,16 @@ public class MainController {
         MentorsDao mentorsDao = new MentorsDao();
         mentorsDao.add(new MentorModel("Kamil", "Postrożny", "ajax", "qwerty", "lol"));
         StudentsDao studentsDao = new StudentsDao();
+        studentsDao.add(new StudentModel("Mateusz", "Domagalski", "domak", "domak", "lol"));
 
         while (user == null) {
-            user = findUser(mentorsDao);
+            user = findUser(mentorsDao, studentsDao);
         }
 
         chooseController(user, studentsDao);
     }
 
-    private static UserModel findUser(MentorsDao mentorsDao) {
+    private static UserModel findUser(MentorsDao mentorsDao, StudentsDao studentsDao) {
         String login = MainView.getLogin();
         String password = MainView.getPassword();
 
@@ -39,6 +40,16 @@ public class MainController {
 
         while (iter.hasNext()) {
             UserModel user = (UserModel) iter.next();
+
+            if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
+                return user;
+            }
+        }
+
+        iter = studentsDao.getIterator();
+
+        while (iter.hasNext()) {
+            StudentModel user = (StudentModel) iter.next();
 
             if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
                 return user;
@@ -53,6 +64,8 @@ public class MainController {
         // }
         if (user instanceof MentorModel) {
             MentorController.runController((MentorModel) user, studentsDao);
+        } else if (user instanceof StudentModel) {
+            StudentController.runController((StudentModel) user);
         }
     }
 }

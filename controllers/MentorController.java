@@ -16,6 +16,9 @@ import java.util.Iterator;
 public class MentorController {
 
     public static void runController(MentorModel mentor, StudentsDao studentsDao) {
+        QuestsDao questsDao = new QuestsDao();
+        QuestCategoriesDao questCategoriesDao = new QuestCategoriesDao();
+
         int choice = 0;
         final int EXIT = 9;
 
@@ -26,7 +29,7 @@ public class MentorController {
             if(choice == 1){
                 createStudent(studentsDao);
             } else if(choice == 2){
-                addQuest(questsDao, questsCategoryDao);
+                addQuest(questsDao, questCategoriesDao);
             } else if(choice == 3){
                 addArtifact();
             } else if(choice == 4){
@@ -41,7 +44,7 @@ public class MentorController {
         }
     }
 
-    public void createStudent(StudentsDao studentsDao) {
+    public static void createStudent(StudentsDao studentsDao) {
         String name, surname, login,
                 password, email;
 
@@ -59,7 +62,7 @@ public class MentorController {
 
     }
 
-    public void addQuest(QuestsDao questsDao, QuestCategoriesDao questsCategoryDao) {
+    public static void addQuest(QuestsDao questsDao, QuestCategoriesDao questsCategoryDao) {
         String name;
         String description;
         QuestCategoryModel category;
@@ -96,19 +99,19 @@ public class MentorController {
 
     }
 
-    public void addArtifact() {
+    public static void addArtifact() {
 
     }
 
-    public void markStudentDoneQuest() {
+    public static void markStudentDoneQuest() {
 
     }
 
-    public void markStudentUsedArtifact() {
+    public static void markStudentUsedArtifact() {
 
     }
 
-    public void seeStudentsWallets() {
+    public static void seeStudentsWallets() {
 
     }
 }

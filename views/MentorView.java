@@ -60,7 +60,7 @@ public class MentorView {
                 "6. see Students Wallet"};
 
        for (String item : menuList) {
-           System.out.print(item);
+           System.out.println(item);
        }
    }
 

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class StoreView {
 
-    public static void showStoreMenu() {
+    public static void showMenu() {
         String[] menuList = {"1. Buy an artifact",
                              "2. Buy an artifact with teammates",
                              "0. Exit"};
@@ -19,9 +19,9 @@ public class StoreView {
     }
 
     public static Integer chooseArtifactId() {
-        Scanner in = new Scanner();
+        Scanner in = new Scanner(System.in);
         System.out.println("Provide artifact id: ");
-        id = in.nextInt();
+        Integer id = in.nextInt();
 
         return id;
     }

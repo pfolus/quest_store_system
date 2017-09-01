@@ -1,3 +1,7 @@
+package views;
+
+import java.util.Scanner;
+
 public class StudentView {
 
     public static void showMenu() {
@@ -9,16 +13,20 @@ public class StudentView {
                              "0. Exit"};
 
         for (String item : menuList) {
-            System.out.print(item);
+            System.out.println(item);
         }
     }
 
     public static Integer chooseOption() {
-        Scanner in = new Scanner();
+        Scanner in = new Scanner(System.in);
         System.out.println("Choose function number: ");
-        id = in.nextInt();
+        Integer id = in.nextInt();
 
         return id;
+    }
+
+    public static void printWrongChoiceInfo() {
+        System.out.println("Wrong choice!");
     }
 
     public static void printLevelInfo(String level) {

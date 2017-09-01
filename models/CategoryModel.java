@@ -10,4 +10,8 @@ public abstract class CategoryModel {
         this.name = name;
         this.id = nextId++;
     }
+
+    public Integer getId() {
+        return this.id;
+    }
 }

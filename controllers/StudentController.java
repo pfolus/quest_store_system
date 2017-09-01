@@ -1,6 +1,18 @@
+package controllers;
+
+import java.util.InputMismatchException;
+import views.StudentView;
+import views.StoreView;
+import models.StudentModel;
+import models.dao.WalletsDao;
+import models.WalletModel;
+import java.util.Arrays;
+
 public class StudentController {
 
-    public void runController(StudentModel student, WalletsDao walletsDao) {
+    public static void runController(StudentModel student) {
+        WalletsDao walletsDao = new WalletsDao();
+
         int choice = -1;
         final int EXIT = 0;
 
@@ -14,14 +26,8 @@ public class StudentController {
                 enterStore();
             } else if(choice == 3){
                 showLevel(student);
-            } else if(choice == 4){
-                markStudentDoneQuest();
-            } else if(choice == 5){
-                markStudentUsedArtifact();
-            } else if(choice == 6){
-                seeStudentsWallets();
             } else if(choice != 9){
-                MentorView.showInputError();
+                System.out.println("HUj");
             }
         }
     }
@@ -36,30 +42,30 @@ public class StudentController {
         StoreView.showMenu();
     }
 
-    public static void showLevel(Student student) {
+    public static void showLevel(StudentModel student) {
         String level = student.getLevel();
         StudentView.printLevelInfo(level);
     }
 
-    private Integer chooseOption() {
-        Integer option;
+    private static Integer chooseOption() {
+        Integer choice = null;
         final Integer[] CHOICES = {0, 1, 2, 3, 4, 5};
 
-        while (!Arrays.asList(choices).contains(choice)){
+        while (!Arrays.asList(CHOICES).contains(choice)){
             try {
-                option = StudentView.chooseOption();
+                choice = StudentView.chooseOption();
             } catch (InputMismatchException e) {
                 StudentView.printWrongChoiceInfo();
             }
         }
-        return option;
+        return choice;
     }
 
     public void buyArtifact() {
 
     }
 
-    public void buyArtifactWithTeammates(); {
+    public void buyArtifactWithTeammates() {
 
     }
 

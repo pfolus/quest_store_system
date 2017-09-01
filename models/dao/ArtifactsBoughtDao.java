@@ -10,10 +10,10 @@ public class ArtifactsBoughtDao extends Dao<BoughtArtifactModel> {
         Iterator iter = this.getIterator();
 
         while (iter.hasNext()) {
-            BoughtArtifactModel user = (BoughtArtifactModel) iter.next();
+            BoughtArtifactModel item = (BoughtArtifactModel) iter.next();
 
-            if (user.getId().equals(id)) {
-                return user;
+            if (item.getId().equals(id)) {
+                return item;
             }
         }
         return null;
