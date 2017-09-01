@@ -12,7 +12,8 @@ public class StudentController {
 
     public static void runController(StudentModel student) {
         WalletsDao walletsDao = new WalletsDao();
-        walletsDao.add(new WalletModel(2));
+        WalletModel wallet = new WalletModel(1000, 2);
+        walletsDao.add(wallet);
 
         int choice = -1;
         final int EXIT = 0;
@@ -21,29 +22,30 @@ public class StudentController {
             StudentView.showMenu();
             choice = chooseOption();
 
-            if(choice == 1){
-                showWallet(student, walletsDao);
-            } else if(choice == 2){
-                enterStore();
-            } else if(choice == 3){
+            if (choice == 1) {
+                showWallet(student, wallet);
+            } else if (choice == 2) {
+                StoreController.runController(student, wallet);
+            } else if (choice == 3) {
                 showLevel(student);
+            } else if (choice == 4) {
+                showBoughtArtifacts(student);
             }
         }
     }
 
-    public static void showWallet(StudentModel student, WalletsDao walletsDao) {
-        WalletModel wallet = student.getWallet(walletsDao);
+    public static void showWallet(StudentModel student, WalletModel wallet) {
         Integer balance = wallet.getBalance();
         StudentView.showCoinsBalance(balance);
-    }
-
-    public static void enterStore() {
-        StoreView.showMenu();
     }
 
     public static void showLevel(StudentModel student) {
         String level = student.getLevel();
         StudentView.printLevelInfo(level);
+    }
+
+    public static void showBoughtArtifacts(StudentModel student) {
+        //ArtifactsBoughtDao wczytanie kupionych z pliku po id studenta
     }
 
     private static Integer chooseOption() {
@@ -68,8 +70,7 @@ public class StudentController {
 
     }
 
-    public void showCoinsBalance(StudentModel student, WalletsDao walletsDao) {
-        WalletModel wallet = student.getWallet(walletsDao);
+    public void showCoinsBalance(StudentModel student, WalletModel wallet) {
         StudentView.showCoinsBalance(wallet.getBalance());
     }
 }

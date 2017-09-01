@@ -1,37 +1,81 @@
 package controllers;
 
+import java.util.Iterator;
+import java.util.Arrays;
+import java.util.InputMismatchException;
+
+import views.StoreView;
+import models.ArtifactModel;
+import models.StudentModel;
+import models.WalletModel;
+import models.BoughtArtifactModel;
+import models.ArtifactCategoryModel;
+import models.dao.ArtifactsBoughtDao;
+import models.dao.ArtifactsDao;
+import models.dao.WalletsDao;
+import models.dao.ArtifactCategoriesDao;
+
 
 public class StoreController {
 
+    public static void runController(StudentModel student,
+                                     WalletModel wallet) {
+        // create Artifacts Dao
+        // create ArtifactsBought Dao
+        ArtifactCategoryModel cat = new ArtifactCategoryModel("Dupeczki");
+        ArtifactCategoriesDao categories = new ArtifactCategoriesDao();
+        categories.add(cat);
+        ArtifactsDao artifacts = new ArtifactsDao();
+        ArtifactModel artefakt = new ArtifactModel("Elżbieta", cat, 150);
+        artifacts.add(artefakt);
+        ArtifactsBoughtDao boughtArtifacts = new ArtifactsBoughtDao();
 
-    public void buyArtifact(ArtifactsBoughtDao boughtArtifacts,
-                                           ArtifactsDao artifacts, StudentModel student) {
+        int choice = -1;
+        final int EXIT = 0;
+
+        while(choice != EXIT){
+            StoreView.showMenu();
+            choice = chooseOption();
+
+            if (choice == 1){
+                buyArtifact(boughtArtifacts, artifacts, student, wallet);
+            } else if(choice == 2){
+                //buyArtifactWithTeammates();
+            }
+        }
+    }
+
+    private static void buyArtifact(ArtifactsBoughtDao boughtArtifacts, ArtifactsDao artifacts,
+                            StudentModel student, WalletModel wallet) {
 
         showArtifactsInStore(artifacts);
         ArtifactModel artifact = chooseArtifactById(artifacts);
 
-        if (hasEnoughCoins(student.getWallet(), artifact)) {
-            addBoughtItemToDao(artifact, student);
+        if (hasEnoughCoins(wallet, artifact)) {
+            addBoughtItemToDao(artifact, student, boughtArtifacts);
             StoreView.itemBoughtSuccesfully();
-            student.getWallet().reduceBalance(artifact.getPrice());
+            wallet.reduceBalance(artifact.getPrice());
         } else {
             StoreView.notEnoughMoneyInfo();
         }
     }
 
-    private void addBoughtItemToDao(ArtifactModel artifact, StudentModel student) {
+    private static void addBoughtItemToDao(ArtifactModel artifact,
+                                    StudentModel student, ArtifactsBoughtDao boughtArtifacts) {
         BoughtArtifactModel boughtArtifact =
                 new BoughtArtifactModel(artifact, student.getId());
         boughtArtifacts.add(boughtArtifact);
     }
 
-    private ArtifactModel chooseArtifactById(ArtifactsDao artifacts) {
+    private static ArtifactModel chooseArtifactById(ArtifactsDao artifacts) {
         Integer id = chooseArtifactId();
         ArtifactModel artifact = artifacts.get(id);
+
+        return artifact;
     }
 
-    private Integer chooseArtifactId() {
-        Integer id;
+    private static Integer chooseArtifactId() {
+        Integer id = null;
         boolean isCorrect = false;
 
         while(!isCorrect) {
@@ -43,14 +87,15 @@ public class StoreController {
                 StoreView.printWrongChoiceInfo();
             }
         }
+        return id;
     }
 
-    public BoughtArtifactModel buyArtifactWithTeammates() {
+    //private static BoughtArtifactModel buyArtifactWithTeammates() {
 
-    }
+    //}
 
-    private static boolean hasEnoughCoins(Wallet wallet, ArtifactModel artifactToBuy) {
-        if (wallet.getBalance() >= artifactToBuy.getPrice()) {
+    private static boolean hasEnoughCoins(WalletModel wallet, ArtifactModel artifactToBuy) {
+        if (wallet.getBalance() > artifactToBuy.getPrice()) {
             return true;
         } else {
             return false;
@@ -62,5 +107,19 @@ public class StoreController {
         while (iter.hasNext()) {
             StoreView.showArtifact(iter.next().toString());
         }
+    }
+
+    private static Integer chooseOption() {
+        Integer choice = null;
+        final Integer[] CHOICES = {0, 1, 2};
+
+        while (!Arrays.asList(CHOICES).contains(choice)){
+            try {
+                choice = StoreView.chooseOption();
+            } catch (InputMismatchException e) {
+                StoreView.printWrongChoiceInfo();
+            }
+        }
+        return choice;
     }
 }

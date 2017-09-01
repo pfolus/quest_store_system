@@ -2,11 +2,11 @@ package models;
 
 abstract class AbstractItemModel<T> {
 
-    private String name;
+    protected String name;
     protected Integer id;
-    private T category;
+    protected T category;
 
-    private static Integer nextId;
+    private static Integer nextId = 1;
 
     public AbstractItemModel(String name, T category) {
         this.name = name;
