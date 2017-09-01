@@ -18,6 +18,32 @@ import models.dao.ArtifactCategoriesDao;
 
 public class StoreController {
 
+    public static void runController(StudentModel student,
+                                     WalletModel wallet) {
+        // create Artifacts Dao
+        // create ArtifactsBought Dao
+        ArtifactCategoryModel cat = new ArtifactCategoryModel("Dupeczki");
+        ArtifactCategoriesDao categories = new ArtifactCategoriesDao();
+        categories.add(cat);
+        ArtifactsDao artifacts = new ArtifactsDao();
+        ArtifactModel artefakt = new ArtifactModel("Elżbieta", cat, 150);
+        artifacts.add(artefakt);
+        ArtifactsBoughtDao boughtArtifacts = new ArtifactsBoughtDao();
+
+        int choice = -1;
+        final int EXIT = 0;
+
+        while(choice != EXIT){
+            StoreView.showMenu();
+            choice = chooseOption();
+
+            if (choice == 1){
+                buyArtifact(boughtArtifacts, artifacts, student, wallet);
+            } else if(choice == 2){
+                //buyArtifactWithTeammates();
+            }
+        }
+    }
 
     public void buyArtifact(ArtifactsBoughtDao boughtArtifacts,
                                            ArtifactsDao artifacts, StudentModel student) {
