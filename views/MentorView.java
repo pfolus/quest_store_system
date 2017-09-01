@@ -38,6 +38,10 @@ public class MentorView {
        System.out.print("Provide name of a quest: ");
    }
 
+   public static void provideArtifactNameMessage() {
+       System.out.print("Provide name of aa artifact: ");
+   }
+
    public static void provideQuestPrizeMessage() {
        System.out.println("Provide required coolcoins: ");
    }
