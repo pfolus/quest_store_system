@@ -51,10 +51,6 @@ public class MentorController {
         name = UserView.getName();
         surname = UserView.getSurname();
         login = UserView.getLogin();
-
-        MentorView.showExistLoginMessage();
-        login = UserView.getLogin();
-
         password = UserView.getPassword();
         email = UserView.getEmail();
 
