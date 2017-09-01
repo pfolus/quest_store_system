@@ -37,7 +37,7 @@ public class MentorController {
             } else if(choice == 2){
                 addQuest(questsDao, questCategoriesDao);
             } else if(choice == 3){
-                addArtifact();
+                addArtifact(artifactsDao, artifactCategoriesDao);
             } else if(choice == 4){
                 markStudentDoneQuest();
             } else if(choice == 5){
