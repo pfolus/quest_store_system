@@ -100,7 +100,39 @@ public class MentorController {
 
     }
 
-    public static void addArtifact() {
+    public static void addArtifact(ArtifactsDao artifactsDao, ArtifactCategoriesDao artifactCategoriesDao) {
+        String name;
+        String description;
+        ArtifactCategoryModel category;
+        Integer id;
+        Integer price;
+
+        // get artifacts name
+        MentorView.provideArtifactNameMessage();
+        name = MentorView.getStringInput();
+
+        // get artifacts description
+        MentorView.provideArtifactDescriptionMessage();
+        description = MentorView.getStringInput();
+
+        // lists artifacts categories
+        Iterator categoryIterator = artifactCategoriesDao.getIterator();
+        while (categoryIterator.hasNext()) {
+            MentorView.showString(categoryIterator.next().toString());
+        }
+
+        // get category correct ID from input
+        category = null;
+        while (category == null) {
+            MentorView.askForCategoryId();
+            id = MentorView.getIntInput();
+            category = artifactCategoriesDao.get(id);
+        }
+        // get quest prize from input
+        MentorView.provideArtifactPriceMessage();
+        price = MentorView.getIntInput();
+
+        artifactsDao.add(new ArtifactModel(name, category, description, price));
 
     }
 
