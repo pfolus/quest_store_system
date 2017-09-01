@@ -29,4 +29,8 @@ public class BoughtArtifactModel {
     public Integer getId() {
         return this.id;
     }
+
+    public Integer getStudentId() {
+        return this.studentId;
+    }
 }
