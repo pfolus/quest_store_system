@@ -124,7 +124,7 @@ public class MentorController {
         // get category correct ID from input
         category = null;
         while (category == null) {
-            MentorView.askForCategoryId();
+            MentorView.provideCategoryIdMessage();
             id = MentorView.getIntInput();
             category = artifactCategoriesDao.get(id);
         }
