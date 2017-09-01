@@ -51,10 +51,6 @@ public class MentorController {
         name = UserView.getName();
         surname = UserView.getSurname();
         login = UserView.getLogin();
-
-        MentorView.showExistLoginMessage();
-        login = UserView.getLogin();
-
         password = UserView.getPassword();
         email = UserView.getEmail();
 
@@ -84,13 +80,12 @@ public class MentorController {
         }
 
         // get category correct ID from input
-        id = null;
-        while (id.equals(null)) {
+        category = null;
+        while (category == null) {
             MentorView.askForCategoryId();
             id = MentorView.getIntInput();
+            category = questsCategoryDao.get(id);
         }
-        category = questsCategoryDao.get(id);
-
         // get quest prize from input
         MentorView.provideQuestPrizeMessage();
         prize = MentorView.getIntInput();
