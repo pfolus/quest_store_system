@@ -70,8 +70,7 @@ public class StudentController {
 
     }
 
-    public void showCoinsBalance(StudentModel student, WalletsDao walletsDao) {
-        WalletModel wallet = student.getWallet(walletsDao);
+    public void showCoinsBalance(StudentModel student, WalletModel wallet) {
         StudentView.showCoinsBalance(wallet.getBalance());
     }
 }
