@@ -9,6 +9,10 @@ import models.QuestModel;
 import models.dao.QuestsDao;
 import models.QuestCategoryModel;
 import models.dao.QuestCategoriesDao;
+import models.dao.ArtifactsDao;
+import models.dao.ArtifactCategoriesDao;
+import models.ArtifactCategoryModel;
+import models.ArtifactModel;
 
 import java.util.InputMismatchException;
 import java.util.Iterator;
@@ -18,6 +22,8 @@ public class MentorController {
     public static void runController(MentorModel mentor, StudentsDao studentsDao) {
         QuestsDao questsDao = new QuestsDao();
         QuestCategoriesDao questCategoriesDao = new QuestCategoriesDao();
+        ArtifactsDao artifactsDao = new ArtifactsDao();
+        ArtifactCategoriesDao artifactCategoriesDao = new ArtifactCategoriesDao();
 
         int choice = 0;
         final int EXIT = 9;
@@ -31,7 +37,7 @@ public class MentorController {
             } else if(choice == 2){
                 addQuest(questsDao, questCategoriesDao);
             } else if(choice == 3){
-                addArtifact();
+                addArtifact(artifactsDao, artifactCategoriesDao);
             } else if(choice == 4){
                 markStudentDoneQuest();
             } else if(choice == 5){
@@ -94,7 +100,39 @@ public class MentorController {
 
     }
 
-    public static void addArtifact() {
+    public static void addArtifact(ArtifactsDao artifactsDao, ArtifactCategoriesDao artifactCategoriesDao) {
+        String name;
+        String description;
+        ArtifactCategoryModel category;
+        Integer id;
+        Integer price;
+
+        // get artifacts name
+        MentorView.provideArtifactNameMessage();
+        name = MentorView.getStringInput();
+
+        // get artifacts description
+        MentorView.provideArtifactDescriptionMessage();
+        description = MentorView.getStringInput();
+
+        // lists artifacts categories
+        Iterator categoryIterator = artifactCategoriesDao.getIterator();
+        while (categoryIterator.hasNext()) {
+            MentorView.showString(categoryIterator.next().toString());
+        }
+
+        // get category correct ID from input
+        category = null;
+        while (category == null) {
+            MentorView.askForCategoryId();
+            id = MentorView.getIntInput();
+            category = artifactCategoriesDao.get(id);
+        }
+        // get quest prize from input
+        MentorView.provideArtifactPriceMessage();
+        price = MentorView.getIntInput();
+
+        artifactsDao.add(new ArtifactModel(name, category, description, price));
 
     }
 

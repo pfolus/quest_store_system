@@ -38,12 +38,24 @@ public class MentorView {
        System.out.print("Provide name of a quest: ");
    }
 
+   public static void provideArtifactNameMessage() {
+       System.out.print("Provide name of aa artifact: ");
+   }
+
    public static void provideQuestPrizeMessage() {
        System.out.println("Provide required coolcoins: ");
    }
 
+   public static void provideArtifactPriceMessage() {
+       System.out.println("Provide price of an artifact: ");
+   }
+
    public static void provideQuestDescriptionMessage() {
        System.out.print("Provide Quest's description: ");
+   }
+
+   public static void provideArtifactDescriptionMessage() {
+       System.out.print("Provide Artifact's description: ");
    }
 
    public static void showExistLoginMessage(){
