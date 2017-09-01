@@ -9,6 +9,10 @@ import models.QuestModel;
 import models.dao.QuestsDao;
 import models.QuestCategoryModel;
 import models.dao.QuestCategoriesDao;
+import models.dao.ArtifactsDao;
+import models.dao.ArtifactCategoriesDao;
+import models.ArtifactCategoryModel;
+import models.ArtifactModel;
 
 import java.util.InputMismatchException;
 import java.util.Iterator;
