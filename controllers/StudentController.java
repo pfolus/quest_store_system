@@ -12,6 +12,7 @@ public class StudentController {
 
     public static void runController(StudentModel student) {
         WalletsDao walletsDao = new WalletsDao();
+        walletsDao.add(new WalletModel(1));
 
         int choice = -1;
         final int EXIT = 0;
@@ -26,8 +27,6 @@ public class StudentController {
                 enterStore();
             } else if(choice == 3){
                 showLevel(student);
-            } else if(choice != 9){
-                System.out.println("HUj");
             }
         }
     }
