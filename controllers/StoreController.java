@@ -45,16 +45,16 @@ public class StoreController {
         }
     }
 
-    public void buyArtifact(ArtifactsBoughtDao boughtArtifacts,
-                                           ArtifactsDao artifacts, StudentModel student) {
+    private static void buyArtifact(ArtifactsBoughtDao boughtArtifacts, ArtifactsDao artifacts,
+                            StudentModel student, WalletModel wallet) {
 
         showArtifactsInStore(artifacts);
         ArtifactModel artifact = chooseArtifactById(artifacts);
 
-        if (hasEnoughCoins(student.getWallet(), artifact)) {
-            addBoughtItemToDao(artifact, student);
+        if (hasEnoughCoins(wallet, artifact)) {
+            addBoughtItemToDao(artifact, student, boughtArtifacts);
             StoreView.itemBoughtSuccesfully();
-            student.getWallet().reduceBalance(artifact.getPrice());
+            wallet.reduceBalance(artifact.getPrice());
         } else {
             StoreView.notEnoughMoneyInfo();
         }
