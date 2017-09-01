@@ -27,6 +27,14 @@ public class StoreView {
         return id;
     }
 
+    public static Integer chooseOption() {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Choose function number: ");
+        Integer id = in.nextInt();
+
+        return id;
+    }
+
     public static void printWrongChoiceInfo() {
         System.out.println("Wrong choice.");
     }
