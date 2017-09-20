@@ -7,27 +7,25 @@ public class UserModel {
     private String login;
     private String password;
     private String email;
-    protected Integer id;
+    private Integer id;
 
-    private static Integer nextId = 1;
-
-    public UserModel(String name, String surname,
+    public UserModel(Integer id, String name, String surname,
               String login, String password, String email) {
-
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.login = login;
         this.password = password;
         this.email = email;
-        this.id = nextId++;
+        this.id = id;
     }
 
     public String getEmail() {
         return this.email;
     }
 
-    public void setEmail(String newEmail) {
-        this.email = newEmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Integer getId() {
@@ -48,5 +46,9 @@ public class UserModel {
 
     public String getPassword() {
         return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
