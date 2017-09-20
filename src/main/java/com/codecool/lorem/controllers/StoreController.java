@@ -22,11 +22,11 @@ public class StoreController {
                                      WalletModel wallet) {
         // create Artifacts Dao
         // create ArtifactsBought Dao
-        ArtifactCategoryModel cat = new ArtifactCategoryModel("Dupeczki");
+        //ArtifactCategoryModel cat = new ArtifactCategoryModel("Dupeczki");
         ArtifactCategoriesDao categories = new ArtifactCategoriesDao();
         categories.add(cat);
         ArtifactsDao artifacts = new ArtifactsDao();
-        ArtifactModel artefakt = new ArtifactModel("Elżbieta", cat, "kobieta", 150);
+        //ArtifactModel artefakt = new ArtifactModel("Elżbieta", cat, "kobieta", 150);
         artifacts.add(artefakt);
         ArtifactsBoughtDao boughtArtifacts = new ArtifactsBoughtDao();
 
