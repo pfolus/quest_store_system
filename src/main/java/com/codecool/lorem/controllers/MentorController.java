@@ -154,18 +154,18 @@ public class MentorController {
 //                student = studentsDao.get(id);
 //            }
 
-        } else {
-            MentorView.showNoStudentsMessage();
-        }
-
-
-    }
-
-    public static void markStudentUsedArtifact() {
-
-    }
-
-    public static void seeStudentsWallets() {
-
-    }
+//        } else {
+//            MentorView.showNoStudentsMessage();
+//        }
+//
+//
+//    }
+//
+//    public static void markStudentUsedArtifact() {
+//
+//    }
+//
+//    public static void seeStudentsWallets() {
+//
+//    }
 }
