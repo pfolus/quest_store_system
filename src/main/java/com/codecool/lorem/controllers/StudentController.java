@@ -21,21 +21,21 @@ public class StudentController {
             choice = chooseOption();
 
             if (choice == 1) {
-                showWallet(student, wallet);
+                //showWallet(student, wallet);
             } else if (choice == 2) {
-                StoreController.runController(student, wallet);
+                //StoreController.runController(student, wallet);
             } else if (choice == 3) {
-                showLevel(student);
+                //showLevel(student);
             } else if (choice == 4) {
                 showBoughtArtifacts(student);
             }
         }
     }
 
-    public static void showWallet(StudentModel student, WalletModel wallet) {
-        Integer balance = wallet.getBalance();
-        StudentView.showCoinsBalance(balance);
-    }
+//    public static void showWallet(StudentModel student, WalletModel wallet) {
+//        Integer balance = wallet.getBalance();
+//        StudentView.showCoinsBalance(balance);
+//    }
 
 //    public static void showLevel(StudentModel student) {
 //        String level = student.getLevel();

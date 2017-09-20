@@ -33,17 +33,17 @@ public class MentorController {
             choice = MentorView.getIntInput();
 
             if(choice == 1){
-                createStudent(studentsDao);
+                //createStudent(studentsDao);
             } else if(choice == 2){
-                addQuest(questsDao, questCategoriesDao);
+                //addQuest(questsDao, questCategoriesDao);
             } else if(choice == 3){
-                addArtifact(artifactsDao, artifactCategoriesDao);
+                //addArtifact(artifactsDao, artifactCategoriesDao);
             } else if(choice == 4){
-                markStudentDoneQuest(studentsDao);
+                //markStudentDoneQuest(studentsDao);
             } else if(choice == 5){
-                markStudentUsedArtifact();
+                //markStudentUsedArtifact();
             } else if(choice == 6){
-                seeStudentsWallets();
+                //seeStudentsWallets();
             } else if(choice != 9){
                 MentorView.showInputError();
             }
@@ -168,4 +168,3 @@ public class MentorController {
 //    public static void seeStudentsWallets() {
 //
 //    }
-}
