@@ -1,5 +1,8 @@
 package com.codecool.lorem.views;
 
+import com.codecool.lorem.models.ArtifactModel;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StoreView {
@@ -13,6 +16,9 @@ public class StoreView {
             System.out.println(item);
         }
         System.out.println("");
+    }
+    public static void showArtifacts(ArrayList<ArtifactModel> artifacts) {
+        artifacts.forEach(System.out::println);
     }
 
     public static void showArtifact(String artifact) {

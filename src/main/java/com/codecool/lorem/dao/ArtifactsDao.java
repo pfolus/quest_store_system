@@ -22,7 +22,7 @@ public class ArtifactsDao extends Dao<ArtifactModel> {
         ResultSet rs = null;
 
         try {
-            c = DriverManager.getConnection("jdbc:sqlite:src/main/db/quest-store.db");
+            c = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db");
 
             stmt = c.createStatement();
             rs = stmt.executeQuery("SELECT * FROM artifacts;");

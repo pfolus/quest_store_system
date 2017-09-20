@@ -23,7 +23,7 @@ public class StudentController {
             if (choice == 1) {
                 //showWallet(student, wallet);
             } else if (choice == 2) {
-                //StoreController.runController(student, wallet);
+                StoreController.runController(student);
             } else if (choice == 3) {
                 //showLevel(student);
             } else if (choice == 4) {

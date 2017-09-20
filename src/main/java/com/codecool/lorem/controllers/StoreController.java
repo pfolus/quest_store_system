@@ -2,6 +2,7 @@ package com.codecool.lorem.controllers;
 
 import java.util.Iterator;
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 
 import com.codecool.lorem.views.StoreView;
@@ -18,41 +19,49 @@ import com.codecool.lorem.dao.ArtifactCategoriesDao;
 
 public class StoreController {
 
-//    public static void runController(StudentModel student,
-//                                     WalletModel wallet) {
-//        ArtifactCategoriesDao categories = new ArtifactCategoriesDao();
-//        //categories.add(cat);
-//        ArtifactsDao artifacts = new ArtifactsDao();
-//        ArtifactsBoughtDao boughtArtifacts = new ArtifactsBoughtDao();
-//
-//        int choice = -1;
-//        final int EXIT = 0;
-//
-//        while (choice != EXIT) {
-//            StoreView.showMenu();
-//            choice = chooseOption();
-//
-//            if (choice == 1) {
-//                buyArtifact(boughtArtifacts, artifacts, student, wallet);
-//            } else if (choice == 2) {
-//                //buyArtifactWithTeammates();
-//            }
-//        }
-//    }
-}
+    public static void runController(StudentModel student) {
+        //ArtifactCategoriesDao categories = new ArtifactCategoriesDao();
+        //categories.add(cat);
+        //ArtifactsDao artifacts = new ArtifactsDao();
+        //ArtifactsBoughtDao boughtArtifacts = new ArtifactsBoughtDao();
 
-//    private static void buyArtifact(ArtifactsBoughtDao boughtArtifacts, ArtifactsDao artifacts,
-//                            StudentModel student, WalletModel wallet) {
-//
-//        //showArtifactsInStore(artifacts);
-        //ArtifactModel artifact = chooseArtifactById(artifacts);
+        int choice = -1;
+        final int EXIT = 0;
 
+        while (choice != EXIT) {
+            StoreView.showMenu();
+            choice = chooseOption();
+
+            if (choice == 1) {
+                buyArtifact();
+            } else if (choice == 2) {
+                //buyArtifactWithTeammates();
+            }
+        }
+    }
+
+    private static void buyArtifact() {
+
+
+        showArtifacts();
+//        ArtifactModel artifact = chooseArtifactById(artifacts);
+//
 //        if (hasEnoughCoins(wallet, artifact)) {
 //            addBoughtItemToDao(artifact, student, boughtArtifacts);
 //            StoreView.itemBoughtSuccesfully();
 //            wallet.reduceBalance(artifact.getPrice());
 //        } else {
 //            StoreView.notEnoughMoneyInfo();
+//        }
+    }
+
+    private static void showArtifacts() {
+        ArtifactsDao artifactsDatabase = new ArtifactsDao();
+        artifactsDatabase.readFromDatabase();
+        ArrayList<ArtifactModel> artifacts = artifactsDatabase.getItems();
+        StoreView.showArtifacts(artifacts);
+
+    }
 
 
 //    private static void addBoughtItemToDao(ArtifactModel artifact,
@@ -104,16 +113,17 @@ public class StoreController {
 //        }
 //    }
 
-//    private static Integer chooseOption() {
-//        Integer choice = null;
-//        final Integer[] CHOICES = {0, 1, 2};
-//
-//        while (!Arrays.asList(CHOICES).contains(choice)){
-//            try {
-//                choice = StoreView.chooseOption();
-//            } catch (InputMismatchException e) {
-//                StoreView.printWrongChoiceInfo();
-//            }
-//        }
-//        return choice;
-//    }
+    private static Integer chooseOption() {
+        Integer choice = null;
+        final Integer[] CHOICES = {0, 1, 2};
+
+        while (!Arrays.asList(CHOICES).contains(choice)){
+            try {
+                choice = StoreView.chooseOption();
+            } catch (InputMismatchException e) {
+                StoreView.printWrongChoiceInfo();
+            }
+        }
+        return choice;
+    }
+}
