@@ -2,24 +2,16 @@ package com.codecool.lorem.models;
 
 public class BoughtArtifactModel {
 
-    private ArtifactModel artifact;
+    private Integer artifactId;
     private Integer studentId;
     private boolean isUsed;
     private Integer id;
 
-    private static Integer nextId = 1;
-
-    public BoughtArtifactModel(ArtifactModel artifact, Integer studentId) {
-        this.artifact = artifact;
-        this.studentId = studentId;
-        this.isUsed = false;
-        this.id = nextId++;
-    }
-
-    public BoughtArtifactModel(ArtifactModel artifact, Integer studentId, boolean isUsed) {
-        this.artifact = artifact;
+    public BoughtArtifactModel(Integer id, Integer artifactId, Integer studentId, Boolean isUsed) {
+        this.artifactId = artifactId;
         this.studentId = studentId;
         this.isUsed = isUsed;
+        this.id = id;
     }
 
     public void markAsUsed() {
@@ -32,5 +24,13 @@ public class BoughtArtifactModel {
 
     public Integer getStudentId() {
         return this.studentId;
+    }
+
+    public Integer getArtifactId() {
+        return artifactId;
+    }
+
+    public boolean isUsed() {
+        return isUsed;
     }
 }
