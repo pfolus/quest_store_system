@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public abstract class Dao<T> {
 
-    private ArrayList<T> itemsList = new ArrayList<>();
+    protected ArrayList<T> itemsList = new ArrayList<>();
 
     public void add(T item) {
         this.itemsList.add(item);
