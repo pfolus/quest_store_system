@@ -20,14 +20,9 @@ public class StoreController {
 
     public static void runController(StudentModel student,
                                      WalletModel wallet) {
-        // create Artifacts Dao
-        // create ArtifactsBought Dao
-        //ArtifactCategoryModel cat = new ArtifactCategoryModel("Dupeczki");
         ArtifactCategoriesDao categories = new ArtifactCategoriesDao();
         categories.add(cat);
         ArtifactsDao artifacts = new ArtifactsDao();
-        //ArtifactModel artefakt = new ArtifactModel("Elżbieta", cat, "kobieta", 150);
-        artifacts.add(artefakt);
         ArtifactsBoughtDao boughtArtifacts = new ArtifactsBoughtDao();
 
         int choice = -1;
@@ -60,19 +55,19 @@ public class StoreController {
         }
     }
 
-    private static void addBoughtItemToDao(ArtifactModel artifact,
-                                    StudentModel student, ArtifactsBoughtDao boughtArtifacts) {
-        BoughtArtifactModel boughtArtifact =
-                new BoughtArtifactModel(artifact, student.getId());
-        boughtArtifacts.add(boughtArtifact);
-    }
+//    private static void addBoughtItemToDao(ArtifactModel artifact,
+//                                    StudentModel student, ArtifactsBoughtDao boughtArtifacts) {
+//        BoughtArtifactModel boughtArtifact =
+//                new BoughtArtifactModel(artifact, student.getId());
+//        boughtArtifacts.add(boughtArtifact);
+//    }
 
-    private static ArtifactModel chooseArtifactById(ArtifactsDao artifacts) {
-        Integer id = chooseArtifactId();
-        ArtifactModel artifact = artifacts.get(id);
-
-        return artifact;
-    }
+//    private static ArtifactModel chooseArtifactById(ArtifactsDao artifacts) {
+//        Integer id = chooseArtifactId();
+//        ArtifactModel artifact = artifacts.get(id);
+//
+//        return artifact;
+//    }
 
     private static Integer chooseArtifactId() {
         Integer id = null;
@@ -102,12 +97,12 @@ public class StoreController {
         }
     }
 
-    public static void showArtifactsInStore(ArtifactsDao artifacts) {
-        Iterator iter = artifacts.getIterator();
-        while (iter.hasNext()) {
-            StoreView.showArtifact(iter.next().toString());
-        }
-    }
+//    public static void showArtifactsInStore(ArtifactsDao artifacts) {
+//        Iterator iter = artifacts.getIterator();
+//        while (iter.hasNext()) {
+//            StoreView.showArtifact(iter.next().toString());
+//        }
+//    }
 
     private static Integer chooseOption() {
         Integer choice = null;

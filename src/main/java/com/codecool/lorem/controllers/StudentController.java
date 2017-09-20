@@ -12,9 +12,6 @@ import com.codecool.lorem.models.WalletModel;
 public class StudentController {
 
     public static void runController(StudentModel student) {
-        WalletsDao walletsDao = new WalletsDao();
-        WalletModel wallet = new WalletModel(1000, 2);
-        walletsDao.add(wallet);
 
         int choice = -1;
         final int EXIT = 0;
@@ -40,10 +37,10 @@ public class StudentController {
         StudentView.showCoinsBalance(balance);
     }
 
-    public static void showLevel(StudentModel student) {
-        String level = student.getLevel();
-        StudentView.printLevelInfo(level);
-    }
+//    public static void showLevel(StudentModel student) {
+//        String level = student.getLevel();
+//        StudentView.printLevelInfo(level);
+//    }
 
     public static void showBoughtArtifacts(StudentModel student) {
         //ArtifactsBoughtDao wczytanie kupionych z pliku po id studenta
