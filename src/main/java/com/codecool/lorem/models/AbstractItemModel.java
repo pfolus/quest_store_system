@@ -1,17 +1,15 @@
 package com.codecool.lorem.models;
 
-abstract class AbstractItemModel<T> {
+abstract class AbstractItemModel {
 
     protected String name;
     protected Integer id;
-    protected T category;
+    protected Integer categoryId;
 
-    private static Integer nextId = 1;
-
-    public AbstractItemModel(String name, T category) {
+    public AbstractItemModel(Integer id, String name, Integer categoryId) {
         this.name = name;
-        this.id = nextId++;
-        this.category = category;
+        this.id = id;
+        this.categoryId = categoryId;
     }
 
     public String getName() {
@@ -22,7 +20,7 @@ abstract class AbstractItemModel<T> {
         return this.id;
     }
 
-    public T getCategory() {
-        return this.category;
+    public Integer getCategoryId() {
+        return this.categoryId;
     }
 }
