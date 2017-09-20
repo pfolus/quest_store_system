@@ -18,7 +18,7 @@ public class StudentsDao extends Dao<StudentModel> {
     public StudentModel createLoggedStudent(String id) {
         StudentModel result = null;
 
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:src/main/db/quest-store.db")) {
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(
                     "SELECT * FROM users INNER JOIN students_data ON users.id = students_data.user_id");
@@ -40,7 +40,7 @@ public class StudentsDao extends Dao<StudentModel> {
             resultSet.close();
             statement.close();
         } catch (SQLException e) {
-            return result;
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
 
         return result;
