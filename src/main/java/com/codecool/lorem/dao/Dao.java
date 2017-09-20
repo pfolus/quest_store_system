@@ -1,11 +1,10 @@
 package com.codecool.lorem.dao;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
-public abstract class Dao<T> implements ItemsIterator<T> {
+public abstract class Dao<T> {
 
-    protected ArrayList<T> itemsList = new ArrayList<T>();
+    private ArrayList<T> itemsList = new ArrayList<>();
 
     public void add(T item) {
         this.itemsList.add(item);
@@ -15,11 +14,7 @@ public abstract class Dao<T> implements ItemsIterator<T> {
         this.itemsList.remove(item);
     }
 
-    public Iterator<T> getIterator() {
-        return this.itemsList.iterator();
+    public ArrayList<T> getItems() {
+        return this.itemsList;
     }
-
-    public abstract void read();
-
-    public abstract void save();
 }

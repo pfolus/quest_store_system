@@ -1,19 +1,13 @@
 package com.codecool.lorem.dao;
 
-import java.util.Iterator;
-
 import com.codecool.lorem.models.AdminModel;
 
 public class AdminsDao extends Dao<AdminModel> {
 
     public AdminModel get(Integer id) {
-        Iterator iter = this.getIterator();
-
-        while (iter.hasNext()) {
-            AdminModel user = (AdminModel) iter.next();
-
-            if (user.getId().equals(id)) {
-                return user;
+        for (AdminModel admin : getItems()) {
+            if (admin.getId().equals(id)) {
+                return admin;
             }
         }
         return null;
