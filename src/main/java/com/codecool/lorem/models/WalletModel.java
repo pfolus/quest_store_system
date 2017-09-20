@@ -7,7 +7,7 @@ public class WalletModel {
     private Integer studentId;
 
 
-    public WalletModel(Integer id, Integer studentId, Integer balance) {
+    public WalletModel(Integer id, Integer balance, Integer studentId) {
         this.balance = balance;
         this.studentId = studentId;
         this.id = id;
