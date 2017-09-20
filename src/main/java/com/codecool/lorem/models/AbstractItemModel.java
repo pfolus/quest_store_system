@@ -6,11 +6,9 @@ abstract class AbstractItemModel<T> {
     protected Integer id;
     protected T category;
 
-    private static Integer nextId = 1;
-
-    public AbstractItemModel(String name, T category) {
+    public AbstractItemModel(String name, Integer id, T category) {
         this.name = name;
-        this.id = nextId++;
+        this.id = id;
         this.category = category;
     }
 
