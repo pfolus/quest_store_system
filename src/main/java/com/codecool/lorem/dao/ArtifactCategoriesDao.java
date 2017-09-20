@@ -71,5 +71,4 @@ public class ArtifactCategoriesDao extends Dao<ArtifactCategoryModel> {
         }
     }
 
-    public void save() {}
 }
