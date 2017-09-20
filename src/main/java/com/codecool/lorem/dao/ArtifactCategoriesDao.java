@@ -20,7 +20,7 @@ public class ArtifactCategoriesDao extends Dao<ArtifactCategoryModel> {
         ResultSet rs = null;
 
         try {
-            c = DriverManager.getConnection("jdbc:sqlite:src/main/db/quest-store.db");
+            c = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db");
 
             stmt = c.createStatement();
             rs = stmt.executeQuery("SELECT id, name FROM artifact_categories;");
