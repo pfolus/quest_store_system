@@ -30,7 +30,7 @@ public class ArtifactCategoriesDao extends Dao<ArtifactCategoryModel> {
                 Integer id = rs.getInt("id");
                 String name = rs.getString("name");
 
-                this.itemsList.add(new ArtifactCategoryModel(name, id));
+                this.itemsList.add(new ArtifactCategoryModel(id, name));
             }
             rs.close();
             stmt.close();
@@ -59,7 +59,7 @@ public class ArtifactCategoriesDao extends Dao<ArtifactCategoryModel> {
 
             while (rs.next()) {
                 Integer id = rs.getInt("id");
-                ArtifactCategoryModel artifactCat = new ArtifactCategoryModel(name, id);
+                ArtifactCategoryModel artifactCat = new ArtifactCategoryModel(id, name);
                 this.itemsList.add(artifactCat);
             }
             stmt.close();
