@@ -1,25 +1,16 @@
 package com.codecool.lorem.dao;
 
-import java.util.Iterator;
-
 import com.codecool.lorem.models.ClassModel;
 
 public class ClassesDao extends Dao<ClassModel> {
 
-    public ClassModel get(Integer id) {
-        Iterator iter = this.getIterator();
-
-        while (iter.hasNext()) {
-            ClassModel user = (ClassModel) iter.next();
-
-            if (user.getId().equals(id)) {
-                return user;
+    public ClassModel getById(Integer id) {
+        for (ClassModel cl : getItems()) {
+            if (cl.getId().equals(id)) {
+                return cl;
             }
         }
         return null;
     }
 
-    public void read() {}
-
-    public void save() {}
 }
