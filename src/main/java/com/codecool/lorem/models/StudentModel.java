@@ -5,29 +5,28 @@ import java.util.Iterator;
 
 public class StudentModel extends UserModel {
 
-    String level;
-    Integer score;
+    private Integer levelId;
+    private Integer score;
+    private Integer classId;
 
-    public StudentModel(String name,
-                        String surname, String login,
-                        String password, String email) {
+    public StudentModel(Integer id, String name, String surname, String login, String password,
+                        String email, Integer levelId, Integer score, Integer classId) {
 
-        super(name, surname, login, password, email);
-        this.level = "Beginner";
-        this.score = 0;
-    }
-
-    public StudentModel(String name,
-                        String surname, String login,
-                        String password, String email,
-                        String level, Integer score) {
-
-        super(name, surname, login, password, email);
-        this.level = level;
+        super(id, name, surname, login, password, email);
+        this.levelId = levelId;
         this.score = score;
+        this.classId = classId;
     }
 
-    public String getLevel() {
-        return this.level;
+    public Integer getLevelId() {
+        return this.levelId;
+    }
+
+    public Integer getScore() {
+        return score;
+    }
+
+    public Integer getClassId() {
+        return classId;
     }
 }

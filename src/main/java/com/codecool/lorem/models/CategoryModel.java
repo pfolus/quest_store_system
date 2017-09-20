@@ -5,7 +5,7 @@ public abstract class CategoryModel {
     protected Integer id;
     protected String name;
 
-    public CategoryModel(String name, Integer id) {
+    public CategoryModel(Integer id, String name) {
         this.name = name;
         this.id = id;
     }
