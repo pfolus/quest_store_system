@@ -6,20 +6,13 @@ import com.codecool.lorem.models.MentorModel;
 
 public class MentorsDao extends Dao<MentorModel> {
 
-    public MentorModel get(Integer id) {
-        Iterator iter = this.getIterator();
-
-        while (iter.hasNext()) {
-            MentorModel user = (MentorModel) iter.next();
-
-            if (user.getId().equals(id)) {
-                return user;
+    public MentorModel getById(Integer id) {
+        for (MentorModel mentor : getItems()) {
+            if (mentor.getId().equals(id)) {
+                return mentor;
             }
         }
         return null;
     }
 
-    public void read() {}
-
-    public void save() {}
 }
