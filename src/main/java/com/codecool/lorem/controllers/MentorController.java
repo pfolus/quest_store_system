@@ -50,109 +50,109 @@ public class MentorController {
         }
     }
 
-    public static void createStudent(StudentsDao studentsDao) {
-        String name, surname, login,
-                password, email;
+//    public static void createStudent(StudentsDao studentsDao) {
+//        String name, surname, login,
+//                password, email;
+//
+//        name = UserView.getName();
+//        surname = UserView.getSurname();
+//        login = UserView.getLogin();
+//        password = UserView.getPassword();
+//        email = UserView.getEmail();
+//
+//        studentsDao.add(new StudentModel(name, surname, login, password, email));
+//
+//    }
 
-        name = UserView.getName();
-        surname = UserView.getSurname();
-        login = UserView.getLogin();
-        password = UserView.getPassword();
-        email = UserView.getEmail();
+//    public static void addQuest(QuestsDao questsDao, QuestCategoriesDao questsCategoryDao) {
+//        String name;
+//        String description;
+//        QuestCategoryModel category;
+//        Integer id;
+//        Integer prize;
+//
+//        // get quest name
+//        MentorView.provideQuestNameMessage();
+//        name = MentorView.getStringInput();
+//
+//        // get quest description
+//        MentorView.provideQuestDescriptionMessage();
+//        description = MentorView.getStringInput();
+//
+//        // lists quests categories
+//        Iterator categoryIterator = questsCategoryDao.getIterator();
+//        while (categoryIterator.hasNext()) {
+//            MentorView.showString(categoryIterator.next().toString());
+//        }
+//
+//        // get category correct ID from input
+//        category = null;
+//        while (category == null) {
+//            MentorView.provideCategoryIdMessage();
+//            id = MentorView.getIntInput();
+//            category = questsCategoryDao.get(id);
+//        }
+//        // get quest prize from input
+//        MentorView.provideQuestPrizeMessage();
+//        prize = MentorView.getIntInput();
+//
+//        questsDao.add(new QuestModel(name, category, description, prize));
+//
+//    }
 
-        studentsDao.add(new StudentModel(name, surname, login, password, email));
+//    public static void addArtifact(ArtifactsDao artifactsDao, ArtifactCategoriesDao artifactCategoriesDao) {
+//        String name;
+//        String description;
+//        ArtifactCategoryModel category;
+//        Integer id;
+//        Integer price;
+//
+//        // get artifacts name
+//        MentorView.provideArtifactNameMessage();
+//        name = MentorView.getStringInput();
+//
+//        // get artifacts description
+//        MentorView.provideArtifactDescriptionMessage();
+//        description = MentorView.getStringInput();
+//
+//        // lists artifacts categories
+//        Iterator categoryIterator = artifactCategoriesDao.getIterator();
+//        while (categoryIterator.hasNext()) {
+//            MentorView.showString(categoryIterator.next().toString());
+//        }
+//
+//        // get category correct ID from input
+//        category = null;
+//        while (category == null) {
+//            MentorView.provideCategoryIdMessage();
+//            id = MentorView.getIntInput();
+//            category = artifactCategoriesDao.get(id);
+//        }
+//        // get quest prize from input
+//        MentorView.provideArtifactPriceMessage();
+//        price = MentorView.getIntInput();
+
+        //artifactsDao.add(new ArtifactModel(name, category, description, price));
 
     }
 
-    public static void addQuest(QuestsDao questsDao, QuestCategoriesDao questsCategoryDao) {
-        String name;
-        String description;
-        QuestCategoryModel category;
-        Integer id;
-        Integer prize;
-
-        // get quest name
-        MentorView.provideQuestNameMessage();
-        name = MentorView.getStringInput();
-
-        // get quest description
-        MentorView.provideQuestDescriptionMessage();
-        description = MentorView.getStringInput();
-
-        // lists quests categories
-        Iterator categoryIterator = questsCategoryDao.getIterator();
-        while (categoryIterator.hasNext()) {
-            MentorView.showString(categoryIterator.next().toString());
-        }
-
-        // get category correct ID from input
-        category = null;
-        while (category == null) {
-            MentorView.provideCategoryIdMessage();
-            id = MentorView.getIntInput();
-            category = questsCategoryDao.get(id);
-        }
-        // get quest prize from input
-        MentorView.provideQuestPrizeMessage();
-        prize = MentorView.getIntInput();
-
-        questsDao.add(new QuestModel(name, category, description, prize));
-
-    }
-
-    public static void addArtifact(ArtifactsDao artifactsDao, ArtifactCategoriesDao artifactCategoriesDao) {
-        String name;
-        String description;
-        ArtifactCategoryModel category;
-        Integer id;
-        Integer price;
-
-        // get artifacts name
-        MentorView.provideArtifactNameMessage();
-        name = MentorView.getStringInput();
-
-        // get artifacts description
-        MentorView.provideArtifactDescriptionMessage();
-        description = MentorView.getStringInput();
-
-        // lists artifacts categories
-        Iterator categoryIterator = artifactCategoriesDao.getIterator();
-        while (categoryIterator.hasNext()) {
-            MentorView.showString(categoryIterator.next().toString());
-        }
-
-        // get category correct ID from input
-        category = null;
-        while (category == null) {
-            MentorView.provideCategoryIdMessage();
-            id = MentorView.getIntInput();
-            category = artifactCategoriesDao.get(id);
-        }
-        // get quest prize from input
-        MentorView.provideArtifactPriceMessage();
-        price = MentorView.getIntInput();
-
-        artifactsDao.add(new ArtifactModel(name, category, description, price));
-
-    }
-
-    public static void markStudentDoneQuest(StudentsDao studentsDao) {
-        Integer id;
-        Iterator studentsIterator = studentsDao.getIterator();
-        StudentModel student;
-
-        if(studentsIterator.hasNext()) {
-            // lists Studends details
-            while (studentsIterator.hasNext()) {
-                MentorView.showString(studentsIterator.next().toString());
-            }
-            // get category correct ID from input
-            student = null;
-            while (student == null) {
-                MentorView.provideStudentIdMessage();
-                id = MentorView.getIntInput();
-                student = studentsDao.get(id);
-            }
+//    public static void markStudentDoneQuest(StudentsDao studentsDao) {
+//        Integer id;
+//        Iterator studentsIterator = studentsDao.getIterator();
+//        StudentModel student;
+//
+//        if(studentsIterator.hasNext()) {
+//            // lists Studends details
+//            while (studentsIterator.hasNext()) {
+//                MentorView.showString(studentsIterator.next().toString());
+//            }
+//            // get category correct ID from input
+//            student = null;
+//            while (student == null) {
+//                MentorView.provideStudentIdMessage();
+//                id = MentorView.getIntInput();
+//                student = studentsDao.get(id);
+//            }
 
         } else {
             MentorView.showNoStudentsMessage();
