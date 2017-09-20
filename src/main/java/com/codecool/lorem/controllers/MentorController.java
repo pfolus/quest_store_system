@@ -1,7 +1,6 @@
 package com.codecool.lorem.controllers;
 
 import java.util.InputMismatchException;
-import java.util.Iterator;
 
 import com.codecool.lorem.models.MentorModel;
 import com.codecool.lorem.models.StudentModel;
@@ -33,7 +32,7 @@ public class MentorController {
             choice = MentorView.getIntInput();
 
             if(choice == 1){
-                //createStudent(studentsDao);
+                createStudent(studentsDao);
             } else if(choice == 2){
                 //addQuest(questsDao, questCategoriesDao);
             } else if(choice == 3){
@@ -50,55 +49,58 @@ public class MentorController {
         }
     }
 
-//    public static void createStudent(StudentsDao studentsDao) {
-//        String name, surname, login,
-//                password, email;
-//
-//        name = UserView.getName();
-//        surname = UserView.getSurname();
-//        login = UserView.getLogin();
-//        password = UserView.getPassword();
-//        email = UserView.getEmail();
-//
-//        studentsDao.add(new StudentModel(name, surname, login, password, email));
-//
-//    }
+    public static void createStudent(StudentsDao studentsDao) {
+        String name;
+        String surname;
+        String login;
+        String password;
+        String email;
 
-//    public static void addQuest(QuestsDao questsDao, QuestCategoriesDao questsCategoryDao) {
-//        String name;
-//        String description;
-//        QuestCategoryModel category;
-//        Integer id;
-//        Integer prize;
-//
-//        // get quest name
-//        MentorView.provideQuestNameMessage();
-//        name = MentorView.getStringInput();
-//
-//        // get quest description
-//        MentorView.provideQuestDescriptionMessage();
-//        description = MentorView.getStringInput();
-//
-//        // lists quests categories
-//        Iterator categoryIterator = questsCategoryDao.getIterator();
-//        while (categoryIterator.hasNext()) {
-//            MentorView.showString(categoryIterator.next().toString());
-//        }
-//
-//        // get category correct ID from input
-//        category = null;
-//        while (category == null) {
-//            MentorView.provideCategoryIdMessage();
-//            id = MentorView.getIntInput();
-//            category = questsCategoryDao.get(id);
-//        }
-//        // get quest prize from input
-//        MentorView.provideQuestPrizeMessage();
-//        prize = MentorView.getIntInput();
-//
-//        questsDao.add(new QuestModel(name, category, description, prize));
-//
-//    }
+        name = UserView.getName();
+        surname = UserView.getSurname();
+        login = UserView.getLogin();
+        password = UserView.getPassword();
+        email = UserView.getEmail();
+
+        studentsDao.addStudentToDatabase(name, surname, login, password, email);
+    }
+
+    public static void addNewQuest(QuestsDao questsDao, QuestCategoriesDao questsCategoryDao) {
+        //there must be QuestCategoriesDao itemsList loaded yey to run that method
+
+        String name;
+        String description;
+        Integer id;
+        Integer prize;
+
+        // get quest name
+        MentorView.provideQuestNameMessage();
+        name = MentorView.getStringInput();
+
+        // get quest description
+        MentorView.provideQuestDescriptionMessage();
+        description = MentorView.getStringInput();
+
+        // lists quests categories
+        for (QuestCategoryModel cat: questsCategoryDao.getItems()) {
+            MentorView.showString(cat.toString());
+        }
+
+        // get category correct ID from input (checks in questcategoriesDAO itemslist)
+        Integer categoryId = null;
+        while (categoryId == null) {
+            MentorView.provideCategoryIdMessage();
+            id = MentorView.getIntInput();
+            categoryId = questsCategoryDao.get(id).getId();
+        }
+
+        // get quest prize from input
+        MentorView.provideQuestPrizeMessage();
+        prize = MentorView.getIntInput();
+
+        questsDao.addQuestToDatabase(name, categoryId, description, prize);
+
+    }
 
 //    public static void addArtifact(ArtifactsDao artifactsDao, ArtifactCategoriesDao artifactCategoriesDao) {
 //        String name;
