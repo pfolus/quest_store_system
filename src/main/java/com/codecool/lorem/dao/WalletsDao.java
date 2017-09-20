@@ -21,7 +21,7 @@ public class WalletsDao extends Dao<WalletModel> {
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(
-                    "SELECT * FROM wallets WHERE student_id = '" + id + "';");
+                    "SELECT * FROM wallets WHERE student_id = " + id + ";");
 
             if (resultSet.next()) {
                 Integer wallet_id = resultSet.getInt("id");
