@@ -6,20 +6,13 @@ import com.codecool.lorem.models.LevelModel;
 
 public class LevelsDao extends Dao<LevelModel> {
 
-    public LevelModel get(Integer id) {
-        Iterator iter = this.getIterator();
-
-        while (iter.hasNext()) {
-            LevelModel user = (LevelModel) iter.next();
-
-            if (user.getId().equals(id)) {
-                return user;
+    public LevelModel getById(Integer id) {
+        for (LevelModel level : getItems()) {
+            if (level.getId().equals(id)) {
+                return level;
             }
         }
         return null;
     }
 
-    public void read() {}
-
-    public void save() {}
 }

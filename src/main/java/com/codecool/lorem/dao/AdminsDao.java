@@ -4,7 +4,7 @@ import com.codecool.lorem.models.AdminModel;
 
 public class AdminsDao extends Dao<AdminModel> {
 
-    public AdminModel get(Integer id) {
+    public AdminModel getById(Integer id) {
         for (AdminModel admin : getItems()) {
             if (admin.getId().equals(id)) {
                 return admin;
@@ -12,8 +12,4 @@ public class AdminsDao extends Dao<AdminModel> {
         }
         return null;
     }
-
-    public void read() {}
-
-    public void save() {}
 }
