@@ -18,42 +18,42 @@ import com.codecool.lorem.dao.ArtifactCategoriesDao;
 
 public class StoreController {
 
-    public static void runController(StudentModel student,
-                                     WalletModel wallet) {
-        ArtifactCategoriesDao categories = new ArtifactCategoriesDao();
-        categories.add(cat);
-        ArtifactsDao artifacts = new ArtifactsDao();
-        ArtifactsBoughtDao boughtArtifacts = new ArtifactsBoughtDao();
+//    public static void runController(StudentModel student,
+//                                     WalletModel wallet) {
+//        ArtifactCategoriesDao categories = new ArtifactCategoriesDao();
+//        //categories.add(cat);
+//        ArtifactsDao artifacts = new ArtifactsDao();
+//        ArtifactsBoughtDao boughtArtifacts = new ArtifactsBoughtDao();
+//
+//        int choice = -1;
+//        final int EXIT = 0;
+//
+//        while (choice != EXIT) {
+//            StoreView.showMenu();
+//            choice = chooseOption();
+//
+//            if (choice == 1) {
+//                buyArtifact(boughtArtifacts, artifacts, student, wallet);
+//            } else if (choice == 2) {
+//                //buyArtifactWithTeammates();
+//            }
+//        }
+//    }
+}
 
-        int choice = -1;
-        final int EXIT = 0;
+//    private static void buyArtifact(ArtifactsBoughtDao boughtArtifacts, ArtifactsDao artifacts,
+//                            StudentModel student, WalletModel wallet) {
+//
+//        //showArtifactsInStore(artifacts);
+        //ArtifactModel artifact = chooseArtifactById(artifacts);
 
-        while(choice != EXIT){
-            StoreView.showMenu();
-            choice = chooseOption();
+//        if (hasEnoughCoins(wallet, artifact)) {
+//            addBoughtItemToDao(artifact, student, boughtArtifacts);
+//            StoreView.itemBoughtSuccesfully();
+//            wallet.reduceBalance(artifact.getPrice());
+//        } else {
+//            StoreView.notEnoughMoneyInfo();
 
-            if (choice == 1){
-                buyArtifact(boughtArtifacts, artifacts, student, wallet);
-            } else if(choice == 2){
-                //buyArtifactWithTeammates();
-            }
-        }
-    }
-
-    private static void buyArtifact(ArtifactsBoughtDao boughtArtifacts, ArtifactsDao artifacts,
-                            StudentModel student, WalletModel wallet) {
-
-        showArtifactsInStore(artifacts);
-        ArtifactModel artifact = chooseArtifactById(artifacts);
-
-        if (hasEnoughCoins(wallet, artifact)) {
-            addBoughtItemToDao(artifact, student, boughtArtifacts);
-            StoreView.itemBoughtSuccesfully();
-            wallet.reduceBalance(artifact.getPrice());
-        } else {
-            StoreView.notEnoughMoneyInfo();
-        }
-    }
 
 //    private static void addBoughtItemToDao(ArtifactModel artifact,
 //                                    StudentModel student, ArtifactsBoughtDao boughtArtifacts) {
@@ -69,33 +69,33 @@ public class StoreController {
 //        return artifact;
 //    }
 
-    private static Integer chooseArtifactId() {
-        Integer id = null;
-        boolean isCorrect = false;
-
-        while(!isCorrect) {
-
-            try {
-                id = StoreView.chooseArtifactId();
-                isCorrect = true;
-            } catch (InputMismatchException e) {
-                StoreView.printWrongChoiceInfo();
-            }
-        }
-        return id;
-    }
+//    private static Integer chooseArtifactId() {
+//        Integer id = null;
+//        boolean isCorrect = false;
+//
+//        while(!isCorrect) {
+//
+//            try {
+//                id = StoreView.chooseArtifactId();
+//                isCorrect = true;
+//            } catch (InputMismatchException e) {
+//                StoreView.printWrongChoiceInfo();
+//            }
+//        }
+//        return id;
+//    }
 
     //private static BoughtArtifactModel buyArtifactWithTeammates() {
 
     //}
 
-    private static boolean hasEnoughCoins(WalletModel wallet, ArtifactModel artifactToBuy) {
-        if (wallet.getBalance() > artifactToBuy.getPrice()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+//    private static boolean hasEnoughCoins(WalletModel wallet, ArtifactModel artifactToBuy) {
+//        if (wallet.getBalance() > artifactToBuy.getPrice()) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 
 //    public static void showArtifactsInStore(ArtifactsDao artifacts) {
 //        Iterator iter = artifacts.getIterator();
@@ -104,17 +104,16 @@ public class StoreController {
 //        }
 //    }
 
-    private static Integer chooseOption() {
-        Integer choice = null;
-        final Integer[] CHOICES = {0, 1, 2};
-
-        while (!Arrays.asList(CHOICES).contains(choice)){
-            try {
-                choice = StoreView.chooseOption();
-            } catch (InputMismatchException e) {
-                StoreView.printWrongChoiceInfo();
-            }
-        }
-        return choice;
-    }
-}
+//    private static Integer chooseOption() {
+//        Integer choice = null;
+//        final Integer[] CHOICES = {0, 1, 2};
+//
+//        while (!Arrays.asList(CHOICES).contains(choice)){
+//            try {
+//                choice = StoreView.chooseOption();
+//            } catch (InputMismatchException e) {
+//                StoreView.printWrongChoiceInfo();
+//            }
+//        }
+//        return choice;
+//    }
