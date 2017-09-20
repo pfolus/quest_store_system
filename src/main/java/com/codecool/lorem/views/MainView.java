@@ -1,5 +1,7 @@
 package com.codecool.lorem.views;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
+
 import java.util.Scanner;
 
 public class MainView {
@@ -16,5 +18,9 @@ public class MainView {
         System.out.print("\nEnter password: ");
 
         return scanner.nextLine();
+    }
+
+    public static void print(String string) {
+        System.out.println(string);
     }
 }
