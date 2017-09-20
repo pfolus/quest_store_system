@@ -10,7 +10,7 @@ public class LoginDao {
         ResultSet resultSet = null;
         Statement statement = null;
 
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:src/main/db/quest-store.db")) {
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(
                     "SELECT type, id FROM users WHERE login = '" + login + "' AND password = '" + password + "';");
@@ -27,6 +27,7 @@ public class LoginDao {
 
             return result;
         } catch (SQLException e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             return null;
         }
     }
