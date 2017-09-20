@@ -39,10 +39,10 @@ public class StudentsDao extends Dao<StudentModel> {
 
             resultSet.close();
             statement.close();
-
-            return result;
         } catch (SQLException e) {
             return result;
         }
+
+        return result;
     }
 }
