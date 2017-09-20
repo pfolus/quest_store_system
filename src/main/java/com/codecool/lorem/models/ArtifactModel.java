@@ -16,9 +16,11 @@ public class ArtifactModel extends AbstractItemModel {
     }
 
     public String toString() {
-        return "Name: " + this.name
-               + " Category: " + this.categoryId
-               + " Price: " + this.price;
+        return  "ID: " + this.id
+                + " Name: " + this.name
+                + " CategoryId: " + this.categoryId
+                + " Description: " + this.description
+                + " Price: " + this.price;
     }
 
     public String getDescription() {
