@@ -12,6 +12,7 @@ public class WalletsDao extends Dao<WalletModel> {
                 return wallet;
             }
         }
+
         return null;
     }
 
@@ -39,4 +40,16 @@ public class WalletsDao extends Dao<WalletModel> {
 
         return wallet;
     }
-}
+
+    public void updateWalletBalance(Integer student_id, Integer balance) {
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("UPDATE wallets SET balance = " + balance +
+                " WHERE student_id = " + student_id + ";");
+
+            statement.close();
+        } catch (SQLException e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+    }
+ }
