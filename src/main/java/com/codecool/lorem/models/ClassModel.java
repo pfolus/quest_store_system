@@ -5,14 +5,16 @@ public class ClassModel {
     private Integer id;
     private String name;
 
-    private static Integer nextId = 1;
-
-    public ClassModel(String name) {
-        this.id = nextId++;
+    public ClassModel(Integer id, String name) {
+        this.id = id;
         this.name = name;
     }
 
     public Integer getId() {
         return this.id;
+    }
+
+    public String getName() {
+        return name;
     }
 }

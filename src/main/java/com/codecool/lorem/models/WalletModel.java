@@ -6,19 +6,11 @@ public class WalletModel {
     private Integer id;
     private Integer studentId;
 
-    private static Integer nextId = 1;
 
-
-    public WalletModel(Integer studentId) {
-        this.balance = 0;
-        this.studentId = studentId;
-        this.id = nextId++;
-    }
-
-    public WalletModel(Integer balance, Integer studentId) {
+    public WalletModel(Integer id, Integer studentId, Integer balance) {
         this.balance = balance;
         this.studentId = studentId;
-        this.id = nextId++;
+        this.id = id;
     }
 
     public Integer getId() {

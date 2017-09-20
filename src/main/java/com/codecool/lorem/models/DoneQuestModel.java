@@ -2,24 +2,22 @@ package com.codecool.lorem.models;
 
 public class DoneQuestModel {
 
-    private QuestModel quest;
+    private Integer questId;
     private Integer timesDone;
     private Integer id;
 
-    private static Integer nextId = 1;
-
-    public DoneQuestModel(QuestModel quest) {
-        this.quest = quest;
+    public DoneQuestModel(Integer id, Integer questId) {
+        this.questId = questId;
         this.timesDone = 1;
-        this.id = nextId++;
+        this.id = id;
     }
 
     public void increaseTimesDone() {
         this.timesDone += 1;
     }
 
-    public QuestModel getQuest() {
-        return this.quest;
+    public Integer getQuestId() {
+        return this.questId;
     }
 
     public Integer getTimesDone() {

@@ -6,12 +6,10 @@ public class LevelModel {
     private String name;
     protected Integer id;
 
-    private static Integer nextId = 1;
-
-    public LevelModel(Integer requiredScore, String name) {
+    public LevelModel(Integer id, Integer requiredScore, String name) {
         this.requiredScore = requiredScore;
         this.name = name;
-        this.id = nextId++;
+        this.id = id;
     }
 
     public Integer getRequiredScore() {

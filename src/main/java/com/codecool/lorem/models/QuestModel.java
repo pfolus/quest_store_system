@@ -1,12 +1,12 @@
 package com.codecool.lorem.models;
 
-public class QuestModel extends AbstractItemModel<QuestCategoryModel>{
+public class QuestModel extends AbstractItemModel {
 
     private Integer prize;
     private String description;
 
-    public QuestModel(String name, QuestCategoryModel category, String description, Integer prize) {
-        super(name, category);
+    public QuestModel(Integer id, String name, Integer categoryId, String description, Integer prize) {
+        super(id, name, categoryId);
         this.prize = prize;
         this.description = description;
 
@@ -18,5 +18,9 @@ public class QuestModel extends AbstractItemModel<QuestCategoryModel>{
 
     public Integer getId() {
         return this.id;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }
