@@ -22,7 +22,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>your.MainClass</mainClass>
+                            <mainClass>com.codecool.lorem.App</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
