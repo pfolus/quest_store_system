@@ -7,19 +7,11 @@ import com.codecool.lorem.models.QuestModel;
 public class QuestsDao extends Dao<QuestModel> {
 
     public QuestModel get(Integer id) {
-        Iterator iter = this.getIterator();
-
-        while (iter.hasNext()) {
-            QuestModel user = (QuestModel) iter.next();
-
-            if (user.getId().equals(id)) {
-                return user;
+        for (QuestModel quest : getItems()) {
+            if (quest.getId().equals(id)) {
+                return quest;
             }
         }
         return null;
     }
-
-    public void read() {}
-
-    public void save() {}
 }
