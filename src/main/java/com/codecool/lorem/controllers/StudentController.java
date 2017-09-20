@@ -16,6 +16,9 @@ public class StudentController {
         int choice = -1;
         final int EXIT = 0;
 
+        WalletsDao walletsDao = new WalletsDao();
+        WalletModel wallet = walletsDao.getStudentWallet(student.getId());
+
         while(choice != EXIT){
             StudentView.showMenu();
             choice = chooseOption();
@@ -23,7 +26,7 @@ public class StudentController {
             if (choice == 1) {
                 //showWallet(student, wallet);
             } else if (choice == 2) {
-                StoreController.runController(student);
+                StoreController.runController(student, wallet);
             } else if (choice == 3) {
                 //showLevel(student);
             } else if (choice == 4) {
