@@ -47,6 +47,9 @@ public class StoreController {
         ArtifactModel artifact = chooseArtifactById(artifacts);
 
         if (hasEnoughCoins(wallet, artifact)) {
+            WalletsDao walletsDao = new WalletsDao();
+            wallet.reduceBalance(artifact.getPrice());
+            walletsDao.updateWalletBalance(student.getId(), wallet.getBalance());
             //addBoughtItemToDao(artifact, student, boughtArtifacts);
             StoreView.itemBoughtSuccesfully();
             //wallet.reduceBalance(artifact.getPrice());
