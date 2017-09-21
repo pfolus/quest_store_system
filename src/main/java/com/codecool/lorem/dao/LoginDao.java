@@ -10,7 +10,8 @@ public class LoginDao {
         ResultSet resultSet = null;
         Statement statement = null;
 
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
+        try {
+            Connection connection = DatabaseConnection.getConnection();
             statement = connection.createStatement();
             resultSet = statement.executeQuery(
                     "SELECT type, id FROM users WHERE login = '" + login + "' AND password = '" + password + "';");
