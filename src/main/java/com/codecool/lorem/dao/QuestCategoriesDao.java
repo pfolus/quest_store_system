@@ -19,8 +19,8 @@ public class QuestCategoriesDao extends Dao<QuestCategoryModel> {
 
     public void loadQuestCategoriesFromDb(){
 
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
-
+        try {
+            Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM quest_categories ");
 
@@ -34,7 +34,6 @@ public class QuestCategoriesDao extends Dao<QuestCategoryModel> {
 
             resultSet.close();
             statement.close();
-
         } catch (SQLException e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }

@@ -17,13 +17,11 @@ public class ArtifactsDao extends Dao<ArtifactModel> {
     }
 
     public void readFromDatabase() {
-        Connection c = null;
         Statement stmt = null;
         ResultSet rs = null;
 
         try {
-            c = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db");
-
+            Connection c = DatabaseConnection.getConnection();
             stmt = c.createStatement();
             rs = stmt.executeQuery("SELECT * FROM artifacts;");
 
@@ -41,21 +39,17 @@ public class ArtifactsDao extends Dao<ArtifactModel> {
             }
             rs.close();
             stmt.close();
-            c.close();
-
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
     }
 
     public void addArtifact(String name, Integer categoryId, String description, Integer price) {
-        Connection c = null;
         Statement stmt = null;
         ResultSet rs = null;
 
         try {
-
-            c = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db");
+            Connection c = DatabaseConnection.getConnection();
             c.setAutoCommit(false);
 
             stmt = c.createStatement();
@@ -71,9 +65,6 @@ public class ArtifactsDao extends Dao<ArtifactModel> {
             }
             stmt.close();
             c.commit();
-            c.close();
-
-
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }

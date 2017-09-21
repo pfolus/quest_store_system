@@ -20,8 +20,8 @@ public class QuestsDao extends Dao<QuestModel> {
     public void addQuestToDatabase(String name, Integer categoryId, String description, Integer prize) {
         Statement statement = null;
 
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
-
+        try {
+            Connection connection = DatabaseConnection.getConnection();
             statement = connection.createStatement();
 
             String sql = String.format(
@@ -30,7 +30,6 @@ public class QuestsDao extends Dao<QuestModel> {
 
             statement.executeUpdate(sql);
             statement.close();
-
         } catch (SQLException e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
@@ -42,8 +41,8 @@ public class QuestsDao extends Dao<QuestModel> {
 
     public void loadQuestsFromDb() {
 
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
-
+        try {
+            Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM quests");
 
@@ -60,7 +59,6 @@ public class QuestsDao extends Dao<QuestModel> {
 
         resultSet.close();
         statement.close();
-
     } catch (SQLException e) {
         System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         System.exit(0);
