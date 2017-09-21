@@ -28,7 +28,7 @@ public class QuestsDoneDao extends Dao<DoneQuestModel> {
         } return null;
     }
 
-    public void addDoneQuestToDb(Integer questId, Integer studentId) {
+    public void addDoneQuestToDb(QuestModel quest, Integer studentId) {
 
         Statement statement = null;
 
@@ -37,7 +37,7 @@ public class QuestsDoneDao extends Dao<DoneQuestModel> {
             statement = connection.createStatement();
             String sql = String.format(
                     "INSERT INTO quests_done (times_done, quest_id, student_id) " +
-                    "VALUES (0, '%d', '%d');", questId, studentId);
+                    "VALUES (0, '%d', '%d');", quest.getId(), studentId);
 
             statement.executeUpdate(sql);
 
