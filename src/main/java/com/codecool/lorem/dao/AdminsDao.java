@@ -40,7 +40,7 @@ public class AdminsDao extends Dao<AdminModel> {
         }
     }
 
-    public AdminModel createLoggedStudent(String id) {
+    public AdminModel createLoggedAdmin(String id) {
         AdminModel result = null;
 
         try {
@@ -50,14 +50,14 @@ public class AdminsDao extends Dao<AdminModel> {
                     "SELECT * FROM users WHERE id = " +  id + ";");
 
             if (resultSet.next()) {
-                Integer user_id = resultSet.getInt("user_id");
+                Integer adminId = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 String surname = resultSet.getString("surname");
                 String login = resultSet.getString("login");
                 String password = resultSet.getString("password");
                 String email = resultSet.getString("email");
 
-                result = new AdminModel(user_id, name, surname, login, password, email);
+                result = new AdminModel(adminId, name, surname, login, password, email);
             }
 
             resultSet.close();
