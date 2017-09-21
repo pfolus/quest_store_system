@@ -12,7 +12,7 @@ import com.codecool.lorem.views.MainView;
 
 public class StudentsDao extends Dao<StudentModel> {
 
-    public StudentModel get(Integer id) {
+    public StudentModel getById(Integer id) {
         for (StudentModel student : getItems()) {
             if (student.getId().equals(id)) {
                 return student;
@@ -105,6 +105,39 @@ public class StudentsDao extends Dao<StudentModel> {
 
             resultSet.close();
             statement.close();
+        } catch (SQLException e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+    }
+
+    public void loadStudentFromDbByLogin(String login){
+
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
+
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(String.format(
+                    "SELECT * FROM users INNER JOIN students_data ON users.id = students_data.user_id;" +
+                    "WHERE login =  '%s';", login));
+
+            while (resultSet.next()) {
+
+                Integer user_id = resultSet.getInt("user_id");
+                String name = resultSet.getString("name");
+                String surname = resultSet.getString("surname");
+                String password = resultSet.getString("password");
+                String email = resultSet.getString("email");
+                Integer levelId = resultSet.getInt("level_id");
+                Integer score = resultSet.getInt("score");
+                Integer classId = resultSet.getInt("class_id");
+
+                this.itemsList.add(
+                        new StudentModel(user_id, name, surname, login,
+                                password, email, levelId, score, classId));
+            }
+
+            resultSet.close();
+            statement.close();
+
         } catch (SQLException e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
