@@ -1,7 +1,5 @@
 package com.codecool.lorem.views;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
-
 import java.util.Scanner;
 
 public class MainView {
@@ -27,4 +25,9 @@ public class MainView {
     public static void print(String string) {
         System.out.println(string);
     }
+
+    public static void showString(String string) {
+        System.out.println(string);
+    }
+
 }
