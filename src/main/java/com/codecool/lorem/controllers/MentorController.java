@@ -9,7 +9,8 @@ import com.codecool.lorem.views.UserView;
 
 public class MentorController {
 
-    public static void runController(MentorModel mentor, StudentsDao studentsDao) {
+    public static void runController(MentorModel mentor) {
+        StudentsDao studentsDao = new StudentsDao();
         QuestsDao questsDao = new QuestsDao();
         QuestCategoriesDao questCategoriesDao = new QuestCategoriesDao();
 

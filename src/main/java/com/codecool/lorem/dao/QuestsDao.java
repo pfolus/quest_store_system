@@ -20,7 +20,7 @@ public class QuestsDao extends Dao<QuestModel> {
     public void addQuestToDatabase(String name, Integer categoryId, String description, Integer prize) {
         Statement statement = null;
 
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:src/main/db/quest-store.db")) {
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
 
             statement = connection.createStatement();
 
@@ -45,7 +45,7 @@ public class QuestsDao extends Dao<QuestModel> {
         this.itemsList.removeAll();
         //call that shit in the constructor
 
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:src/main/db/quest-store.db")) {
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM quests");
 

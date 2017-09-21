@@ -16,14 +16,17 @@ public class StudentController {
         int choice = -1;
         final int EXIT = 0;
 
+        WalletsDao walletsDao = new WalletsDao();
+        WalletModel wallet = walletsDao.getStudentWallet(student.getId());
+
         while(choice != EXIT){
             StudentView.showMenu();
             choice = chooseOption();
 
             if (choice == 1) {
-                //showWallet(student, wallet);
+                showWallet(wallet);
             } else if (choice == 2) {
-                //StoreController.runController(student, wallet);
+                StoreController.runController(student, wallet);
             } else if (choice == 3) {
                 //showLevel(student);
             } else if (choice == 4) {
@@ -32,10 +35,10 @@ public class StudentController {
         }
     }
 
-//    public static void showWallet(StudentModel student, WalletModel wallet) {
-//        Integer balance = wallet.getBalance();
-//        StudentView.showCoinsBalance(balance);
-//    }
+    public static void showWallet(WalletModel wallet) {
+        Integer balance = wallet.getBalance();
+        StudentView.showCoinsBalance(balance);
+    }
 
 //    public static void showLevel(StudentModel student) {
 //        String level = student.getLevel();
