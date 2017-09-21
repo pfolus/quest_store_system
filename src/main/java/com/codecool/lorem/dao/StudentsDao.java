@@ -58,6 +58,7 @@ public class StudentsDao extends Dao<StudentModel> {
                                             String password, String email, Integer classId) {
 
         Statement statement = null;
+        Integer startingBalance = 1000;
 
         try {
             Connection connection = DatabaseConnection.getConnection();
@@ -66,8 +67,9 @@ public class StudentsDao extends Dao<StudentModel> {
                     "INSERT INTO users (name, surname, login, password, email, type) " +
                     "VALUES ('%s', '%s', '%s', '%s', '%s', 'student'); " +
                     "INSERT INTO students_data (user_id, level_id, score, class_id) " +
-                    "VALUES (last_insert_rowid(), 1, 0, '%d');", name, surname, login, password, email, classId);
-
+                    "VALUES (last_insert_rowid(), 1, 0, '%d');" +
+                    "INSERT INTO wallets (balance, student_id) " +
+                    "VALUES (%d, last_insert_rowid());", name, surname, login, password, email, classId, startingBalance);
 
 
             statement.executeUpdate(sql);
