@@ -19,9 +19,6 @@ public class MainView {
         return scanner.nextLine();
     }
 
-    public static void newLine() {
-        System.out.println();
-    }
 
     public static void print(String string) {
         System.out.println(string);
@@ -43,5 +40,14 @@ public class MainView {
         } catch (InterruptedException e) {
             System.out.println();
         }
+    }
+
+    public static String getString(String text) {
+        String input;
+        Scanner scan = new Scanner(System.in);
+        System.out.println(text);
+        input = scan.nextLine();
+
+        return input;
     }
 }

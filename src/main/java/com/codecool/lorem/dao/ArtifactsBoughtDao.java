@@ -2,6 +2,7 @@ package com.codecool.lorem.dao;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import com.codecool.lorem.models.BoughtArtifactModel;
 
@@ -49,7 +50,7 @@ public class ArtifactsBoughtDao extends Dao<BoughtArtifactModel> {
     }
 
     public ArrayList<BoughtArtifactModel> getItemsByStudentId(Integer id) {
-        ArrayList<BoughtArtifactModel> studentsBoughtArtifacts = new ArrayList<BoughtArtifactModel>();
+        ArrayList<BoughtArtifactModel> studentsBoughtArtifacts = new ArrayList<>();
 
         for (BoughtArtifactModel artifact:this.itemsList) {
             if (artifact.getStudentId().equals(id)) {
@@ -76,6 +77,34 @@ public class ArtifactsBoughtDao extends Dao<BoughtArtifactModel> {
             c.commit();
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+    }
+
+    public void deleteArtifactFromDb(Integer id) {
+        Statement stmt = null;
+
+        try {
+            Connection c = DatabaseConnection.getConnection();
+            c.setAutoCommit(false);
+
+            stmt = c.createStatement();
+
+            stmt.executeUpdate(String.format(
+                    "DELETE FROM bought_artifacts WHERE id = %d;", id));
+
+            stmt.close();
+            c.commit();
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+    }
+
+    public void deleteArtifactFromDao(Integer id) {
+        Iterator<BoughtArtifactModel> iterator = this.getItems().iterator();
+        while(iterator.hasNext()){
+            if(iterator.next().getId().equals(id)) {
+                iterator.remove();
+            }
         }
     }
 }
