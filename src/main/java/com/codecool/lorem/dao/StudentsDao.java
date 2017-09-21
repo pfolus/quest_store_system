@@ -24,7 +24,8 @@ public class StudentsDao extends Dao<StudentModel> {
     public StudentModel createLoggedStudent(String id) {
         StudentModel result = null;
 
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
+        try {
+            Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(
                     "SELECT * FROM users INNER JOIN students_data ON users.id = students_data.user_id " +
@@ -58,8 +59,8 @@ public class StudentsDao extends Dao<StudentModel> {
 
         Statement statement = null;
 
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
-
+        try {
+            Connection connection = DatabaseConnection.getConnection();
             statement = connection.createStatement();
             String sql = String.format(
                     "INSERT INTO users (name, surname, login, password, email, type) " +
@@ -82,7 +83,8 @@ public class StudentsDao extends Dao<StudentModel> {
 
     public void loadStudentsFromDb(){
 
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
+        try {
+            Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(
                     "SELECT * FROM users INNER JOIN students_data ON users.id = students_data.user_id;");

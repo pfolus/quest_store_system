@@ -17,13 +17,11 @@ public class ArtifactsBoughtDao extends Dao<BoughtArtifactModel> {
     }
 
     public void readFromDatabase() {
-        Connection c = null;
         Statement stmt = null;
         ResultSet rs = null;
 
         try {
-            c = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db");
-
+            Connection c = DatabaseConnection.getConnection();
             stmt = c.createStatement();
             rs = stmt.executeQuery(
                     "SELECT bought_artifacts.id, is_used, artifact_id, student_id, name, description, price, artifact_category_id FROM bought_artifacts INNER JOIN artifacts ON artifacts.id = bought_artifacts.id");
@@ -45,8 +43,6 @@ public class ArtifactsBoughtDao extends Dao<BoughtArtifactModel> {
             }
             rs.close();
             stmt.close();
-            c.close();
-
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
@@ -64,13 +60,11 @@ public class ArtifactsBoughtDao extends Dao<BoughtArtifactModel> {
     }
 
     public void addBoughtArtifactToDatabase(Integer artifactId, Integer studentId) {
-        Connection c = null;
         Statement stmt = null;
         ResultSet rs = null;
 
         try {
-
-            c = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db");
+            Connection c = DatabaseConnection.getConnection();
             c.setAutoCommit(false);
 
             stmt = c.createStatement();
@@ -80,9 +74,6 @@ public class ArtifactsBoughtDao extends Dao<BoughtArtifactModel> {
 
             stmt.close();
             c.commit();
-            c.close();
-
-
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }

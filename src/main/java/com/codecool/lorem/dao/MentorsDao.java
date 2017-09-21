@@ -20,7 +20,8 @@ public class MentorsDao extends Dao<MentorModel> {
     public MentorModel createLoggedMentor(String id) {
         MentorModel result = null;
 
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
+        try {
+            Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(String.format(
                     "SELECT * FROM users INNER JOIN mentors_data ON users.id = mentors_data.user_id " +

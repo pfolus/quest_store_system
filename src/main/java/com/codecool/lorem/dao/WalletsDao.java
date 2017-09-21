@@ -19,7 +19,8 @@ public class WalletsDao extends Dao<WalletModel> {
     public WalletModel getStudentWallet(Integer id) {
         WalletModel wallet = null;
 
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
+        try {
+            Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(
                     "SELECT * FROM wallets WHERE student_id = " + id + ";");
@@ -42,7 +43,8 @@ public class WalletsDao extends Dao<WalletModel> {
     }
 
     public void updateWalletBalance(Integer student_id, Integer balance) {
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
+        try {
+            Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();
             statement.executeUpdate("UPDATE wallets SET balance = " + balance +
                 " WHERE student_id = " + student_id + ";");

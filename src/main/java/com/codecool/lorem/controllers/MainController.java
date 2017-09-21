@@ -2,10 +2,7 @@ package com.codecool.lorem.controllers;
 
 import java.util.ArrayList;
 
-import com.codecool.lorem.dao.LoginDao;
-import com.codecool.lorem.dao.MentorsDao;
-import com.codecool.lorem.dao.StudentsDao;
-//import com.codecool.lorem.dao.AdminsDao;
+import com.codecool.lorem.dao.*;
 import com.codecool.lorem.views.MainView;
 
 public class MainController {
@@ -19,11 +16,13 @@ public class MainController {
         }
 
         chooseController(userData);
+        DatabaseConnection.closeConnection();
     }
 
     private static ArrayList<String> login(LoginDao loginDao) {
         String login = MainView.getLogin();
         String password = MainView.getPassword();
+        MainView.showLoggingInfo();
 
         return loginDao.login(login, password);
     }
@@ -37,7 +36,10 @@ public class MainController {
             StudentController.runController(studentsDao.createLoggedStudent(id));
         } else if (type.equals("mentor")) {
             MentorsDao mentorsDao = new MentorsDao();
-            MentorController.runController((mentorsDao.createLoggedMentor(id)));
+            MentorController.runController(mentorsDao.createLoggedMentor(id));
+        } else if (type.equals("admin")) {
+            AdminsDao adminsDao = new AdminsDao();
+            AdminController.runController(adminsDao.createLoggedAdmin(id));
         }
     }
 }
