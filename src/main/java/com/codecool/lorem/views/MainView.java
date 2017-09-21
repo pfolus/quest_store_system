@@ -20,6 +20,10 @@ public class MainView {
         return scanner.nextLine();
     }
 
+    public static void newLine() {
+        System.out.println();
+    }
+
     public static void print(String string) {
         System.out.println(string);
     }
