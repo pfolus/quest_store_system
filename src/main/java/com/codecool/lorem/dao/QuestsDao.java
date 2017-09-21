@@ -42,6 +42,7 @@ public class QuestsDao extends Dao<QuestModel> {
     }
 
     public void loadQuestsFromDatabase() {
+        this.itemsList.removeAll();
         //call that shit in the constructor
 
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {

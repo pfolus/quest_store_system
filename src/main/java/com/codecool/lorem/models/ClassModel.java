@@ -17,4 +17,6 @@ public class ClassModel {
     public String getName() {
         return name;
     }
+
+    public String toString() { return this.id + ". " + this.name; }
 }

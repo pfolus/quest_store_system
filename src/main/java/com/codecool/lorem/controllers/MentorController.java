@@ -2,19 +2,10 @@ package com.codecool.lorem.controllers;
 
 import java.util.InputMismatchException;
 
-import com.codecool.lorem.models.MentorModel;
-import com.codecool.lorem.models.StudentModel;
+import com.codecool.lorem.dao.*;
+import com.codecool.lorem.models.*;
 import com.codecool.lorem.views.MentorView;
 import com.codecool.lorem.views.UserView;
-import com.codecool.lorem.dao.StudentsDao;
-import com.codecool.lorem.models.QuestModel;
-import com.codecool.lorem.dao.QuestsDao;
-import com.codecool.lorem.models.QuestCategoryModel;
-import com.codecool.lorem.dao.QuestCategoriesDao;
-import com.codecool.lorem.dao.ArtifactsDao;
-import com.codecool.lorem.dao.ArtifactCategoriesDao;
-import com.codecool.lorem.models.ArtifactCategoryModel;
-import com.codecool.lorem.models.ArtifactModel;
 
 public class MentorController {
 
@@ -22,8 +13,6 @@ public class MentorController {
         StudentsDao studentsDao = new StudentsDao();
         QuestsDao questsDao = new QuestsDao();
         QuestCategoriesDao questCategoriesDao = new QuestCategoriesDao();
-        ArtifactsDao artifactsDao = new ArtifactsDao();
-        ArtifactCategoriesDao artifactCategoriesDao = new ArtifactCategoriesDao();
 
         int choice = 0;
         final int EXIT = 9;
@@ -35,9 +24,9 @@ public class MentorController {
             if(choice == 1){
                 createStudent(studentsDao);
             } else if(choice == 2){
-                //addQuest(questsDao, questCategoriesDao);
+                addNewQuest(questsDao, questCategoriesDao);
             } else if(choice == 3){
-                //addArtifact(artifactsDao, artifactCategoriesDao);
+                //addArtifact();
             } else if(choice == 4){
                 //markStudentDoneQuest(studentsDao);
             } else if(choice == 5){
@@ -51,6 +40,8 @@ public class MentorController {
     }
 
     public static void createStudent(StudentsDao studentsDao) {
+
+        ClassesDao classesDao = new ClassesDao();
         String name;
         String surname;
         String login;
@@ -63,7 +54,20 @@ public class MentorController {
         password = UserView.getPassword();
         email = UserView.getEmail();
 
-        studentsDao.addStudentToDatabase(name, surname, login, password, email);
+        // lists classes
+        for (ClassModel classroom : classesDao.getItems()) {
+            MentorView.showString(classroom.toString());
+        }
+
+        // get class correct ID from input (checks in ClassesDao itemslist)
+        Integer classId = null;
+        while (classId == null) {
+            MentorView.provideClassIdMessage();
+            id = MentorView.getIntInput();
+            classId = classesDao.getById(id).getId();
+
+            studentsDao.addStudentToDatabase(name, surname, login, password, email, classId);
+        }
     }
 
     public static void addNewQuest(QuestsDao questsDao, QuestCategoriesDao questsCategoryDao) {
@@ -104,6 +108,8 @@ public class MentorController {
     }
 
 //    public static void addArtifact(ArtifactsDao artifactsDao, ArtifactCategoriesDao artifactCategoriesDao) {
+//          ArtifactsDao artifactsDao = new ArtifactsDao();
+//          ArtifactCategoriesDao artifactCategoriesDao = new ArtifactCategoriesDao();
 //        String name;
 //        String description;
 //        ArtifactCategoryModel category;
