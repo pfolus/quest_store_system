@@ -13,7 +13,6 @@ public class MentorController {
     public static void runController(MentorModel mentor) {
         StudentsDao studentsDao = new StudentsDao();
         QuestsDao questsDao = new QuestsDao();
-        QuestCategoriesDao questCategoriesDao = new QuestCategoriesDao();
 
         int choice = 0;
         final int EXIT = 9;
@@ -25,7 +24,7 @@ public class MentorController {
             if(choice == 1){
                 createStudent(studentsDao);
             } else if(choice == 2){
-                addNewQuest(questsDao, questCategoriesDao);
+                addNewQuest(questsDao);
             } else if(choice == 3){
                 //addArtifact();
             } else if(choice == 4){
@@ -75,9 +74,9 @@ public class MentorController {
         }
     }
 
-    public static void addNewQuest(QuestsDao questsDao, QuestCategoriesDao questsCategoryDao) {
-        //there must be QuestCategoriesDao itemsList loaded yey to run that method
+    public static void addNewQuest(QuestsDao questsDao) {
 
+        QuestCategoriesDao questCategoriesDao = new QuestCategoriesDao();
         String name;
         String description;
         Integer id;
@@ -92,17 +91,19 @@ public class MentorController {
         description = MentorView.getStringInput();
 
         // lists quests categories
-        for (QuestCategoryModel cat: questsCategoryDao.getItems()) {
+        questCategoriesDao.loadQuestCategoriesFromDb();
+        for (QuestCategoryModel cat: questCategoriesDao.getItems()) {
             MentorView.showString(cat.toString());
         }
 
         // get category correct ID from input (checks in questcategoriesDAO itemslist)
-        Integer categoryId = null;
-        while (categoryId == null) {
+        CategoryModel category = null;
+        while (category == null) {
             MentorView.provideCategoryIdMessage();
             id = MentorView.getIntInput();
-            categoryId = questsCategoryDao.get(id).getId();
+            category = questCategoriesDao.get(id);
         }
+        Integer categoryId = category.getId();
 
         // get quest prize from input
         MentorView.provideQuestPrizeMessage();
