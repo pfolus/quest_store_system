@@ -1,7 +1,7 @@
 package com.codecool.lorem.dao;
 
 import java.sql.*;
-import java.util.Iterator;
+import java.util.ArrayList;
 
 import com.codecool.lorem.models.ArtifactModel;
 
@@ -55,7 +55,7 @@ public class ArtifactsDao extends Dao<ArtifactModel> {
 
         try {
 
-            c = DriverManager.getConnection("jdbc:sqlite:src/main/db/quest-store.db");
+            c = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db");
             c.setAutoCommit(false);
 
             stmt = c.createStatement();
@@ -78,6 +78,42 @@ public class ArtifactsDao extends Dao<ArtifactModel> {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
     }
+
+//    public ArtifactModel getArtifactById(Integer id) {
+//
+//        Connection c = null;
+//        Statement stmt = null;
+//        ResultSet rs = null;
+//        ArtifactModel artifact = null;
+//
+//        try {
+//
+//            c = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db");
+//            c.setAutoCommit(false);
+//
+//            stmt = c.createStatement();
+//
+//            rs = stmt.executeQuery("SELECT * from artifacts WHERE id = " + id);
+//
+//            while (rs.next()) {
+//
+//                String name = rs.getString("name");
+//                String description = rs.getString("description");
+//                Integer price = rs.getInt("price");
+//                Integer categoryId = rs.getInt("artifact_category_id");
+//
+//                artifact = new ArtifactModel(id, name, categoryId, description, price);
+//            }
+//            stmt.close();
+//            c.commit();
+//            c.close();
+//
+//
+//        } catch ( Exception e ) {
+//            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+//        }
+//        return artifact;
+//    }
 
 
 }

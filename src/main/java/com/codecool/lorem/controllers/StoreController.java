@@ -20,10 +20,6 @@ import com.codecool.lorem.dao.ArtifactCategoriesDao;
 public class StoreController {
 
     public static void runController(StudentModel student, WalletModel wallet) {
-        //ArtifactCategoriesDao categories = new ArtifactCategoriesDao();
-        //categories.add(cat);
-        //ArtifactsDao artifacts = new ArtifactsDao();
-        //ArtifactsBoughtDao boughtArtifacts = new ArtifactsBoughtDao();
 
         int choice = -1;
         final int EXIT = 0;
@@ -47,12 +43,13 @@ public class StoreController {
         ArtifactModel artifact = chooseArtifactById(artifacts);
 
         if (hasEnoughCoins(wallet, artifact)) {
+
             WalletsDao walletsDao = new WalletsDao();
             wallet.reduceBalance(artifact.getPrice());
             walletsDao.updateWalletBalance(student.getId(), wallet.getBalance());
-            //addBoughtItemToDao(artifact, student, boughtArtifacts);
+            addBoughtArtifactToDatabase(artifact, student);
             StoreView.itemBoughtSuccesfully();
-            //wallet.reduceBalance(artifact.getPrice());
+
         } else {
             StoreView.notEnoughMoneyInfo();
         }
@@ -68,12 +65,10 @@ public class StoreController {
     }
 
 
-//    private static void addBoughtItemToDao(ArtifactModel artifact,
-//                                    StudentModel student, ArtifactsBoughtDao boughtArtifacts) {
-//        BoughtArtifactModel boughtArtifact =
-//                new BoughtArtifactModel(artifact, student.getId());
-//        boughtArtifacts.add(boughtArtifact);
-//    }
+    private static void addBoughtArtifactToDatabase(ArtifactModel artifact, StudentModel student) {
+        ArtifactsBoughtDao boughtArtifacts = new ArtifactsBoughtDao();
+        boughtArtifacts.addBoughtArtifactToDatabase(artifact.getId(), student.getId());
+    }
 
     private static ArtifactModel chooseArtifactById(ArtifactsDao artifacts) {
         Integer id = chooseArtifactId();
@@ -109,13 +104,6 @@ public class StoreController {
             return false;
         }
     }
-
-//    public static void showArtifactsInStore(ArtifactsDao artifacts) {
-//        Iterator iter = artifacts.getIterator();
-//        while (iter.hasNext()) {
-//            StoreView.showArtifact(iter.next().toString());
-//        }
-//    }
 
     private static Integer chooseOption() {
         Integer choice = null;
