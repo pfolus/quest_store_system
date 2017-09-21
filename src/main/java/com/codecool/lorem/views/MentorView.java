@@ -75,17 +75,13 @@ public class MentorView {
    }
 
    public static void showMenu() {
-       String[] menuList = {"1.create Student", "2.add Quest", "3. add Artifact",
+       String[] menuList = {"1. create Student", "2. add Quest", "3. add Artifact",
                 "4. mark Students Done Quests", "5. mark Students Used Artifacts",
-                "6. see Students Wallet"};
+                "6. see Students Wallet", "0. quit"};
 
        for (String item : menuList) {
            System.out.println(item);
        }
-   }
-
-   public static void showString(String string) {
-       System.out.println(string);
    }
 
    public static void provideBoughtArtifactIdMessage() {
