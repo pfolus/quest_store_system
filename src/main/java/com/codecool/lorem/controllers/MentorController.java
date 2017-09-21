@@ -60,7 +60,7 @@ public class MentorController {
         for (ClassModel classroom : classesDao.getItems()) {
             MentorView.showString(classroom.toString());
         }
-        MainView.newLine();do
+        MainView.newLine();
 
         // get class correct ID from input (checks in ClassesDao itemslist)
         ClassModel classroom = null;
