@@ -3,9 +3,9 @@ package com.codecool.lorem.controllers;
 import java.util.ArrayList;
 
 import com.codecool.lorem.dao.LoginDao;
+import com.codecool.lorem.dao.MentorsDao;
 import com.codecool.lorem.dao.StudentsDao;
 //import com.codecool.lorem.dao.AdminsDao;
-//import com.codecool.lorem.dao.MentorsDao;
 import com.codecool.lorem.views.MainView;
 
 public class MainController {
@@ -35,6 +35,9 @@ public class MainController {
         if (type.equals("student")) {
             StudentsDao studentsDao = new StudentsDao();
             StudentController.runController(studentsDao.createLoggedStudent(id));
+        } else if (type.equals("mentor")) {
+            MentorsDao mentorsDao = new MentorsDao();
+            MentorController.runController((mentorsDao.createLoggedMentor(id)));
         }
     }
 }
