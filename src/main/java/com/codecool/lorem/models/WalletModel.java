@@ -28,4 +28,5 @@ public class WalletModel {
     public void reduceBalance(Integer amount) {
         this.balance -= amount;
     }
+
 }

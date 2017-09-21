@@ -54,4 +54,26 @@ public class WalletsDao extends Dao<WalletModel> {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
     }
+
+    public void loadAllWalletsFromDb(){
+
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM wallets;");
+
+            while (resultSet.next()) {
+                Integer id = resultSet.getInt("id");
+                Integer balance = resultSet.getInt("balance");
+                Integer studentId = resultSet.getInt("student_id");
+
+                this.itemsList.add(
+                        new WalletModel(id, balance, studentId));
+            }
+
+            resultSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+    }
  }
