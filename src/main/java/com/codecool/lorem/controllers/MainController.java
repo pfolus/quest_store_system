@@ -7,6 +7,7 @@ import com.codecool.lorem.dao.MentorsDao;
 import com.codecool.lorem.dao.StudentsDao;
 //import com.codecool.lorem.dao.AdminsDao;
 import com.codecool.lorem.views.MainView;
+import com.codecool.lorem.dao.DatabaseConnection;
 
 public class MainController {
 
@@ -19,6 +20,7 @@ public class MainController {
         }
 
         chooseController(userData);
+        DatabaseConnection.closeConnection();
     }
 
     private static ArrayList<String> login(LoginDao loginDao) {
