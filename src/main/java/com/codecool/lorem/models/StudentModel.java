@@ -29,4 +29,5 @@ public class StudentModel extends UserModel {
     public Integer getClassId() {
         return classId;
     }
+
 }
