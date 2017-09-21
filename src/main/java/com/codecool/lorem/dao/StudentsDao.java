@@ -73,8 +73,7 @@ public class StudentsDao extends Dao<StudentModel> {
 
             statement.close();
         } catch (SQLException e) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.exit(0);
+            System.err.println( e.getClass().getName() + ": " + e.getMessage());
         }
 
         MainView.print("Records created successfully");
@@ -108,7 +107,6 @@ public class StudentsDao extends Dao<StudentModel> {
             statement.close();
         } catch (SQLException e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.exit(0);
         }
     }
 }
