@@ -53,7 +53,7 @@ public class StudentsDao extends Dao<StudentModel> {
     }
 
     public void addStudentToDatabase(String name, String surname, String login,
-                                            String password, String email) {
+                                            String password, String email, Integer classId) {
 
         Statement statement = null;
 
@@ -65,7 +65,7 @@ public class StudentsDao extends Dao<StudentModel> {
                     "INSERT INTO users (name, surname, login, password, email, type) " +
                     "VALUES ('%s', '%s', '%s', '%s', '%s', 'student'); " +
                     "INSERT INTO students_data (id, level_id, score, class_id) " +
-                    "VALUES (last_insert_rowid(), 1, 0, null);", name, surname, login, password, email);
+                    "VALUES (last_insert_rowid(), 1, 0, '%d');", name, surname, login, password, email, classId);
 
             statement.executeUpdate(sql);
 
@@ -81,6 +81,7 @@ public class StudentsDao extends Dao<StudentModel> {
     }
 
     public void loadStudentsFromDatabase(){
+        this.itemsList.removeAll();
         // call that SHIT in the DAO cunstructor
 
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:src/main/db/quest-store.db")) {
