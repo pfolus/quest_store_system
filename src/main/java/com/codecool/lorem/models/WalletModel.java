@@ -29,4 +29,5 @@ public class WalletModel {
         this.balance -= amount;
     }
 
+    public void increaseBalance(Integer amount) {this.balance += amount; }
 }
