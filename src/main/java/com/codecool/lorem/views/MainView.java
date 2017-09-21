@@ -1,6 +1,6 @@
 package com.codecool.lorem.views;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
+import java.util.concurrent.TimeUnit;
 
 import java.util.Scanner;
 
@@ -26,5 +26,19 @@ public class MainView {
 
     public static void print(String string) {
         System.out.println(string);
+    }
+
+    public static void showLoggingInfo() {
+        String[] info = new String[]{"\nLogging", ".", ".", ".", ".", ".", "."};
+
+        try {
+            for (String s:info) {
+                System.out.print(s);
+                TimeUnit.MILLISECONDS.sleep(500);
+            }
+        System.out.println();
+        } catch (InterruptedException e) {
+            System.out.println();
+        }
     }
 }

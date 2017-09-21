@@ -22,6 +22,7 @@ public class MainController {
     private static ArrayList<String> login(LoginDao loginDao) {
         String login = MainView.getLogin();
         String password = MainView.getPassword();
+        MainView.showLoggingInfo();
 
         return loginDao.login(login, password);
     }
