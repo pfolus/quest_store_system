@@ -18,7 +18,8 @@ import com.codecool.lorem.models.ArtifactModel;
 
 public class MentorController {
 
-    public static void runController(MentorModel mentor, StudentsDao studentsDao) {
+    public static void runController(MentorModel mentor) {
+        StudentsDao studentsDao = new StudentsDao();
         QuestsDao questsDao = new QuestsDao();
         QuestCategoriesDao questCategoriesDao = new QuestCategoriesDao();
         ArtifactsDao artifactsDao = new ArtifactsDao();
