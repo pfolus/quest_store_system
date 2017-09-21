@@ -54,6 +54,10 @@ public class MentorView {
        System.out.print("Provide Quest's description: ");
    }
 
+   public static void provideClassIdMessage() {
+        System.out.print("Pick ID of class: ");
+    }
+
    public static void provideArtifactDescriptionMessage() {
        System.out.print("Provide Artifact's description: ");
    }
