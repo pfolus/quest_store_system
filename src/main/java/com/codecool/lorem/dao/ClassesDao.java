@@ -26,7 +26,7 @@ public class ClassesDao extends Dao<ClassModel> {
                 Integer id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
 
-                this.itemsList.add( new ClassModel(id, name))doma;
+                this.itemsList.add( new ClassModel(id, name));
             }
 
             resultSet.close();

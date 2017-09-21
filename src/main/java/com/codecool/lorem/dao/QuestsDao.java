@@ -48,7 +48,7 @@ public class QuestsDao extends Dao<QuestModel> {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM quests");
 
         while (resultSet.next()) {
-            Integer questId = resultSet.getInt("id");
+            Integer questId = resultSet.getInt("user_id");
             String name = resultSet.getString("name");
             String description = resultSet.getString("description");
             Integer questCategoryId = resultSet.getInt("quest_category_id");
