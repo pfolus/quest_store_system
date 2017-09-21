@@ -1,8 +1,11 @@
 package com.codecool.lorem.controllers;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Arrays;
 
+import com.codecool.lorem.dao.ArtifactsBoughtDao;
+import com.codecool.lorem.models.BoughtArtifactModel;
 import com.codecool.lorem.views.StudentView;
 import com.codecool.lorem.views.StoreView;
 import com.codecool.lorem.models.StudentModel;
@@ -46,7 +49,10 @@ public class StudentController {
 //    }
 
     public static void showBoughtArtifacts(StudentModel student) {
-        //ArtifactsBoughtDao wczytanie kupionych z pliku po id studenta
+        ArtifactsBoughtDao boughtArtifDao = new ArtifactsBoughtDao();
+        boughtArtifDao.readFromDatabase();
+        ArrayList<BoughtArtifactModel> boughtArtifacts = boughtArtifDao.getItemsByStudentId(student.getId());
+        StudentView.showBoughtArtifacts(boughtArtifacts);
     }
 
     private static Integer chooseOption() {

@@ -1,5 +1,8 @@
 package com.codecool.lorem.views;
 
+import com.codecool.lorem.models.BoughtArtifactModel;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StudentView {
@@ -35,5 +38,9 @@ public class StudentView {
 
     public static void showCoinsBalance(Integer balance) {
         System.out.println("You have " + balance + " coolcoins.");
+    }
+
+    public static void showBoughtArtifacts(ArrayList<BoughtArtifactModel> boughtArtifacts) {
+        boughtArtifacts.forEach(System.out::println);
     }
 }
