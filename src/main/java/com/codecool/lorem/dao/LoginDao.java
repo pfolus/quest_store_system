@@ -6,30 +6,29 @@ import java.util.ArrayList;
 public class LoginDao {
 
     public ArrayList<String> login(String login, String password) {
-        ArrayList<String> result = new ArrayList<>();
-        ResultSet resultSet = null;
-        Statement statement = null;
+        ArrayList<String> result = null;
 
         try {
             Connection connection = DatabaseConnection.getConnection();
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(
                     "SELECT type, id FROM users WHERE login = '" + login + "' AND password = '" + password + "';");
 
             if (resultSet.next()) {
+                result = new ArrayList<>();
+
                 result.add(resultSet.getString("type"));
                 result.add(resultSet.getString("id"));
             } else {
-                result = null;
+                throw new SQLException();
             }
 
             resultSet.close();
             statement.close();
-
-            return result;
         } catch (SQLException e) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            return null;
+            System.out.println("\nWrong data! Couldn't login.");
         }
+
+        return result;
     }
 }
