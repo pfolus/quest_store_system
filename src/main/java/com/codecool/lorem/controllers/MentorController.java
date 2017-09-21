@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 
 import com.codecool.lorem.dao.*;
 import com.codecool.lorem.models.*;
+import com.codecool.lorem.views.MainView;
 import com.codecool.lorem.views.MentorView;
 import com.codecool.lorem.views.UserView;
 
@@ -55,16 +56,20 @@ public class MentorController {
         email = UserView.getEmail();
 
         // lists classes
+        classesDao.loadClassesFromDb();
         for (ClassModel classroom : classesDao.getItems()) {
             MentorView.showString(classroom.toString());
         }
+        MainView.newLine();do
 
         // get class correct ID from input (checks in ClassesDao itemslist)
-        Integer classId = null;
-        while (classId == null) {
+        ClassModel classroom = null;
+        while (classroom == null) {
             MentorView.provideClassIdMessage();
-            id = MentorView.getIntInput();
-            classId = classesDao.getById(id).getId();
+            Integer id = MentorView.getIntInput();
+            classroom = classesDao.getById(id);
+
+        Integer classId = classroom.getId();
 
             studentsDao.addStudentToDatabase(name, surname, login, password, email, classId);
         }

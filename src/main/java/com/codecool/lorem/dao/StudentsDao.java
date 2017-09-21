@@ -82,9 +82,7 @@ public class StudentsDao extends Dao<StudentModel> {
 
     }
 
-    public void loadStudentsFromDatabase(){
-        this.itemsList.removeAll();
-        // call that SHIT in the DAO cunstructor
+    public void loadStudentsFromDb(){
 
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
             Statement statement = connection.createStatement();
