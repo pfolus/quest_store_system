@@ -1,18 +1,32 @@
 package com.codecool.lorem.controllers;
 
 import com.codecool.lorem.models.AdminModel;
+import com.codecool.lorem.views.AdminView;
 
 public class AdminController {
 
-     public static void runController(AdminModel admin) {}
+    public static void runController(AdminModel admin) {
+        String choice = "";
 
-     public static void createMentor() {}
+        while (!choice.equals("0")) {
+            AdminView.showMenu();
+            choice = chooseOption();
+        }
+    }
 
-     public static void createClass() {}
+    public static String chooseOption() {
+        String option = AdminView.getOption();
 
-     public static void editMentorProfile() {}
+        return option;
+    }
 
-     public static void showMentorProfile() {}
+    public static void createMentor() {}
 
-     public static void createExperienceLevel() {}
- }
+    public static void createClass() {}
+
+    public static void editMentorProfile() {}
+
+    public static void showMentorProfile() {}
+
+    public static void createExperienceLevel() {}
+}
