@@ -20,6 +20,8 @@ public class QuestModel extends AbstractItemModel {
         return this.id;
     }
 
+    public Integer getCategoryId() {return this.categoryId; }
+
     public String getDescription() {
         return description;
     }

@@ -9,4 +9,6 @@ public class QuestCategoryModel extends CategoryModel {
     public String toString() {
         return this.id + ". " + this.name;
     }
+
+    public Integer getId() {return this.id; }
 }
