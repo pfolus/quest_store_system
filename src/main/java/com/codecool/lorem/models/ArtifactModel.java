@@ -15,6 +15,10 @@ public class ArtifactModel extends AbstractItemModel {
         return this.price;
     }
 
+    public Integer getId() {
+        return this.id;
+    }
+
     public String toString() {
         return  "ID: " + this.id
                 + " Name: " + this.name
