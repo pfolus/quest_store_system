@@ -29,9 +29,8 @@ public class QuestsDao extends Dao<QuestModel> {
                     "VALUES ('%s', '%s', '%d', '%d');" , name, description, categoryId, prize);
 
             statement.executeUpdate(sql);
-
             statement.close();
-            connection.commit();
+
         } catch (SQLException e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
@@ -41,16 +40,16 @@ public class QuestsDao extends Dao<QuestModel> {
 
     }
 
-    public void loadQuestsFromDatabase() {
-        this.itemsList.removeAll();
-        //call that shit in the constructor
+    public void loadQuestsFromDb() {
 
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
+
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM quests");
 
         while (resultSet.next()) {
-            Integer questId = resultSet.getInt("id");
+
+            Integer questId = resultSet.getInt("user_id");
             String name = resultSet.getString("name");
             String description = resultSet.getString("description");
             Integer questCategoryId = resultSet.getInt("quest_category_id");
@@ -61,6 +60,7 @@ public class QuestsDao extends Dao<QuestModel> {
 
         resultSet.close();
         statement.close();
+
     } catch (SQLException e) {
         System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         System.exit(0);

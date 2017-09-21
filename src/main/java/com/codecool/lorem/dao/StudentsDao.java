@@ -27,7 +27,8 @@ public class StudentsDao extends Dao<StudentModel> {
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(
-                    "SELECT * FROM users INNER JOIN students_data ON users.id = students_data.user_id");
+                    "SELECT * FROM users INNER JOIN students_data ON users.id = students_data.user_id " +
+                         "WHERE user_id = " + id +";");
 
             if (resultSet.next()) {
                 Integer user_id = resultSet.getInt("user_id");
@@ -60,11 +61,10 @@ public class StudentsDao extends Dao<StudentModel> {
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
 
             statement = connection.createStatement();
-
             String sql = String.format(
                     "INSERT INTO users (name, surname, login, password, email, type) " +
                     "VALUES ('%s', '%s', '%s', '%s', '%s', 'student'); " +
-                    "INSERT INTO students_data (id, level_id, score, class_id) " +
+                    "INSERT INTO students_data (user_id, level_id, score, class_id) " +
                     "VALUES (last_insert_rowid(), 1, 0, '%d');", name, surname, login, password, email, classId);
 
 
@@ -72,24 +72,20 @@ public class StudentsDao extends Dao<StudentModel> {
             statement.executeUpdate(sql);
 
             statement.close();
-            connection.commit();
         } catch (SQLException e) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.exit(0);
+            System.err.println( e.getClass().getName() + ": " + e.getMessage());
         }
 
         MainView.print("Records created successfully");
 
     }
 
-    public void loadStudentsFromDatabase(){
-        this.itemsList.removeAll();
-        // call that SHIT in the DAO cunstructor
+    public void loadStudentsFromDb(){
 
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(
-                    "SELECT * FROM users INNER JOIN students_data ON users.id = students_data.user_id");
+                    "SELECT * FROM users INNER JOIN students_data ON users.id = students_data.user_id;");
 
             while (resultSet.next()) {
                 Integer user_id = resultSet.getInt("user_id");
@@ -111,7 +107,6 @@ public class StudentsDao extends Dao<StudentModel> {
             statement.close();
         } catch (SQLException e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.exit(0);
         }
     }
 }

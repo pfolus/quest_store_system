@@ -85,7 +85,7 @@ public class MentorView {
    }
 
    public static void showString(String string) {
-       System.out.print(string);
+       System.out.println(string);
    }
 
    public static void provideCategoryIdMessage() {

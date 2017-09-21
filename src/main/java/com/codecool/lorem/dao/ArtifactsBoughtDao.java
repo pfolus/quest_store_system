@@ -62,4 +62,29 @@ public class ArtifactsBoughtDao extends Dao<BoughtArtifactModel> {
         }
         return studentsBoughtArtifacts;
     }
+
+    public void addBoughtArtifactToDatabase(Integer artifactId, Integer studentId) {
+        Connection c = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+
+        try {
+
+            c = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db");
+            c.setAutoCommit(false);
+
+            stmt = c.createStatement();
+
+            stmt.executeUpdate("INSERT INTO bought_artifacts (is_used, artifact_id, student_id)"
+                    + "VALUES ('" + 0 + "', " + artifactId + ", " + studentId + ")");
+
+            stmt.close();
+            c.commit();
+            c.close();
+
+
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+    }
 }
