@@ -1,6 +1,5 @@
 package com.codecool.lorem.controllers;
 
-import java.util.Iterator;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -9,12 +8,9 @@ import com.codecool.lorem.views.StoreView;
 import com.codecool.lorem.models.ArtifactModel;
 import com.codecool.lorem.models.StudentModel;
 import com.codecool.lorem.models.WalletModel;
-import com.codecool.lorem.models.BoughtArtifactModel;
-import com.codecool.lorem.models.ArtifactCategoryModel;
 import com.codecool.lorem.dao.ArtifactsBoughtDao;
 import com.codecool.lorem.dao.ArtifactsDao;
 import com.codecool.lorem.dao.WalletsDao;
-import com.codecool.lorem.dao.ArtifactCategoriesDao;
 
 
 public class StoreController {
