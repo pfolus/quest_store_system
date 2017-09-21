@@ -20,9 +20,8 @@ public class ArtifactCategoriesDao extends Dao<ArtifactCategoryModel> {
         ResultSet rs = null;
 
         try {
-            c = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db");
-
-            stmt = c.createStatement();
+            Connection connection = DatabaseConnection.getConnection();
+            stmt = connection.createStatement();
             rs = stmt.executeQuery("SELECT id, name FROM artifact_categories;");
 
             while (rs.next()) {
@@ -34,8 +33,6 @@ public class ArtifactCategoriesDao extends Dao<ArtifactCategoryModel> {
             }
             rs.close();
             stmt.close();
-            c.close();
-
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
@@ -47,11 +44,10 @@ public class ArtifactCategoriesDao extends Dao<ArtifactCategoryModel> {
         ResultSet rs = null;
 
         try {
+            Connection connection = DatabaseConnection.getConnection();
+            connection.setAutoCommit(false);
 
-            c = DriverManager.getConnection("jdbc:sqlite:src/main/db/quest-store.db");
-            c.setAutoCommit(false);
-
-            stmt = c.createStatement();
+            stmt = connection.createStatement();
 
             stmt.executeUpdate("INSERT INTO artifact_categories (name)"
                                          + "VALUES ('" + name + "')");
@@ -64,8 +60,6 @@ public class ArtifactCategoriesDao extends Dao<ArtifactCategoryModel> {
             }
             stmt.close();
             c.commit();
-            c.close();
-
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
