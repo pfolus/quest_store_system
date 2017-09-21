@@ -26,7 +26,7 @@ public class MentorsDao extends Dao<MentorModel> {
                     "SELECT * FROM users INNER JOIN mentors_data ON users.id = mentors_data.user_id");
 
             if (resultSet.next()) {
-                Integer user_id = resultSet.getInt("user_id");
+                Integer userId = resultSet.getInt("user_id");
                 String name = resultSet.getString("name");
                 String surname = resultSet.getString("surname");
                 String login = resultSet.getString("login");
@@ -34,7 +34,7 @@ public class MentorsDao extends Dao<MentorModel> {
                 String email = resultSet.getString("email");
                 Integer classId = resultSet.getInt("class_id");
 
-                result = new MentorModel(user_id, name, surname, login, password, email, classId);
+                result = new MentorModel(userId, name, surname, login, password, email, classId);
             }
 
             resultSet.close();
