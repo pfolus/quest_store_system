@@ -88,6 +88,9 @@ public class MentorView {
        System.out.println(string);
    }
 
+   public static void provideBoughtArtifactIdMessage() {
+       System.out.println(" Pick ID of bought artifact: ");
+   }
    public static void provideCategoryIdMessage() {
        System.out.println(" Pick ID of category: ");
    }
