@@ -15,8 +15,8 @@ public class MentorController {
         studentsDao.loadStudentsFromDb();
         questsDao.loadQuestsFromDb();
 
-        int choice = 0;
-        final int EXIT = 9;
+        Integer choice = null;
+        final int EXIT = 0;
 
         while (choice != EXIT) {
             MentorView.showMenu();
@@ -34,7 +34,7 @@ public class MentorController {
                 markStudentUsedArtifact(studentsDao);
             } else if (choice == 6) {
                 seeStudentsWallets(studentsDao);
-            } else if (choice != 9) {
+            } else if (choice != 0) {
                 MentorView.showInputError();
             }
         }
@@ -76,27 +76,24 @@ public class MentorController {
     }
 
     private static void addNewQuest(QuestsDao questsDao) {
-
         QuestCategoriesDao questCategoriesDao = new QuestCategoriesDao();
         String name;
         String description;
         Integer id;
         Integer prize;
 
-        // get quest name
         MentorView.provideQuestNameMessage();
         name = MentorView.getStringInput();
-
-        // get quest description
         MentorView.provideQuestDescriptionMessage();
         description = MentorView.getStringInput();
+        MentorView.provideQuestPrizeMessage();
+        prize = MentorView.getIntInput();
 
         // lists quests categories
         questCategoriesDao.loadQuestCategoriesFromDb();
         for (QuestCategoryModel questCat : questCategoriesDao.getItems()) {
             MainView.showString(questCat.toString());
         }
-
         // get category correct ID from input (checks in questcategoriesDAO itemslist)
         CategoryModel category = null;
         while (category == null) {
@@ -105,89 +102,65 @@ public class MentorController {
             category = questCategoriesDao.get(id);
         }
         Integer categoryId = category.getId();
-
-        // get quest prize from input
-        MentorView.provideQuestPrizeMessage();
-        prize = MentorView.getIntInput();
-
         questsDao.addQuestToDatabase(name, categoryId, description, prize);
-
     }
 
     private static void addNewArtifact() {
-
         ArtifactsDao artifactsDao = new ArtifactsDao();
         ArtifactCategoriesDao artifactCategoriesDao = new ArtifactCategoriesDao();
+        ArtifactCategoryModel category = null;
         String name;
         String description;
-        ArtifactCategoryModel category;
-        Integer id;
         Integer price;
-        Integer categoryId;
 
-        // get artifacts name
+        // get artifacts name, description and prize
         MentorView.provideArtifactNameMessage();
         name = MentorView.getStringInput();
-
-        // get artifacts description
         MentorView.provideArtifactDescriptionMessage();
         description = MentorView.getStringInput();
+        MentorView.provideArtifactPriceMessage();
+        price = MentorView.getIntInput();
 
         // lists artifacts categories
         artifactCategoriesDao.readFromDatabase();
         for (ArtifactCategoryModel artifactCat : artifactCategoriesDao.getItems()) {
             MainView.showString(artifactCat.toString());
         }
-
         // get category correct ID from input
-        category = null;
         while (category == null) {
             MentorView.provideCategoryIdMessage();
-            id = MentorView.getIntInput();
+            Integer id = MentorView.getIntInput();
             category = artifactCategoriesDao.getById(id);
         }
-
-        categoryId = category.getId();
-
-        // get quest prize from input
-        MentorView.provideArtifactPriceMessage();
-        price = MentorView.getIntInput();
-
+        Integer categoryId = category.getId();
         artifactsDao.addArtifact(name, categoryId, description, price);
-
     }
 
     private static void markStudentDoneQuest(StudentsDao studentsDao) {
-        Integer studentId;
-        StudentModel student;
+        StudentModel student = null;
         QuestsDao questsDao = new QuestsDao();
-        QuestModel quest;
+        QuestModel quest = null;
         WalletsDao walletsDao = new WalletsDao();
-
         QuestsDoneDao questsDoneDao = new QuestsDoneDao();
 
         // lists students details
         for (StudentModel st : studentsDao.getItems()) {
             MainView.showString(st.toString());
         }
-
         // get correct student ID:
-        student = null;
         while (student == null) {
             MentorView.provideStudentIdMessage();
             Integer id = MentorView.getIntInput();
             student = studentsDao.getById(id);
         }
-        studentId = student.getId();
+        Integer studentId = student.getId();
 
         // list quests details
         questsDao.loadQuestsFromDb();
         for (QuestModel q : questsDao.getItems()) {
             MainView.showString(q.getId() + ". " + q.getName());
         }
-
         // get correct quest by student_id
-        quest = null;
         while (quest == null) {
             MentorView.provideQuestNameMessage();
             Integer tempId = MentorView.getIntInput();
@@ -198,10 +171,8 @@ public class MentorController {
         DoneQuestModel doneQuest = questsDoneDao.getDoneQuest(questId, studentId);
         // checks if donequest exists in dao
         if (doneQuest == null) {
-            //if not, adds new quest to database
             questsDoneDao.addDoneQuestToDb(quest, studentId);
         } else {
-            // if yes, update quest in database by id and load updated quest to DAO items list
             questsDoneDao.updateQuest(doneQuest.getId(), doneQuest.getTimesDone() + 1);
             questsDoneDao.loadQuestFromDb(doneQuest.getId());
         }
@@ -215,14 +186,11 @@ public class MentorController {
         WalletsDao walletsDao = new WalletsDao();
 
         walletsDao.loadAllWalletsFromDb();
-
         if (studentsDao.getItems().size() > 0) {
-
             for (WalletModel wallet : walletsDao.getItems()) {
                 String fullName = studentsDao.getById(wallet.getStudentId()).getFullName();
                 MainView.showString(fullName + " - " + wallet.getBalance());
             }
-            MainView.newLine();
         } else {
             MainView.showString("Students list empty!\n");
         }
@@ -231,7 +199,7 @@ public class MentorController {
     public static void markStudentUsedArtifact(StudentsDao studentsDao) {
         ArtifactsBoughtDao boughtDao = new ArtifactsBoughtDao();
         ArtifactsDao artifactsDao = new ArtifactsDao();
-        BoughtArtifactModel boughtArtifact;
+        BoughtArtifactModel boughtArtifact = null;
 
         artifactsDao.readFromDatabase();
         boughtDao.readFromDatabase();
@@ -243,16 +211,11 @@ public class MentorController {
             MainView.showString(bought.getId() + ". " + studentLogin + " - " + artifactName);
         }
         // get correct bought artifact by id
-        boughtArtifact = null;
         while (boughtArtifact == null) {
             MentorView.provideBoughtArtifactIdMessage();
             Integer id = MentorView.getIntInput();
             boughtArtifact = boughtDao.getById(id);
         }
-        Integer boughtId = boughtArtifact.getId();
-
-        // delete bought artifact from db and dao
-        boughtDao.deleteArtifactFromDb(boughtId);
-        boughtDao.deleteArtifactFromDao(boughtId);
+        boughtDao.deleteArtifactFromDb(boughtArtifact.getId());
     }
 }
