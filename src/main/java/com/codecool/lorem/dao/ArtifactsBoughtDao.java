@@ -25,7 +25,7 @@ public class ArtifactsBoughtDao extends Dao<BoughtArtifactModel> {
             Connection c = DatabaseConnection.getConnection();
             stmt = c.createStatement();
             rs = stmt.executeQuery(
-                    "SELECT bought_artifacts.id, is_used, artifact_id, student_id, name, description, price, artifact_category_id FROM bought_artifacts INNER JOIN artifacts ON artifacts.id = bought_artifacts.id");
+                    "SELECT bought_artifacts.id, is_used, artifact_id, student_id, name, description, price, artifact_category_id FROM bought_artifacts LEFT JOIN artifacts ON artifacts.id = bought_artifacts.artifact_id");
 
             while (rs.next()) {
 
@@ -62,7 +62,6 @@ public class ArtifactsBoughtDao extends Dao<BoughtArtifactModel> {
 
     public void addBoughtArtifactToDatabase(Integer artifactId, Integer studentId) {
         Statement stmt = null;
-        ResultSet rs = null;
 
         try {
             Connection c = DatabaseConnection.getConnection();
@@ -71,7 +70,7 @@ public class ArtifactsBoughtDao extends Dao<BoughtArtifactModel> {
             stmt = c.createStatement();
 
             stmt.executeUpdate("INSERT INTO bought_artifacts (is_used, artifact_id, student_id)"
-                    + "VALUES ('" + 0 + "', " + artifactId + ", " + studentId + ")");
+                    + " VALUES ('" + 0 + "', " + artifactId + ", " + studentId + ");");
 
             stmt.close();
             c.commit();
