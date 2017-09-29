@@ -1,17 +1,12 @@
 package com.codecool.lorem.models;
 
-public class ClassModel {
+public class ClassModel extends AbstractItemModel{
 
-    private Integer id;
     private String name;
 
     public ClassModel(Integer id, String name) {
-        this.id = id;
+        super(id);
         this.name = name;
-    }
-
-    public Integer getId() {
-        return this.id;
     }
 
     public String getName() {
