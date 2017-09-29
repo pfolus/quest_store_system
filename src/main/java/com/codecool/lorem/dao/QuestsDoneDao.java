@@ -1,7 +1,6 @@
 package com.codecool.lorem.dao;
 
 import java.sql.*;
-import java.util.Iterator;
 
 import com.codecool.lorem.models.DoneQuestModel;
 import com.codecool.lorem.models.QuestModel;
@@ -9,15 +8,6 @@ import com.codecool.lorem.models.StudentModel;
 import com.codecool.lorem.views.MainView;
 
 public class QuestsDoneDao extends Dao<DoneQuestModel> {
-
-    public DoneQuestModel get(Integer id) {
-        for (DoneQuestModel quest : getItems()) {
-            if (quest.getId().equals(id)) {
-                return quest;
-            }
-        }
-        return null;
-    }
 
     public DoneQuestModel getDoneQuest(Integer questId, Integer studentId) {
 
