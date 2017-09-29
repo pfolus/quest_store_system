@@ -24,14 +24,14 @@ public abstract class Dao<T extends AbstractItemModel> {
         return getItems().stream()
                          .filter(item -> item.getId().equals(id))
                          .findFirst()
-                         .get();
+                         .orElse(null);
     }
 
     public Integer getNextId() {
         return getItems().stream()
                          .mapToInt(AbstractItemModel::getId)
                          .max()
-                         .getAsInt() + 1;
+                         .orElse(0) + 1;
     }
 
 }
