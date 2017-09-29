@@ -53,7 +53,6 @@ public class ArtifactsBoughtDao extends Dao<BoughtArtifactModel> {
 
     public void addBoughtArtifactToDatabase(Integer artifactId, Integer studentId) {
         Statement stmt = null;
-        ResultSet rs = null;
 
         try {
             Connection c = DatabaseConnection.getConnection();
@@ -62,7 +61,7 @@ public class ArtifactsBoughtDao extends Dao<BoughtArtifactModel> {
             stmt = c.createStatement();
 
             stmt.executeUpdate("INSERT INTO bought_artifacts (is_used, artifact_id, student_id)"
-                    + "VALUES ('" + 0 + "', " + artifactId + ", " + studentId + ")");
+                    + " VALUES ('" + 0 + "', " + artifactId + ", " + studentId + ");");
 
             stmt.close();
             c.commit();
