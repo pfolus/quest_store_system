@@ -81,10 +81,10 @@ public class MentorController {
             MainView.showString(questCat.toString());
         }
         // get category correct ID from input (checks in questcategoriesDAO itemslist)
-        CategoryModel category = null;
+        AbstractCategoryModel category = null;
         while (category == null) {
             Integer id = MentorView.getIntInput("Provide category ID: ");
-            category = questCategoriesDao.get(id);
+            category = questCategoriesDao.getById(id);
         }
         Integer categoryId = category.getId();
         questsDao.addQuestToDatabase(name, categoryId, description, prize);

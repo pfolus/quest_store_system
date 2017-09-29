@@ -6,16 +6,6 @@ import java.sql.*;
 
 public class ClassesDao extends Dao<ClassModel> {
 
-    public ClassModel getById(Integer id) {
-
-        for (ClassModel cl : getItems()) {
-            if (cl.getId().equals(id)) {
-                return cl;
-            }
-        }
-        return null;
-    }
-
     public void loadClassesFromDb() {
 
         try {

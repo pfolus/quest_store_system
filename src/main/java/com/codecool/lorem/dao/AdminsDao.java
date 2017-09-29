@@ -6,15 +6,6 @@ import java.sql.*;
 
 public class AdminsDao extends Dao<AdminModel> {
 
-    public AdminModel getById(Integer id) {
-        for (AdminModel admin : getItems()) {
-            if (admin.getId().equals(id)) {
-                return admin;
-            }
-        }
-        return null;
-    }
-
     public void loadAdminsFromDatabase(){
         try {
             Connection connection = DatabaseConnection.getConnection();

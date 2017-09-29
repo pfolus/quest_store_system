@@ -12,15 +12,6 @@ import com.codecool.lorem.views.MainView;
 
 public class StudentsDao extends Dao<StudentModel> {
 
-    public StudentModel getById(Integer id) {
-        for (StudentModel student : getItems()) {
-            if (student.getId().equals(id)) {
-                return student;
-            }
-        }
-        return null;
-    }
-
     public StudentModel createLoggedStudent(String id) {
         StudentModel result = null;
 

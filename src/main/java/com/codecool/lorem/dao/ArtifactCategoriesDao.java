@@ -5,15 +5,6 @@ import com.codecool.lorem.models.ArtifactCategoryModel;
 
 public class ArtifactCategoriesDao extends Dao<ArtifactCategoryModel> {
 
-    public ArtifactCategoryModel getById(Integer id) {
-        for (ArtifactCategoryModel artifactCat : getItems()) {
-            if (artifactCat.getId().equals(id)) {
-                return artifactCat;
-            }
-        }
-        return null;
-    }
-
     public void readFromDatabase() {
         Connection c = null;
         Statement stmt = null;

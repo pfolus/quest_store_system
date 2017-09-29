@@ -1,22 +1,16 @@
 package com.codecool.lorem.models;
 
-public class ArtifactModel extends AbstractItemModel {
+public class ArtifactModel extends AbstractQuestArtifactModel {
 
     private Integer price;
-    private String description;
 
     public ArtifactModel(Integer id, String name, Integer categoryId, String description, Integer price) {
-        super(id, name, categoryId);
+        super(id, name, categoryId, description);
         this.price = price;
-        this.description = description;
     }
 
     public Integer getPrice() {
         return this.price;
-    }
-
-    public Integer getId() {
-        return this.id;
     }
 
     public String toString() {
@@ -25,9 +19,5 @@ public class ArtifactModel extends AbstractItemModel {
                 + " CategoryId: " + this.categoryId
                 + " Description: " + this.description
                 + " Price: " + this.price;
-    }
-
-    public String getDescription() {
-        return description;
     }
 }
