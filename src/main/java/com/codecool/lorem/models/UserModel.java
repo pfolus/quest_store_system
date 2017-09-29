@@ -1,17 +1,16 @@
 package com.codecool.lorem.models;
 
-public class UserModel {
+public class UserModel extends AbstractItemModel {
 
     private String name;
     private String surname;
     private String login;
     private String password;
     private String email;
-    private Integer id;
 
     public UserModel(Integer id, String name, String surname,
               String login, String password, String email) {
-        this.id = id;
+        super(id);
         this.name = name;
         this.surname = surname;
         this.login = login;
@@ -26,10 +25,6 @@ public class UserModel {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Integer getId() {
-        return this.id;
     }
 
     public String toString() {

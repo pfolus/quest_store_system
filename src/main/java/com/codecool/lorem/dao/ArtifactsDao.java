@@ -7,15 +7,6 @@ import com.codecool.lorem.models.ArtifactModel;
 
 public class ArtifactsDao extends Dao<ArtifactModel> {
 
-    public ArtifactModel getById(Integer id) {
-        for (ArtifactModel artifact : getItems()) {
-            if (artifact.getId().equals(id)) {
-                return artifact;
-            }
-        }
-        return null;
-    }
-
     public void readFromDatabase() {
         Statement stmt = null;
         ResultSet rs = null;

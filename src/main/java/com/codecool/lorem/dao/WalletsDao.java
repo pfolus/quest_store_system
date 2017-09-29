@@ -6,16 +6,6 @@ import java.sql.*;
 
 public class WalletsDao extends Dao<WalletModel> {
 
-    public WalletModel getById(Integer id) {
-        for (WalletModel wallet : getItems()) {
-            if (wallet.getId().equals(id)) {
-                return wallet;
-            }
-        }
-
-        return null;
-    }
-
     public WalletModel getStudentWallet(Integer id) {
         WalletModel wallet = null;
 

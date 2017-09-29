@@ -8,15 +8,6 @@ import com.codecool.lorem.views.MainView;
 
 public class QuestsDao extends Dao<QuestModel> {
 
-    public QuestModel getById(Integer id) {
-        for (QuestModel quest : getItems()) {
-            if (quest.getId().equals(id)) {
-                return quest;
-            }
-        }
-        return null;
-    }
-
     public void addQuestToDatabase(String name, Integer categoryId, String description, Integer prize) {
         Statement statement = null;
 

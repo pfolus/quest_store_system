@@ -8,15 +8,6 @@ import com.codecool.lorem.models.BoughtArtifactModel;
 
 public class ArtifactsBoughtDao extends Dao<BoughtArtifactModel> {
 
-    public BoughtArtifactModel getById(Integer id) {
-        for (BoughtArtifactModel boughtArtifact : getItems()) {
-            if (boughtArtifact.getId().equals(id)) {
-                return boughtArtifact;
-            }
-        }
-        return null;
-    }
-
     public void readFromDatabase() {
         Statement stmt = null;
         ResultSet rs = null;
@@ -25,7 +16,7 @@ public class ArtifactsBoughtDao extends Dao<BoughtArtifactModel> {
             Connection c = DatabaseConnection.getConnection();
             stmt = c.createStatement();
             rs = stmt.executeQuery(
-                    "SELECT bought_artifacts.id, is_used, artifact_id, student_id, name, description, price, artifact_category_id FROM bought_artifacts LEFT JOIN artifacts ON artifacts.id = bought_artifacts.artifact_id");
+                    "SELECT bought_artifacts.id, is_used, artifact_id, student_id, name, description, price, artifact_category_id FROM bought_artifacts INNER JOIN artifacts ON artifacts.id = bought_artifacts.artifact_id");
 
             while (rs.next()) {
 

@@ -1,16 +1,15 @@
 package com.codecool.lorem.models;
 
-public class DoneQuestModel {
+public class DoneQuestModel extends AbstractItemModel {
 
     private Integer questId;
     private Integer timesDone;
-    private Integer id;
     private Integer studentId;
 
     public DoneQuestModel(Integer id, Integer timesDone, Integer questId, Integer studentId) {
+        super(id);
         this.questId = questId;
         this.timesDone = timesDone;
-        this.id = id;
         this.studentId = studentId;
     }
 

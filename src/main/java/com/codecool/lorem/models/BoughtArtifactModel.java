@@ -11,7 +11,6 @@ public class BoughtArtifactModel extends ArtifactModel{
                                String name, Integer categoryId, String description, Integer price) {
 
         super(id, name, categoryId, description, price);
-
         this.artifactId = artifactId;
         this.studentId = studentId;
         this.isUsed = isUsed;

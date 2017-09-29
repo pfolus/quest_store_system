@@ -1,20 +1,15 @@
 package com.codecool.lorem.models;
 
-public class WalletModel {
+public class WalletModel extends AbstractItemModel {
 
     private Integer balance;
-    private Integer id;
     private Integer studentId;
 
 
     public WalletModel(Integer id, Integer balance, Integer studentId) {
+        super(id);
         this.balance = balance;
         this.studentId = studentId;
-        this.id = id;
-    }
-
-    public Integer getId() {
-        return this.id;
     }
 
     public Integer getBalance() {
