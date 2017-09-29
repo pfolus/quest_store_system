@@ -1,10 +1,10 @@
 package com.codecool.lorem.dao;
 
-import com.codecool.lorem.views.MainView;
-
 import java.util.ArrayList;
 
-public abstract class Dao<T> {
+import com.codecool.lorem.models.AbstractItemModel;
+
+public abstract class Dao<T extends AbstractItemModel> {
 
     protected ArrayList<T> itemsList = new ArrayList<>();
 
@@ -18,6 +18,20 @@ public abstract class Dao<T> {
 
     public ArrayList<T> getItems() {
         return this.itemsList;
+    }
+
+    public T getById(Integer id) {
+        return getItems().stream()
+                         .filter(item -> item.getId().equals(id))
+                         .findFirst()
+                         .get();
+    }
+
+    public Integer getNextId() {
+        return getItems().stream()
+                         .mapToInt(AbstractItemModel::getId)
+                         .max()
+                         .getAsInt() + 1;
     }
 
 }
