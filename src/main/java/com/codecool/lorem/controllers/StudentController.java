@@ -5,6 +5,7 @@ import java.util.InputMismatchException;
 import java.util.Arrays;
 
 import com.codecool.lorem.dao.ArtifactsBoughtDao;
+import com.codecool.lorem.dao.LevelsDao;
 import com.codecool.lorem.models.BoughtArtifactModel;
 import com.codecool.lorem.views.StudentView;
 import com.codecool.lorem.views.StoreView;
@@ -19,7 +20,9 @@ public class StudentController {
         int choice = -1;
         final int EXIT = 0;
 
+        LevelsDao levelsDao = new LevelsDao();
         WalletsDao walletsDao = new WalletsDao();
+
         WalletModel wallet = walletsDao.getStudentWallet(student.getId());
 
         while(choice != EXIT){
@@ -31,7 +34,7 @@ public class StudentController {
             } else if (choice == 2) {
                 StoreController.runController(student, wallet);
             } else if (choice == 3) {
-                //showLevel(student);
+                showLevel(levelsDao, student);
             } else if (choice == 4) {
                 showBoughtArtifacts(student);
             }
@@ -43,10 +46,10 @@ public class StudentController {
         StudentView.showCoinsBalance(balance);
     }
 
-//    public static void showLevel(StudentModel student) {
-//        String level = student.getLevel();
-//        StudentView.printLevelInfo(level);
-//    }
+    public static void showLevel(LevelsDao levelsDao, StudentModel student) {
+        String levelName = levelsDao.checkLevel(student.getScore());
+        System.out.println(levelName);
+    }
 
     public static void showBoughtArtifacts(StudentModel student) {
         ArtifactsBoughtDao boughtArtifDao = new ArtifactsBoughtDao();

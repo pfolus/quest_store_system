@@ -9,7 +9,7 @@ public class DatabaseConnection {
     public static Connection getConnection() {
         if (connection == null) {
             try {
-                connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db");
+                connection = DriverManager.getConnection("jdbc:sqlite:database/data.db");
             } catch (SQLException e) {
                 System.out.println(e);
             }

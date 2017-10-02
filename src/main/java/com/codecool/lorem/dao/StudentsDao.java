@@ -29,11 +29,10 @@ public class StudentsDao extends Dao<StudentModel> {
                 String login = resultSet.getString("login");
                 String password = resultSet.getString("password");
                 String email = resultSet.getString("email");
-                Integer levelId = resultSet.getInt("level_id");
                 Integer score = resultSet.getInt("score");
                 Integer classId = resultSet.getInt("class_id");
 
-                result = new StudentModel(user_id, name, surname, login, password, email, levelId, score, classId);
+                result = new StudentModel(user_id, name, surname, login, password, email, score, classId);
             }
 
             resultSet.close();
@@ -57,8 +56,8 @@ public class StudentsDao extends Dao<StudentModel> {
             String sql = String.format(
                     "INSERT INTO users (name, surname, login, password, email, type) " +
                     "VALUES ('%s', '%s', '%s', '%s', '%s', 'student'); " +
-                    "INSERT INTO students_data (user_id, level_id, score, class_id) " +
-                    "VALUES (last_insert_rowid(), 1, 0, '%d');" +
+                    "INSERT INTO students_data (user_id, score, class_id) " +
+                    "VALUES (last_insert_rowid(), 0, '%d');" +
                     "INSERT INTO wallets (balance, student_id) " +
                     "VALUES (%d, last_insert_rowid());", name, surname, login, password, email, classId, startingBalance);
 
@@ -89,13 +88,12 @@ public class StudentsDao extends Dao<StudentModel> {
                 String login = resultSet.getString("login");
                 String password = resultSet.getString("password");
                 String email = resultSet.getString("email");
-                Integer levelId = resultSet.getInt("level_id");
                 Integer score = resultSet.getInt("score");
                 Integer classId = resultSet.getInt("class_id");
 
                 this.itemsList.add(
                         new StudentModel(user_id, name, surname, login,
-                                password, email, levelId, score, classId));
+                                password, email, score, classId));
             }
 
             resultSet.close();
@@ -121,13 +119,12 @@ public class StudentsDao extends Dao<StudentModel> {
                 String surname = resultSet.getString("surname");
                 String password = resultSet.getString("password");
                 String email = resultSet.getString("email");
-                Integer levelId = resultSet.getInt("level_id");
                 Integer score = resultSet.getInt("score");
                 Integer classId = resultSet.getInt("class_id");
 
                 this.itemsList.add(
                         new StudentModel(user_id, name, surname, login,
-                                password, email, levelId, score, classId));
+                                password, email, score, classId));
             }
 
             resultSet.close();
