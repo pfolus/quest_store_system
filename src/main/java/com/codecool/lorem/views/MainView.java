@@ -19,27 +19,12 @@ public class MainView {
         return scanner.nextLine();
     }
 
-
     public static void print(String string) {
         System.out.println(string);
     }
 
     public static void showString(String string) {
         System.out.println(string);
-    }
-
-    public static void showLoggingInfo() {
-        String[] info = new String[]{"\nLogging", ".", ".", ".", ".", ".", "."};
-
-        try {
-            for (String s:info) {
-                System.out.print(s);
-                TimeUnit.MILLISECONDS.sleep(500);
-            }
-        System.out.println();
-        } catch (InterruptedException e) {
-            System.out.println();
-        }
     }
 
     public static String getString(String text) {
