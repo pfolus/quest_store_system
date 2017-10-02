@@ -36,7 +36,8 @@ public class MainController {
             StudentController.runController(studentsDao.createLoggedStudent(id));
         } else if (type.equals("mentor")) {
             MentorsDao mentorsDao = new MentorsDao();
-            MentorController.runController(mentorsDao.createLoggedMentor(id));
+            MentorController mentorController = new MentorController();
+            mentorController.runController(mentorsDao.createLoggedMentor(id));
         } else if (type.equals("admin")) {
             AdminsDao adminsDao = new AdminsDao();
             AdminController.runController(adminsDao.createLoggedAdmin(id));

@@ -12,4 +12,8 @@ public class QuestModel extends AbstractQuestArtifactModel {
     public Integer getPrize() {
         return this.prize;
     }
+
+    public String toString() {
+        return this.getId() + ". " + this.getName();
+    }
 }
