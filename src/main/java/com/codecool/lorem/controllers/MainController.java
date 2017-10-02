@@ -1,35 +1,35 @@
 package com.codecool.lorem.controllers;
 
-import java.util.ArrayList;
-
 import com.codecool.lorem.dao.*;
+import com.codecool.lorem.models.PendingUserModel;
 import com.codecool.lorem.views.MainView;
 
 public class MainController {
 
     public static void runController() {
-        ArrayList<String> userData = null;
-        LoginDao loginDao = new LoginDao();
-
-        while (userData == null) {
-            userData = login(loginDao);
-        }
-
-        chooseController(userData);
+        PendingUserModel pendingUser = login();
+        chooseController(pendingUser);
         DatabaseConnection.closeConnection();
     }
 
-    private static ArrayList<String> login(LoginDao loginDao) {
-        String login = MainView.getLogin();
-        String password = MainView.getPassword();
-        MainView.showLoggingInfo();
+    private static PendingUserModel login() {
+        LoginDao loginDao = new LoginDao();
+        PendingUserModel pendingUser = null;
+        String login;
+        String password;
 
-        return loginDao.login(login, password);
+        while (pendingUser == null) {
+            login = MainView.getLogin();
+            password = MainView.getPassword();
+            pendingUser = loginDao.login(login, password);
+        }
+
+        return pendingUser;
     }
 
-    private static void chooseController(ArrayList<String> userData) {
-        String type = userData.get(0);
-        String id = userData.get(1);
+    private static void chooseController(PendingUserModel pendingUser) {
+        String id = pendingUser.getId();
+        String type = pendingUser.getType();
 
         if (type.equals("student")) {
             StudentsDao studentsDao = new StudentsDao();
