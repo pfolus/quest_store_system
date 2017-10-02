@@ -12,7 +12,6 @@ public class MentorController {
         StudentsDao studentsDao = new StudentsDao();
         QuestsDao questsDao = new QuestsDao();
 
-        studentsDao.loadStudentsFromDb();
         questsDao.loadQuestsFromDb();
 
         Integer choice = 0;
@@ -100,7 +99,6 @@ public class MentorController {
         Integer price = MentorView.getIntInput("Provide artifact's price: ");
 
         // lists artifacts categories - MOVE TO DAO!
-        artifactCategoriesDao.readFromDatabase();
         for (ArtifactCategoryModel artifactCat : artifactCategoriesDao.getItems()) {
             MainView.showString(artifactCat.toString());
         }
@@ -175,7 +173,6 @@ public class MentorController {
         ArtifactsDao artifactsDao = new ArtifactsDao();
         BoughtArtifactModel boughtArtifact = null;
 
-        artifactsDao.readFromDatabase();
         boughtDao.readFromDatabase();
 
         // lists bought artifacts ( id, student login and artifacts name)
