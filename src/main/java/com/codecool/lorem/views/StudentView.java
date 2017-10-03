@@ -40,7 +40,7 @@ public class StudentView {
         System.out.println("You have " + balance + " coolcoins.");
     }
 
-    public static void showBoughtArtifacts(ArrayList<BoughtArtifactModel> boughtArtifacts) {
+    public static <T> void showItems(ArrayList<T> boughtArtifacts) {
         boughtArtifacts.forEach(System.out::println);
     }
 }
