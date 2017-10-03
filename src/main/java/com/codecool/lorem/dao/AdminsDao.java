@@ -7,10 +7,10 @@ import java.sql.*;
 public class AdminsDao extends Dao<AdminModel> {
 
     public AdminsDao() {
-        loadFromDatabase();
+        readFromDatabase();
     }
 
-    private void loadFromDatabase(){
+    private void readFromDatabase(){
         try {
             Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();
