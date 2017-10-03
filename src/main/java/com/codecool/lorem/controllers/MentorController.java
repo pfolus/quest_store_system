@@ -62,7 +62,7 @@ public class MentorController {
     }
 
     private void createStudent() {
-        Integer id = studentsDao.getNextId();
+        Integer id = UsersDao.getNextUserId();
         String name = UserView.getName();
         String surname = UserView.getSurname();
         String login = UserView.getLogin();
