@@ -20,8 +20,7 @@ public class LoginDao {
                     "SELECT type, id FROM users WHERE login = '" + login + "' AND password = '" + password + "';");
 
             if (resultSet.next()) {
-                pendingUser = new PendingUser(resultSet.getInt("id"),
-                        resultSet.getString("type"));
+                pendingUser = new PendingUser(resultSet.getInt("id"), resultSet.getString("type"));
             } else {
                 throw new SQLException();
             }

@@ -11,7 +11,6 @@ public class QuestCategoriesDao extends Dao<QuestCategoryModel> {
     }
 
     private void readFromDatabase(){
-
         try {
             Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();

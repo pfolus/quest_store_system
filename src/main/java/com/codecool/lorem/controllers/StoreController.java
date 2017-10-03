@@ -88,7 +88,7 @@ public class StoreController {
 
     private static void addBoughtArtifactToDatabase(ArtifactModel artifact, StudentModel student) {
         ArtifactsBoughtDao boughtArtifacts = new ArtifactsBoughtDao();
-        boughtArtifacts.addBoughtArtifactToDatabase(artifact.getId(), student.getId());
+        boughtArtifacts.addToDatabase(artifact.getId(), student.getId());
     }
 
     private static ArtifactModel chooseArtifactById(ArtifactsDao artifacts) {

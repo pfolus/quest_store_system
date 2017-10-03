@@ -90,7 +90,7 @@ public class MentorController {
         Integer price = MentorView.getIntInput("Provide artifact's price: ");
         listElements(artifactCategoriesDao);
         ArtifactCategoryModel category = chooseExistingObject(artifactCategoriesDao);
-        this.artifactsDao.addArtifact(name, category.getId(), description, price);
+        this.artifactsDao.addToDatabase(name, category.getId(), description, price);
     }
 
     private void markStudentDoneQuest() {

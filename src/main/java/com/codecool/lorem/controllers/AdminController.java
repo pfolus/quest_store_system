@@ -58,7 +58,7 @@ public class AdminController {
         MentorModel mentor = new MentorModel(id, name, surname, login, password, email, classId);
 
         this.mentorsDao.addToList(mentor);
-        this.mentorsDao.addToBatabase(mentor);
+        this.mentorsDao.addToDatabase(mentor);
     }
 
     private Integer getClassId() {
