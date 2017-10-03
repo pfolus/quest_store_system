@@ -8,11 +8,11 @@ public abstract class Dao<T extends AbstractItemModel> {
 
     protected ArrayList<T> itemsList = new ArrayList<>();
 
-    public void add(T item) {
+    public void addToList(T item) {
         this.itemsList.add(item);
     }
 
-    public void remove(T item) {
+    public void removeFromList(T item) {
         this.itemsList.remove(item);
     }
 
