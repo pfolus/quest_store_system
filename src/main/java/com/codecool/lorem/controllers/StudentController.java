@@ -53,7 +53,6 @@ public class StudentController {
 
     public static void showBoughtArtifacts(StudentModel student) {
         ArtifactsBoughtDao boughtArtifDao = new ArtifactsBoughtDao();
-        boughtArtifDao.readFromDatabase();
         ArrayList<BoughtArtifactModel> boughtArtifacts = boughtArtifDao.getItemsByStudentId(student.getId());
         StudentView.showBoughtArtifacts(boughtArtifacts);
     }
