@@ -6,21 +6,25 @@ import java.sql.*;
 
 public class AdminsDao extends Dao<AdminModel> {
 
-    public void loadAdminsFromDatabase(){
+    public AdminsDao() {
+        loadFromDatabase();
+    }
+
+    private void loadFromDatabase(){
         try {
             Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM users;");
 
             while (resultSet.next()) {
-                Integer user_id = resultSet.getInt("user_id");
+                Integer id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 String surname = resultSet.getString("surname");
                 String login = resultSet.getString("login");
                 String password = resultSet.getString("password");
                 String email = resultSet.getString("email");
 
-                this.itemsList.add(new AdminModel(user_id, name, surname,
+                this.itemsList.add(new AdminModel(id, name, surname,
                         login, password, email));
             }
 
@@ -29,34 +33,5 @@ public class AdminsDao extends Dao<AdminModel> {
         } catch (SQLException e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
-    }
-
-    public AdminModel createLoggedAdmin(String id) {
-        AdminModel result = null;
-
-        try {
-            Connection connection = DatabaseConnection.getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(
-                    "SELECT * FROM users WHERE id = " +  id + ";");
-
-            if (resultSet.next()) {
-                Integer adminId = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                String surname = resultSet.getString("surname");
-                String login = resultSet.getString("login");
-                String password = resultSet.getString("password");
-                String email = resultSet.getString("email");
-
-                result = new AdminModel(adminId, name, surname, login, password, email);
-            }
-
-            resultSet.close();
-            statement.close();
-        } catch (SQLException e) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-        }
-
-        return result;
     }
 }
