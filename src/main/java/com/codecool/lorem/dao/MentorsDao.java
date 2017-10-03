@@ -53,4 +53,23 @@ public class MentorsDao extends Dao<MentorModel> {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
     }
+
+    public void update(MentorModel mentor) {
+        Integer id = mentor.getId();
+        String email = mentor.getEmail();
+        Integer classId = mentor.getClassId();
+
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("UPDATE users SET email = '" + email +
+                    "' WHERE id = " + id + ";" +
+                    " UPDATE mentors_data SET class_id = " + classId +
+                    " WHERE user_id = " + id + ";");
+
+            statement.close();
+        } catch (SQLException e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+    }
 }
