@@ -10,21 +10,18 @@ import com.codecool.lorem.views.MainView;
 public class QuestsDoneDao extends Dao<DoneQuestModel> {
 
     public DoneQuestModel getDoneQuest(Integer questId, Integer studentId) {
-
-        for (DoneQuestModel doneQuest : this.itemsList) {
-            if (doneQuest.getQuestId().equals(questId) && doneQuest.getStudentId().equals(studentId)) {
-                return doneQuest;
-            }
-        } return null;
+        return this.itemsList.stream()
+                             .filter(doneQuest -> doneQuest.getStudentId().equals(studentId))
+                             .filter(doneQuest -> doneQuest.getQuestId().equals(questId))
+                             .findFirst()
+                             .orElse(null);
     }
 
     public void addDoneQuestToDb(QuestModel quest, Integer studentId) {
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            Statement statement = connection.createStatement();
 
-        Statement statement = null;
-
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
-
-            statement = connection.createStatement();
             String sql = String.format(
                     "INSERT INTO quests_done (times_done, quest_id, student_id) " +
                     "VALUES (0, '%d', '%d');", quest.getId(), studentId);
@@ -42,12 +39,9 @@ public class QuestsDoneDao extends Dao<DoneQuestModel> {
     }
 
     public void updateQuest(Integer id, Integer newValue) {
-
-    Statement statement = null;
-
-    try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
-
-        statement = connection.createStatement();
+    try {
+        Connection connection = DatabaseConnection.getConnection();
+        Statement statement = connection.createStatement();
         String sql = String.format(
                 "UPDATE quests_done SET times_done = %d WHERE id = '%d';"
                 , id, newValue);
@@ -65,9 +59,8 @@ public class QuestsDoneDao extends Dao<DoneQuestModel> {
     }
 
     public void loadQuestFromDb(Integer id) {
-
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
-
+        try {
+            Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(String.format(
                     "SELECT * FROM quests_done WHERE id =  '%d';", id));
@@ -83,7 +76,6 @@ public class QuestsDoneDao extends Dao<DoneQuestModel> {
 
             resultSet.close();
             statement.close();
-
         } catch (SQLException e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }

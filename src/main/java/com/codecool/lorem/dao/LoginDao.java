@@ -1,8 +1,12 @@
 package com.codecool.lorem.dao;
 
-import java.sql.*;
-
 import com.codecool.lorem.models.PendingUser;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 
 public class LoginDao {
 
