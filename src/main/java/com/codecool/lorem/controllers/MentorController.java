@@ -62,7 +62,7 @@ public class MentorController {
     }
 
     private void createStudent() {
-        Integer id = studentsDao.getNextId();
+        Integer id = UsersDao.getNextUserId();
         String name = UserView.getName();
         String surname = UserView.getSurname();
         String login = UserView.getLogin();
@@ -103,8 +103,6 @@ public class MentorController {
         String name = MainView.getString("Provide artifact's name: ");
         String description = MainView.getString("Provide artifact's description: ");
         Integer price = MentorView.getIntInput("Provide artifact's price: ");
-
-        listElements(artifactCategoriesDao);
 
         Boolean artifactsListNotEmpty = listElements(artifactCategoriesDao);
         if (artifactsListNotEmpty){
