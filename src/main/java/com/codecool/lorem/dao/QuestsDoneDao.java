@@ -11,17 +11,11 @@ public class QuestsDoneDao extends Dao<DoneQuestModel> {
 
     public QuestsDoneDao() { readFromDatabase();}
 
-    public DoneQuestModel getDoneQuest(Integer questId, Integer studentId) {
-        return this.itemsList.stream()
-                             .filter(doneQuest -> doneQuest.getStudentId().equals(studentId))
-                             .filter(doneQuest -> doneQuest.getQuestId().equals(questId))
-                             .findFirst()
-                             .orElse(null);
-    }
-
     public void addToDatabase(DoneQuestModel doneQuest) {
         try {
             Connection connection = DatabaseConnection.getConnection();
+            connection.setAutoCommit(false);
+
             Statement statement = connection.createStatement();
 
             String sql = String.format(
@@ -30,8 +24,9 @@ public class QuestsDoneDao extends Dao<DoneQuestModel> {
                     doneQuest.getQuestId(), doneQuest.getStudentId());
 
             statement.executeUpdate(sql);
-
             statement.close();
+            connection.commit();
+
         } catch (SQLException e) {
 
             System.err.println( e.getClass().getName() + ": " + e.getMessage());
