@@ -1,27 +1,25 @@
 package com.codecool.lorem.dao;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-import com.codecool.lorem.models.QuestCategoryModel;
+public class UsersDao {
 
-public class QuestCategoriesDao extends Dao<QuestCategoryModel> {
+    public static Integer getNextUserId() {
+        Integer nextId = 0;
 
-    public QuestCategoriesDao() {
-        readFromDatabase();
-    }
-
-    private void readFromDatabase(){
         try {
             Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM quest_categories ");
+            ResultSet resultSet = statement.executeQuery("SELECT id FROM users;");
 
             while (resultSet.next()) {
-
                 Integer id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-
-                this.itemsList.add(new QuestCategoryModel(id, name));
+                if (id > nextId) {
+                    nextId = id;
+                }
             }
 
             resultSet.close();
@@ -29,5 +27,7 @@ public class QuestCategoriesDao extends Dao<QuestCategoryModel> {
         } catch (SQLException e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
+
+        return nextId + 1;
     }
 }

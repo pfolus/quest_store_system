@@ -64,7 +64,6 @@ public class GroupTransactionsDao extends Dao<GroupTransactionModel> {
         Integer price = transaction.getPrice();
         String status = transaction.getStatus();
 
-
         try {
             Connection c = DatabaseConnection.getConnection();
             c.setAutoCommit(false);
@@ -116,7 +115,7 @@ public class GroupTransactionsDao extends Dao<GroupTransactionModel> {
 
         Integer studentId = student.getId();
         Statement stmt = null;
-//
+
         try {
             Connection c = DatabaseConnection.getConnection();
             c.setAutoCommit(false);
@@ -134,8 +133,27 @@ public class GroupTransactionsDao extends Dao<GroupTransactionModel> {
     }
 
     public boolean isTransactionAcceptedByAll(Integer transactionId) {
-        System.out.println("TODO xD");
-        return false;
+
+        for (GroupTransactionModel transaction:this.itemsList) {
+            if (transaction.getId().equals(transactionId)) {
+                if (transaction.getStatus().equals("Not Marked")) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public ArrayList<StudentModel> getTransactionParticipants(Integer transactionId) {
+        StudentsDao students = new StudentsDao();
+        ArrayList<StudentModel> buyers = new ArrayList<>();
+
+        for (GroupTransactionModel transaction:this.itemsList) {
+            if (transaction.getId().equals(transactionId)) {
+                buyers.add(students.getById(transaction.getStudentId()));
+            }
+        }
+        return buyers;
     }
 
     //

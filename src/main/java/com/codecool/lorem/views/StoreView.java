@@ -64,8 +64,12 @@ public class StoreView {
         System.out.println("You bought an artifact.");
     }
 
-    public static void showStudents(ArrayList<StudentModel> students) {
-        students.forEach(System.out::println);
+    public static void showStudents(ArrayList<StudentModel> students, StudentModel studentToSkip) {
+        for (StudentModel s : students) {
+            if (!(s.getId().equals(studentToSkip.getId()))) {
+                System.out.println(s);
+            }
+        }
     }
 
     public static void showTransactions(ArrayList<GroupTransactionModel> transactions) {

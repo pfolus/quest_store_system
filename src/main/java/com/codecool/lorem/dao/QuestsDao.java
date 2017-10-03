@@ -31,11 +31,9 @@ public class QuestsDao extends Dao<QuestModel> {
         }
 
         MainView.print("Records created successfully");
-
     }
 
     private void readFromDatabase() {
-
         try {
             Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();

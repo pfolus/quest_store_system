@@ -10,11 +10,11 @@ public class AdminsDao extends Dao<AdminModel> {
         readFromDatabase();
     }
 
-    private void readFromDatabase(){
+    private void readFromDatabase() {
         try {
             Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM users;");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM users WHERE type = 'admin';");
 
             while (resultSet.next()) {
                 Integer id = resultSet.getInt("id");

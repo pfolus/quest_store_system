@@ -2,8 +2,8 @@ package com.codecool.lorem.dao;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
-import com.codecool.lorem.models.ArtifactCategoryModel;
 import com.codecool.lorem.models.ArtifactModel;
 
 public class ArtifactsDao extends Dao<ArtifactModel> {
@@ -37,7 +37,7 @@ public class ArtifactsDao extends Dao<ArtifactModel> {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
     }
-
+  
     public void addToDatabase(ArtifactModel artifact) {
 
         try {
@@ -59,16 +59,13 @@ public class ArtifactsDao extends Dao<ArtifactModel> {
     }
 
     public ArrayList<ArtifactModel> getGroupArtifacts() {
-
         ArtifactCategoriesDao artifactCategories = new ArtifactCategoriesDao();
-        ArrayList<ArtifactModel> groupArtifacts = new ArrayList<>();
+        ArrayList<ArtifactModel> groupArtifacts;
         Integer groupCategoryId = artifactCategories.getCategoryByName("Group").getId();
 
-        for (ArtifactModel artifact:this.itemsList) {
-            if (artifact.getCategoryId().equals(groupCategoryId)) {
-                groupArtifacts.add(artifact);
-            }
-        }
+        groupArtifacts = this.itemsList.stream()
+                                       .filter(artifact -> artifact.getCategoryId().equals(groupCategoryId))
+                                       .collect(Collectors.toCollection(ArrayList::new));
         return groupArtifacts;
     }
 

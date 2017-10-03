@@ -1,10 +1,8 @@
 package com.codecool.lorem.dao;
 
 import java.sql.*;
-import java.util.Iterator;
 
 import com.codecool.lorem.models.MentorModel;
-import com.codecool.lorem.models.StudentModel;
 
 public class MentorsDao extends Dao<MentorModel> {
 
@@ -38,7 +36,7 @@ public class MentorsDao extends Dao<MentorModel> {
         }
     }
 
-    public void addToBatabase(MentorModel mentor) {
+    public void addToDatabase(MentorModel mentor) {
         try {
             Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();
@@ -49,6 +47,25 @@ public class MentorsDao extends Dao<MentorModel> {
                     mentor.getId(), mentor.getName(), mentor.getSurname(),
                     mentor.getLogin(), mentor.getPassword(), mentor.getEmail(),
                     mentor.getId(), mentor.getClassId()));
+
+            statement.close();
+        } catch (SQLException e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+    }
+
+    public void update(MentorModel mentor) {
+        Integer id = mentor.getId();
+        String email = mentor.getEmail();
+        Integer classId = mentor.getClassId();
+
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("UPDATE users SET email = '" + email +
+                    "' WHERE id = " + id + ";" +
+                    " UPDATE mentors_data SET class_id = " + classId +
+                    " WHERE user_id = " + id + ";");
 
             statement.close();
         } catch (SQLException e) {

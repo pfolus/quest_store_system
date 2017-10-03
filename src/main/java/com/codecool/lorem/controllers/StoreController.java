@@ -15,7 +15,7 @@ import com.codecool.lorem.models.WalletModel;
 
 public class StoreController {
 
-    public static void runController(StudentModel student, WalletModel wallet) {
+    public static void runController(StudentModel student, WalletModel wallet, WalletsDao wallets) {
 
         int choice = -1;
         final int EXIT = 0;
@@ -25,19 +25,18 @@ public class StoreController {
             choice = chooseOption();
 
             if (choice == 1) {
-                buyArtifact(student, wallet);
+                buyArtifact(student, wallet, wallets);
             } else if (choice == 2) {
                 buyArtifactWithTeammates(student, wallet);
             } else if (choice == 3) {
-                managePendingTransactions(student);
+                managePendingTransactions(student, wallet, wallets);
             }
         }
     }
 
-    private static void managePendingTransactions(StudentModel student) {
+    private static void managePendingTransactions(StudentModel student, WalletModel wallet, WalletsDao wallets) {
         GroupTransactionsDao transactions = new GroupTransactionsDao();
-        StoreView.showTransactions(transactions.getTransactionsByStudentId(student.getId()));
-        Integer transactionId = StoreView.chooseTransactionId();
+        Integer transactionId = chooseTransactionId(student, transactions);
 
         if (!transactionId.equals(0)) {
             GroupTransactionModel transaction = transactions.getById(transactionId);
@@ -47,17 +46,66 @@ public class StoreController {
                 transactions.removeTransaction(transaction);
 
             } else if (choice.equals(1)) {
-
-                transactions.markTransaction(transaction, student);
-                if (transactions.isTransactionAcceptedByAll(transactionId)) {
-                    System.out.println("DODAJ IM KURWA");
-                }
+                acceptTransaction(wallet, transaction, transactions, student, wallets);
             }
         }
     }
 
+    private static void acceptTransaction(WalletModel wallet, GroupTransactionModel transaction, GroupTransactionsDao transactions, StudentModel student, WalletsDao wallets) {
+        if (hasEnoughCoins(wallet, transaction.getPrice())) {
+            transaction.setStatus();
+            transactions.markTransaction(transaction, student);
+            if (transactions.isTransactionAcceptedByAll(transaction.getId())) {
+                ArrayList<StudentModel> buyers = getBuyers(transaction, transactions);
+                if (buyersHaveMoney(transaction, wallets, buyers)) {
+                    addArtifactToBuyers(transaction, buyers, wallets);
+                } else {
+                    System.out.println("One or more of participants do not have enough money, transaction deleted.");
+                }
+            }
+            transactions.removeTransaction(transaction);
+        } else {
+            System.out.println("You don't have enough money.");
+        }
+    }
 
-    private static void buyArtifact(StudentModel student, WalletModel wallet) {
+    private static Integer chooseTransactionId(StudentModel student, GroupTransactionsDao transactions) {
+        StoreView.showTransactions(transactions.getTransactionsByStudentId(student.getId()));
+        Integer transactionId = StoreView.chooseTransactionId();
+
+        return transactionId;
+    }
+
+    private static Boolean buyersHaveMoney(GroupTransactionModel transaction, WalletsDao wallets, ArrayList<StudentModel> buyers) {
+        for (StudentModel s:buyers) {
+            if (!(hasEnoughCoins(wallets.getStudentWallet(s.getId()), transaction.getPrice()))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static void addArtifactToBuyers(GroupTransactionModel transaction, ArrayList<StudentModel> buyers, WalletsDao wallets) {
+
+        addBuyersToDatabase(buyers, transaction);
+        for (StudentModel s:buyers) {
+            reduceWalletBalance(transaction.getPrice(), s, wallets);
+        }
+    }
+
+    private static ArrayList<StudentModel> getBuyers(GroupTransactionModel transaction, GroupTransactionsDao transactions) {
+        return transactions.getTransactionParticipants(transaction.getId());
+    }
+
+    private static void addBuyersToDatabase(ArrayList<StudentModel> buyers, GroupTransactionModel transaction) {
+        ArtifactsBoughtDao boughtArtifacts = new ArtifactsBoughtDao();
+        for (StudentModel s : buyers) {
+            boughtArtifacts.addToDatabase(transaction.getArtifactId(), s.getId());
+        }
+    }
+
+
+    private static void buyArtifact(StudentModel student, WalletModel wallet, WalletsDao wallets) {
 
 
         ArtifactsDao artifacts = getArtifacts();
@@ -65,9 +113,7 @@ public class StoreController {
 
         if (hasEnoughCoins(wallet, artifact.getPrice())) {
 
-            WalletsDao walletsDao = new WalletsDao();
-            wallet.reduceBalance(artifact.getPrice());
-            walletsDao.updateWalletBalance(student.getId(), wallet.getBalance());
+            reduceWalletBalance(artifact.getPrice(), student, wallets);
             addBoughtArtifactToDatabase(artifact, student);
             StoreView.itemBoughtSuccesfully();
 
@@ -76,9 +122,14 @@ public class StoreController {
         }
     }
 
+    private static void reduceWalletBalance(Integer price, StudentModel student, WalletsDao wallets) {
+        WalletModel wallet = wallets.getStudentWallet(student.getId());
+        wallet.reduceBalance(price);
+        wallets.updateWalletBalance(student.getId(), wallet.getBalance());
+    }
+
     private static ArtifactsDao getArtifacts() {
         ArtifactsDao artifactsDatabase = new ArtifactsDao();
-        //artifactsDatabase.readFromDatabase();
         ArrayList<ArtifactModel> artifacts = artifactsDatabase.getItems();
         StoreView.showArtifacts(artifacts);
 
@@ -88,7 +139,7 @@ public class StoreController {
 
     private static void addBoughtArtifactToDatabase(ArtifactModel artifact, StudentModel student) {
         ArtifactsBoughtDao boughtArtifacts = new ArtifactsBoughtDao();
-        boughtArtifacts.addBoughtArtifactToDatabase(artifact.getId(), student.getId());
+        boughtArtifacts.addToDatabase(artifact.getId(), student.getId());
     }
 
     private static ArtifactModel chooseArtifactById(ArtifactsDao artifacts) {
@@ -120,27 +171,29 @@ public class StoreController {
         getGroupArtifacts(artifacts);
         ArtifactModel artifact = chooseArtifactById(artifacts);
 
-        ArrayList<StudentModel> buyers = chooseStudentsToBuyAnArtifact();
+        ArrayList<StudentModel> buyers = chooseStudentsToBuyAnArtifact(student);
         buyers.add(student);
 
         Integer pricePerStudent = artifact.getPrice() / buyers.size();
         if (hasEnoughCoins(wallet, pricePerStudent)) {
-            createGroupTransactions(buyers, artifact, pricePerStudent);
+            createGroupTransactions(buyers, artifact, pricePerStudent, student);
 
         } else {
             StoreView.notEnoughMoneyInfo();
         }
     }
 
-    private static void createGroupTransactions(ArrayList<StudentModel> buyers, ArtifactModel artifact, Integer pricePerStudent) {
+    private static void createGroupTransactions(ArrayList<StudentModel> buyers, ArtifactModel artifact, Integer pricePerStudent, StudentModel student) {
 
         GroupTransactionsDao transactions = new GroupTransactionsDao();
+        GroupTransactionModel transaction = null;
         Integer transactionId = transactions.getNextId();
 
         for (StudentModel s:buyers) {
-            GroupTransactionModel transaction = new GroupTransactionModel(transactionId, artifact.getId(), s.getId(), pricePerStudent, "Not Marked");
+            transaction = new GroupTransactionModel(transactionId, artifact.getId(), s.getId(), pricePerStudent, "Not Marked");
             transactions.addTransactionToDatabase(transaction);
         }
+        transactions.markTransaction(transaction, student);
     }
 
     private static void getGroupArtifacts(ArtifactsDao artifacts) {
@@ -148,7 +201,7 @@ public class StoreController {
     }
 
 
-    private static ArrayList<StudentModel> chooseStudentsToBuyAnArtifact() {
+    private static ArrayList<StudentModel> chooseStudentsToBuyAnArtifact(StudentModel student) {
 
         ArrayList<StudentModel> chosenStudents = new ArrayList<>();
 
@@ -156,14 +209,14 @@ public class StoreController {
 
         Integer id = 1000;
         while (id != 0) {
-            StoreView.showStudents(students.getItems());
+            StoreView.showStudents(students.getItems(), student);
             Scanner in = new Scanner(System.in);
             System.out.println("Choose student id, type '0' to end: ");
             id = in.nextInt();
-            StudentModel student = students.getById(id);
+            StudentModel s = students.getById(id);
 
-            if (!(chosenStudents.contains(student)) && student != null) {
-                chosenStudents.add(student);
+            if (!(chosenStudents.contains(s)) && s != null) {
+                chosenStudents.add(s);
 
             } else {
                 System.out.println("This student is already added!");
@@ -173,7 +226,7 @@ public class StoreController {
     }
 
     private static boolean hasEnoughCoins(WalletModel wallet, Integer price) {
-        if (wallet.getBalance() > price) {
+        if (wallet.getBalance() >= price) {
             return true;
         } else {
             return false;

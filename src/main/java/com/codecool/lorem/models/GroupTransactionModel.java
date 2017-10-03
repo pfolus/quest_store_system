@@ -31,6 +31,10 @@ public class GroupTransactionModel extends AbstractItemModel {
         return this.status;
     }
 
+    public void setStatus() {
+        this.status = "Marked";
+    }
+
 
     public String toString() {
         return  "ID: " + this.id +

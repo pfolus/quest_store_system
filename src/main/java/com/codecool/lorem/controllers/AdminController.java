@@ -1,22 +1,31 @@
 package com.codecool.lorem.controllers;
 
 import com.codecool.lorem.dao.ClassesDao;
+import com.codecool.lorem.dao.LevelsDao;
 import com.codecool.lorem.dao.MentorsDao;
+import com.codecool.lorem.dao.UsersDao;
 import com.codecool.lorem.models.AdminModel;
+import com.codecool.lorem.models.ClassModel;
+import com.codecool.lorem.models.LevelModel;
 import com.codecool.lorem.models.MentorModel;
 import com.codecool.lorem.views.AdminView;
 import com.codecool.lorem.views.UserView;
+
+import javax.security.sasl.SaslServer;
+import java.util.logging.Level;
 
 public class AdminController {
 
     private AdminModel admin;
     private MentorsDao mentorsDao;
     private ClassesDao classesDao;
+    private LevelsDao levelsDao;
 
     public AdminController(AdminModel admin) {
         this.admin = admin;
         this.mentorsDao = new MentorsDao();
         this.classesDao = new ClassesDao();
+        this.levelsDao = new LevelsDao();
     }
 
     public void runController() {
@@ -47,7 +56,7 @@ public class AdminController {
     }
 
     private void createMentor() {
-        Integer id = this.mentorsDao.getNextId();
+        Integer id = UsersDao.getNextUserId();
         String name = UserView.getName();
         String surname = UserView.getSurname();
         String login = UserView.getLogin();
@@ -58,7 +67,7 @@ public class AdminController {
         MentorModel mentor = new MentorModel(id, name, surname, login, password, email, classId);
 
         this.mentorsDao.addToList(mentor);
-        this.mentorsDao.addToBatabase(mentor);
+        this.mentorsDao.addToDatabase(mentor);
     }
 
     private Integer getClassId() {
@@ -67,11 +76,41 @@ public class AdminController {
         return Integer.valueOf(AdminView.getOption());
     }
 
-    private void createClass() {}
+    private void createClass() {
+        Integer id = this.classesDao.getNextId();
+        String name = UserView.getName();
 
-    private void editMentorProfile() {}
+        ClassModel classModel = new ClassModel(id, name);
 
-    private void showMentorProfile() {}
+        this.classesDao.addToList(classModel);
+        this.classesDao.addToDatabase(classModel);
+    }
 
-    private void createExperienceLevel() {}
+    private void editMentorProfile() {
+        showMentorProfile();
+        MentorModel mentorModel = this.mentorsDao.getById(AdminView.getId());
+
+        mentorModel.setEmail(AdminView.getEmail());
+
+        this.classesDao.getItems().forEach(System.out::println);
+
+        mentorModel.setClassId(AdminView.getId());
+
+        this.mentorsDao.update(mentorModel);
+    }
+
+    private void showMentorProfile() {
+        this.mentorsDao.getItems().forEach(System.out::println);
+    }
+
+    private void createExperienceLevel() {
+        Integer id = this.levelsDao.getNextId();
+        Integer requiredScore = AdminView.getRequiredScore();
+        String name = UserView.getName();
+
+        LevelModel levelModel = new LevelModel(id, requiredScore, name);
+
+        this.levelsDao.addToList(levelModel);
+        this.levelsDao.addToDatabase(levelModel);
+    }
 }
