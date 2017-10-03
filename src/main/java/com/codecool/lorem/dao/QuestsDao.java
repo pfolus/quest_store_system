@@ -12,14 +12,16 @@ public class QuestsDao extends Dao<QuestModel> {
         readFromDatabase();
     }
 
-    public void addQuestToDatabase(String name, Integer categoryId, String description, Integer prize) {
+    public void addToDatabase(QuestModel quest) {
+
         try {
             Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();
 
             String sql = String.format(
                     "INSERT INTO quests (name, description, quest_category_id, prize) " +
-                    "VALUES ('%s', '%s', '%d', '%d');" , name, description, categoryId, prize);
+                    "VALUES ('%s', '%s', '%d', '%d');" , quest.getName(), quest.getDescription(),
+                    quest.getCategoryId(), quest.getPrize());
 
             statement.executeUpdate(sql);
             statement.close();

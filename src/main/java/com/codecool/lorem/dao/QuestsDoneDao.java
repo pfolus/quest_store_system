@@ -9,6 +9,8 @@ import com.codecool.lorem.views.MainView;
 
 public class QuestsDoneDao extends Dao<DoneQuestModel> {
 
+    public QuestsDoneDao() { readFromDatabase();}
+
     public DoneQuestModel getDoneQuest(Integer questId, Integer studentId) {
         return this.itemsList.stream()
                              .filter(doneQuest -> doneQuest.getStudentId().equals(studentId))
@@ -17,14 +19,15 @@ public class QuestsDoneDao extends Dao<DoneQuestModel> {
                              .orElse(null);
     }
 
-    public void addDoneQuestToDb(QuestModel quest, Integer studentId) {
+    public void addToDatabase(DoneQuestModel doneQuest) {
         try {
             Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();
 
             String sql = String.format(
-                    "INSERT INTO quests_done (times_done, quest_id, student_id) " +
-                    "VALUES (0, '%d', '%d');", quest.getId(), studentId);
+                    "INSERT INTO quests_done (id, quest_id, student_id) " +
+                    "VALUES ('%d', '%d', '%d');", doneQuest.getId(),
+                    doneQuest.getQuestId(), doneQuest.getStudentId());
 
             statement.executeUpdate(sql);
 
@@ -38,40 +41,21 @@ public class QuestsDoneDao extends Dao<DoneQuestModel> {
 
     }
 
-    public void updateQuest(Integer id, Integer newValue) {
-    try {
-        Connection connection = DatabaseConnection.getConnection();
-        Statement statement = connection.createStatement();
-        String sql = String.format(
-                "UPDATE quests_done SET times_done = %d WHERE id = '%d';"
-                , id, newValue);
+    private void readFromDatabase(){
 
-        statement.executeUpdate(sql);
-
-        statement.close();
-    } catch (SQLException e) {
-
-        System.err.println( e.getClass().getName() + ": " + e.getMessage());
-    }
-
-    MainView.print("Records updated successfully");
-
-    }
-
-    public void loadQuestFromDb(Integer id) {
         try {
             Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(String.format(
-                    "SELECT * FROM quests_done WHERE id =  '%d';", id));
+            ResultSet resultSet = statement.executeQuery(
+                    "SELECT * FROM quests_done;");
 
             while (resultSet.next()) {
-
-                Integer timesDone = resultSet.getInt("times_done");
+                Integer id = resultSet.getInt("id");
                 Integer questId = resultSet.getInt("quest_id");
                 Integer studentId = resultSet.getInt("student_id");
 
-                this.itemsList.add(new DoneQuestModel(id, timesDone, questId, studentId));
+                this.itemsList.add(
+                        new DoneQuestModel(id, questId, studentId));
             }
 
             resultSet.close();
