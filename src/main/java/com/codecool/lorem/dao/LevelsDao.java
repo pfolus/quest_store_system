@@ -50,4 +50,19 @@ public class LevelsDao extends Dao<LevelModel> {
         }
         return levelName;
     }
+
+    public void addToDatabase(LevelModel levelModel) {
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(String.format("INSERT INTO levels (id, required_score, name)" + "\n" +
+                            "VALUES ('%d', '%d', '%s');",
+                    levelModel.getId(), levelModel.getRequiredScore(), levelModel.getName()));
+
+            statement.close();
+        } catch (SQLException e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+    }
 }

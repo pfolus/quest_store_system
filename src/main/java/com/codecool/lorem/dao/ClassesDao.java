@@ -31,4 +31,18 @@ public class ClassesDao extends Dao<ClassModel> {
             System.exit(0);
         }
     }
+
+    public void addToDatabase(ClassModel classModel) {
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(String.format("INSERT INTO classes (id, name)" + "\n" +
+                            "VALUES ('%d', '%s');", classModel.getId(), classModel.getName()));
+
+            statement.close();
+        } catch (SQLException e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+    }
 }
