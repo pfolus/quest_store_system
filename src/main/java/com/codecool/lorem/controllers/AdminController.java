@@ -2,6 +2,7 @@ package com.codecool.lorem.controllers;
 
 import com.codecool.lorem.dao.ClassesDao;
 import com.codecool.lorem.dao.MentorsDao;
+import com.codecool.lorem.dao.UsersDao;
 import com.codecool.lorem.models.AdminModel;
 import com.codecool.lorem.models.MentorModel;
 import com.codecool.lorem.views.AdminView;
@@ -47,7 +48,7 @@ public class AdminController {
     }
 
     private void createMentor() {
-        Integer id = this.mentorsDao.getNextId();
+        Integer id = UsersDao.getNextUserId();
         String name = UserView.getName();
         String surname = UserView.getSurname();
         String login = UserView.getLogin();
