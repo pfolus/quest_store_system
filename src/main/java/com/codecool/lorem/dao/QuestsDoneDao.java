@@ -42,15 +42,21 @@ public class QuestsDoneDao extends Dao<DoneQuestModel> {
             Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(
-                    "SELECT * FROM quests_done;");
+                    "SELECT quests_done.id, quest_id, student_id, name, description, quest_category_id, prize FROM quests_done " +
+                        "INNER JOIN quests ON quests_done.quest_id = quests.id;");
 
             while (resultSet.next()) {
                 Integer id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                Integer categoryId = resultSet.getInt("quest_category_id");
+                String description = resultSet.getString("description");
+                Integer prize = resultSet.getInt("prize");
                 Integer questId = resultSet.getInt("quest_id");
                 Integer studentId = resultSet.getInt("student_id");
 
                 this.itemsList.add(
-                        new DoneQuestModel(id, questId, studentId));
+                        new DoneQuestModel(id, name, categoryId, description,
+                                prize, questId, studentId));
             }
 
             resultSet.close();
