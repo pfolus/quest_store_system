@@ -5,7 +5,6 @@ import java.util.Iterator;
 
 public class StudentModel extends UserModel {
 
-    private Integer levelId;
     private Integer score;
     private Integer classId;
 
