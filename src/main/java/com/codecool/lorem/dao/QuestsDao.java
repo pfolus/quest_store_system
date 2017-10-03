@@ -3,7 +3,6 @@ package com.codecool.lorem.dao;
 import java.sql.*;
 
 import com.codecool.lorem.models.QuestModel;
-import com.codecool.lorem.models.StudentModel;
 import com.codecool.lorem.views.MainView;
 
 public class QuestsDao extends Dao<QuestModel> {

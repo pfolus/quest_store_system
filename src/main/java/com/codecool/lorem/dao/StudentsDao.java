@@ -1,11 +1,9 @@
 package com.codecool.lorem.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 
 import com.codecool.lorem.models.StudentModel;
 import com.codecool.lorem.views.MainView;
@@ -14,38 +12,6 @@ public class StudentsDao extends Dao<StudentModel> {
 
     public StudentsDao() {
         readFromDatabase();
-    }
-
-    public StudentModel createLoggedStudent(String id) {
-        StudentModel result = null;
-
-        try {
-            Connection connection = DatabaseConnection.getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(
-                    "SELECT * FROM users INNER JOIN students_data ON users.id = students_data.user_id " +
-                         "WHERE user_id = " + id +";");
-
-            if (resultSet.next()) {
-                Integer user_id = resultSet.getInt("user_id");
-                String name = resultSet.getString("name");
-                String surname = resultSet.getString("surname");
-                String login = resultSet.getString("login");
-                String password = resultSet.getString("password");
-                String email = resultSet.getString("email");
-                Integer score = resultSet.getInt("score");
-                Integer classId = resultSet.getInt("class_id");
-
-                result = new StudentModel(user_id, name, surname, login, password, email, score, classId);
-            }
-
-            resultSet.close();
-            statement.close();
-        } catch (SQLException e) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-        }
-
-        return result;
     }
 
     public void addToDatabase(StudentModel student) {

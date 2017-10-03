@@ -10,7 +10,6 @@ import com.codecool.lorem.dao.QuestsDoneDao;
 import com.codecool.lorem.models.BoughtArtifactModel;
 import com.codecool.lorem.models.DoneQuestModel;
 import com.codecool.lorem.views.StudentView;
-import com.codecool.lorem.views.StoreView;
 import com.codecool.lorem.models.StudentModel;
 import com.codecool.lorem.dao.WalletsDao;
 import com.codecool.lorem.models.WalletModel;

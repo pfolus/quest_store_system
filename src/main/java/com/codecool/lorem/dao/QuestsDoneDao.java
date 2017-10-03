@@ -4,10 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-import com.codecool.lorem.models.BoughtArtifactModel;
 import com.codecool.lorem.models.DoneQuestModel;
-import com.codecool.lorem.models.QuestModel;
-import com.codecool.lorem.models.StudentModel;
 import com.codecool.lorem.views.MainView;
 
 public class QuestsDoneDao extends Dao<DoneQuestModel> {

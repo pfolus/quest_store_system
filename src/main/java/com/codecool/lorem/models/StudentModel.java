@@ -1,8 +1,5 @@
 package com.codecool.lorem.models;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 public class StudentModel extends UserModel {
 
     private Integer score;

@@ -1,7 +1,5 @@
 package com.codecool.lorem.views;
 
-import com.codecool.lorem.models.BoughtArtifactModel;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 

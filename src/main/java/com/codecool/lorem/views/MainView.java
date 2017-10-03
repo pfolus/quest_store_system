@@ -1,6 +1,5 @@
 package com.codecool.lorem.views;
 
-import java.util.concurrent.TimeUnit;
 import java.util.Scanner;
 
 public class MainView {
