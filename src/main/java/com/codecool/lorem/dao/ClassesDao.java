@@ -6,7 +6,11 @@ import java.sql.*;
 
 public class ClassesDao extends Dao<ClassModel> {
 
-    public void loadClassesFromDb() {
+    public ClassesDao() {
+        loadFromDatabase();
+    }
+
+    public void loadFromDatabase() {
 
         try {
             Connection connection = DatabaseConnection.getConnection();
