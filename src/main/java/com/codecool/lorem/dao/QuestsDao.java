@@ -8,6 +8,10 @@ import com.codecool.lorem.views.MainView;
 
 public class QuestsDao extends Dao<QuestModel> {
 
+    public QuestsDao() {
+        readFromDatabase();
+    }
+
     public void addQuestToDatabase(String name, Integer categoryId, String description, Integer prize) {
         Statement statement = null;
 
@@ -30,7 +34,7 @@ public class QuestsDao extends Dao<QuestModel> {
 
     }
 
-    public void loadQuestsFromDb() {
+    private void readFromDatabase() {
 
         try {
             Connection connection = DatabaseConnection.getConnection();
