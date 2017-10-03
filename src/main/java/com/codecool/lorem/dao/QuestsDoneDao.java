@@ -1,10 +1,10 @@
 package com.codecool.lorem.dao;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import com.codecool.lorem.models.DoneQuestModel;
-import com.codecool.lorem.models.QuestModel;
-import com.codecool.lorem.models.StudentModel;
 import com.codecool.lorem.views.MainView;
 
 public class QuestsDoneDao extends Dao<DoneQuestModel> {
@@ -58,5 +58,11 @@ public class QuestsDoneDao extends Dao<DoneQuestModel> {
         } catch (SQLException e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
+    }
+
+    public ArrayList<DoneQuestModel> getItemsByStudentId(Integer id) {
+        return this.itemsList.stream()
+                .filter(artifact -> artifact.getStudentId().equals(id))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 }

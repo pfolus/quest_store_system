@@ -21,6 +21,7 @@ public class WalletsDao extends Dao<WalletModel> {
     public void updateWalletBalance(Integer student_id, Integer balance) {
         try {
             Connection connection = DatabaseConnection.getConnection();
+            connection.setAutoCommit(false);
             Statement statement = connection.createStatement();
             statement.executeUpdate("UPDATE wallets SET balance = " + balance +
                 " WHERE student_id = " + student_id + ";");
@@ -58,6 +59,7 @@ public class WalletsDao extends Dao<WalletModel> {
     public void addToDatabase(WalletModel wallet) {
         try {
             Connection connection = DatabaseConnection.getConnection();
+            connection.setAutoCommit(false);
             Statement statement = connection.createStatement();
 
             String sql = String.format(
@@ -68,6 +70,7 @@ public class WalletsDao extends Dao<WalletModel> {
             statement.executeUpdate(sql);
 
             statement.close();
+            connection.commit();
         } catch (SQLException e) {
 
             System.err.println( e.getClass().getName() + ": " + e.getMessage());

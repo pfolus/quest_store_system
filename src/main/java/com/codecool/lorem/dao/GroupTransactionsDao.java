@@ -1,6 +1,5 @@
 package com.codecool.lorem.dao;
 
-import com.codecool.lorem.models.BoughtArtifactModel;
 import com.codecool.lorem.models.GroupTransactionModel;
 import com.codecool.lorem.models.StudentModel;
 
@@ -44,17 +43,6 @@ public class GroupTransactionsDao extends Dao<GroupTransactionModel> {
         }
     }
 
-//    public ArrayList<BoughtArtifactModel> getItemsByStudentId(Integer id) {
-//        ArrayList<BoughtArtifactModel> studentsBoughtArtifacts = new ArrayList<>();
-//
-//        for (BoughtArtifactModel artifact:this.itemsList) {
-//            if (artifact.getStudentId().equals(id)) {
-//                studentsBoughtArtifacts.add(artifact);
-//            }
-//        }
-//        return studentsBoughtArtifacts;
-//    }
-//
     public void addTransactionToDatabase(GroupTransactionModel transaction) {
         Statement stmt = null;
 

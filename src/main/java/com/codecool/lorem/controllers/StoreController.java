@@ -22,13 +22,13 @@ public class StoreController {
     private ArtifactsDao artifactsDao;
     private ArtifactsBoughtDao boughtArtifactsDao;
 
-    public StoreController(StudentModel student, WalletModel wallet) {
+    public StoreController(StudentModel student, WalletModel wallet, ArtifactsBoughtDao boughtArtifactsDao) {
         this.student = student;
         this.wallet = wallet;
         this.walletsDao = new WalletsDao();
         this.transactionsDao = new GroupTransactionsDao();
         this.artifactsDao = new ArtifactsDao();
-        this.boughtArtifactsDao = new ArtifactsBoughtDao();
+        this.boughtArtifactsDao = boughtArtifactsDao;
     }
 
     public void runController() {

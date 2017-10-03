@@ -6,9 +6,10 @@ import java.util.Arrays;
 
 import com.codecool.lorem.dao.ArtifactsBoughtDao;
 import com.codecool.lorem.dao.LevelsDao;
+import com.codecool.lorem.dao.QuestsDoneDao;
 import com.codecool.lorem.models.BoughtArtifactModel;
+import com.codecool.lorem.models.DoneQuestModel;
 import com.codecool.lorem.views.StudentView;
-import com.codecool.lorem.views.StoreView;
 import com.codecool.lorem.models.StudentModel;
 import com.codecool.lorem.dao.WalletsDao;
 import com.codecool.lorem.models.WalletModel;
@@ -19,12 +20,14 @@ public class StudentController {
     private LevelsDao levelsDao;
     private WalletModel wallet;
     private ArtifactsBoughtDao boughtArtifactsDao;
+    private QuestsDoneDao questsDoneDao;
 
     public StudentController(StudentModel student) {
         this.student = student;
         this.levelsDao = new LevelsDao();
         this.wallet = new WalletsDao().getStudentWallet(student.getId());
         this.boughtArtifactsDao = new ArtifactsBoughtDao();
+        this.questsDoneDao = new QuestsDoneDao();
     }
 
     public void runController() {
@@ -39,14 +42,21 @@ public class StudentController {
             if (choice == 1) {
                 showWallet();
             } else if (choice == 2) {
-                StoreController storeController = new StoreController(this.student, this.wallet);
+                StoreController storeController = new StoreController(this.student, this.wallet, this.boughtArtifactsDao);
                 storeController.runController();
             } else if (choice == 3) {
                 showLevel();
             } else if (choice == 4) {
                 showBoughtArtifacts();
+            } else if (choice == 5) {
+                showDoneQuests();
             }
         }
+    }
+
+    private void showDoneQuests() {
+        ArrayList<DoneQuestModel> doneQuests = this.questsDoneDao.getItemsByStudentId(this.student.getId());
+        StudentView.showItems(doneQuests);
     }
 
     public void showWallet() {
@@ -61,7 +71,7 @@ public class StudentController {
 
     public void showBoughtArtifacts() {
         ArrayList<BoughtArtifactModel> boughtArtifacts = this.boughtArtifactsDao.getItemsByStudentId(this.student.getId());
-        StudentView.showBoughtArtifacts(boughtArtifacts);
+        StudentView.showItems(boughtArtifacts);
     }
 
     private static Integer chooseOption() {
