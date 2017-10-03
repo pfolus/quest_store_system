@@ -12,6 +12,10 @@ public class MentorModel extends UserModel {
     }
 
     public Integer getClassId() {
-        return classId;
+        return this.classId;
+    }
+
+    public void setClassId(Integer classId) {
+        this.classId = classId;
     }
 }
