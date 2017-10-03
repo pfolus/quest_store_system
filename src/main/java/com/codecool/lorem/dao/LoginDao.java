@@ -1,8 +1,8 @@
 package com.codecool.lorem.dao;
 
-import com.codecool.lorem.models.PendingUser;
-
 import java.sql.*;
+
+import com.codecool.lorem.models.PendingUser;
 
 public class LoginDao {
 
