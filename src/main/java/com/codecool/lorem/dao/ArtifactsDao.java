@@ -13,13 +13,11 @@ public class ArtifactsDao extends Dao<ArtifactModel> {
     }
 
     private void readFromDatabase() {
-        Statement stmt = null;
-        ResultSet rs = null;
 
         try {
             Connection c = DatabaseConnection.getConnection();
-            stmt = c.createStatement();
-            rs = stmt.executeQuery("SELECT * FROM artifacts;");
+            Statement stmt = c.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM artifacts;");
 
             while (rs.next()) {
 
@@ -40,25 +38,19 @@ public class ArtifactsDao extends Dao<ArtifactModel> {
         }
     }
 
-    public void addArtifact(String name, Integer categoryId, String description, Integer price) {
-        Statement stmt = null;
-        ResultSet rs = null;
+    public void addToDatabase(ArtifactModel artifact) {
 
         try {
             Connection c = DatabaseConnection.getConnection();
             c.setAutoCommit(false);
 
-            stmt = c.createStatement();
+            Statement stmt = c.createStatement();
 
-            stmt.executeUpdate("INSERT INTO artifacts (name, description, price, artifact_category_id)"
-                    + "VALUES ('" + name + "', '" + description + "', " + price + ", " + categoryId + ")");
-            rs = stmt.executeQuery("SELECT id from artifacts WHERE name = '" + name + "'");
+            stmt.executeUpdate(String.format(
+                    "INSERT INTO artifacts (name, description, price, artifact_category_id)" +
+                    "VALUES ('%s', '%s', '%d', '%d');", artifact.getName(), artifact.getDescription(),
+                    artifact.getPrice(), artifact.getCategoryId()));
 
-            while (rs.next()) {
-                Integer id = rs.getInt("id");
-                ArtifactModel artifact = new ArtifactModel(id, name, categoryId, description, price);
-                this.itemsList.add(artifact);
-            }
             stmt.close();
             c.commit();
         } catch ( Exception e ) {
