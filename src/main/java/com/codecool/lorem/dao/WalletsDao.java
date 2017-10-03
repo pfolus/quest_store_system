@@ -1,6 +1,7 @@
 package com.codecool.lorem.dao;
 
 import com.codecool.lorem.models.WalletModel;
+import com.codecool.lorem.views.MainView;
 
 import java.sql.*;
 
@@ -30,6 +31,7 @@ public class WalletsDao extends Dao<WalletModel> {
         }
     }
 
+
     private void readFromDatabase(){
         try {
             Connection connection = DatabaseConnection.getConnection();
@@ -50,5 +52,27 @@ public class WalletsDao extends Dao<WalletModel> {
         } catch (SQLException e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
+    }
+
+    public void addToDatabase(WalletModel wallet) {
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            Statement statement = connection.createStatement();
+
+            String sql = String.format(
+                    "INSERT INTO wallets (id, balance, student_id) " +
+                            "VALUES ('%d', '%d', '%d');", wallet.getId(),
+                    wallet.getBalance(), wallet.getStudentId());
+
+            statement.executeUpdate(sql);
+
+            statement.close();
+        } catch (SQLException e) {
+
+            System.err.println( e.getClass().getName() + ": " + e.getMessage());
+        }
+
+        MainView.print("Records created successfully");
+
     }
  }
