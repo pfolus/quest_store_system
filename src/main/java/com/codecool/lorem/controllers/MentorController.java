@@ -8,27 +8,28 @@ import com.codecool.lorem.views.UserView;
 
 public class MentorController {
 
-    private StudentsDao studentsDao = new StudentsDao();
-    private QuestsDao questsDao = new QuestsDao();
-    private ClassesDao classesDao = new ClassesDao();
-    private QuestCategoriesDao questCategoriesDao = new QuestCategoriesDao();
-    private ArtifactCategoriesDao artifactCategoriesDao = new ArtifactCategoriesDao();
-    private ArtifactsDao artifactsDao = new ArtifactsDao();
-    private WalletsDao walletsDao = new WalletsDao();
-    private ArtifactsBoughtDao boughtDao = new ArtifactsBoughtDao();
-    private QuestsDoneDao questsDoneDao = new QuestsDoneDao();
+    private StudentsDao studentsDao;
+    private QuestsDao questsDao;
+    private ClassesDao classesDao;
+    private QuestCategoriesDao questCategoriesDao;
+    private ArtifactCategoriesDao artifactCategoriesDao;
+    private ArtifactsDao artifactsDao;
+    private WalletsDao walletsDao;
+    private ArtifactsBoughtDao boughtDao;
+    private QuestsDoneDao questsDoneDao;
 
 
     public MentorController() {
 
-        this.studentsDao.loadStudentsFromDb();
-        this.questsDao.loadQuestsFromDb();
-        this.classesDao.loadClassesFromDb();
-        this.questCategoriesDao.loadQuestCategoriesFromDb();
-        this.artifactCategoriesDao.readFromDatabase();
-        this.artifactsDao.readFromDatabase();
-        this.walletsDao.loadAllWalletsFromDb();
-        this.boughtDao.readFromDatabase();
+        studentsDao = new StudentsDao();
+        questsDao = new QuestsDao();
+        classesDao = new ClassesDao();
+        questCategoriesDao = new QuestCategoriesDao();
+        artifactCategoriesDao = new ArtifactCategoriesDao();
+        artifactsDao = new ArtifactsDao();
+        walletsDao = new WalletsDao();
+        boughtDao = new ArtifactsBoughtDao();
+        questsDoneDao = new QuestsDoneDao();
     }
 
     public void runController(MentorModel mentor) {

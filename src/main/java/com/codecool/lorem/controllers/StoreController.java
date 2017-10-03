@@ -48,10 +48,9 @@ public class StoreController {
 
             } else if (choice.equals(1)) {
 
-                if (transaction.getRequiredAcceptances().equals(transaction.getStudentsAccepted() + 1)) {
-                    //buy
-                } else {
-                    transactions.markTransaction(transaction, student);
+                transactions.markTransaction(transaction, student);
+                if (transactions.isTransactionAcceptedByAll(transactionId)) {
+                    System.out.println("DODAJ IM KURWA");
                 }
             }
         }
@@ -93,7 +92,7 @@ public class StoreController {
     }
 
     private static ArtifactModel chooseArtifactById(ArtifactsDao artifacts) {
-        getGroupArtifacts(artifacts);
+
         Integer id = chooseArtifactId();
         ArtifactModel artifact = artifacts.getById(id);
 
@@ -118,6 +117,7 @@ public class StoreController {
 
     private static void buyArtifactWithTeammates(StudentModel student, WalletModel wallet) {
         ArtifactsDao artifacts = new ArtifactsDao();
+        getGroupArtifacts(artifacts);
         ArtifactModel artifact = chooseArtifactById(artifacts);
 
         ArrayList<StudentModel> buyers = chooseStudentsToBuyAnArtifact();
@@ -138,7 +138,7 @@ public class StoreController {
         Integer transactionId = transactions.getNextId();
 
         for (StudentModel s:buyers) {
-            GroupTransactionModel transaction = new GroupTransactionModel(transactionId, artifact.getId(), 1, buyers.size(), s.getId(), pricePerStudent, "Not Marked");
+            GroupTransactionModel transaction = new GroupTransactionModel(transactionId, artifact.getId(), s.getId(), pricePerStudent, "Not Marked");
             transactions.addTransactionToDatabase(transaction);
         }
     }

@@ -8,6 +8,10 @@ import com.codecool.lorem.models.BoughtArtifactModel;
 
 public class ArtifactsBoughtDao extends Dao<BoughtArtifactModel> {
 
+    public ArtifactsBoughtDao() {
+        readFromDatabase();
+    }
+
     public void readFromDatabase() {
         Statement stmt = null;
         ResultSet rs = null;
