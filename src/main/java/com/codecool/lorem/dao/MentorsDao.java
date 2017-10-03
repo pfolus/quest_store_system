@@ -1,10 +1,8 @@
 package com.codecool.lorem.dao;
 
 import java.sql.*;
-import java.util.Iterator;
 
 import com.codecool.lorem.models.MentorModel;
-import com.codecool.lorem.models.StudentModel;
 
 public class MentorsDao extends Dao<MentorModel> {
 
@@ -38,7 +36,7 @@ public class MentorsDao extends Dao<MentorModel> {
         }
     }
 
-    public void addToBatabase(MentorModel mentor) {
+    public void addToDatabase(MentorModel mentor) {
         try {
             Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();

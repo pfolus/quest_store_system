@@ -13,11 +13,9 @@ public class QuestsDao extends Dao<QuestModel> {
     }
 
     public void addQuestToDatabase(String name, Integer categoryId, String description, Integer prize) {
-        Statement statement = null;
-
         try {
             Connection connection = DatabaseConnection.getConnection();
-            statement = connection.createStatement();
+            Statement statement = connection.createStatement();
 
             String sql = String.format(
                     "INSERT INTO quests (name, description, quest_category_id, prize) " +
@@ -31,11 +29,9 @@ public class QuestsDao extends Dao<QuestModel> {
         }
 
         MainView.print("Records created successfully");
-
     }
 
     private void readFromDatabase() {
-
         try {
             Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();

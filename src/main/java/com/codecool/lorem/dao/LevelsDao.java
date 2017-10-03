@@ -43,7 +43,7 @@ public class LevelsDao extends Dao<LevelModel> {
 
         Collections.sort(this.itemsList, comparing(LevelModel::getRequiredScore));
 
-        for (LevelModel level:this.itemsList) {
+        for (LevelModel level : this.itemsList) {
             if (score >= level.getRequiredScore()) {
                 levelName = level.getName();
             }

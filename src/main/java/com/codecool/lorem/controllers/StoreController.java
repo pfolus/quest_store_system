@@ -62,7 +62,7 @@ public class StoreController {
 
         ArrayList<StudentModel> buyers = transactions.getTransactionParticipants(transaction.getId());
         for (StudentModel s : buyers) {
-            boughtArtifacts.addBoughtArtifactToDatabase(transaction.getArtifactId(), s.getId());
+            boughtArtifacts.addToDatabase(transaction.getArtifactId(), s.getId());
         }
     }
 
@@ -98,7 +98,7 @@ public class StoreController {
 
     private static void addBoughtArtifactToDatabase(ArtifactModel artifact, StudentModel student) {
         ArtifactsBoughtDao boughtArtifacts = new ArtifactsBoughtDao();
-        boughtArtifacts.addBoughtArtifactToDatabase(artifact.getId(), student.getId());
+        boughtArtifacts.addToDatabase(artifact.getId(), student.getId());
     }
 
     private static ArtifactModel chooseArtifactById(ArtifactsDao artifacts) {

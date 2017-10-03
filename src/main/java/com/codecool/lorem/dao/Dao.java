@@ -33,5 +33,4 @@ public abstract class Dao<T extends AbstractItemModel> {
                          .max()
                          .orElse(0) + 1;
     }
-
 }

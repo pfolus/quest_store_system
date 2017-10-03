@@ -2,7 +2,7 @@ package com.codecool.lorem.dao;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.stream.Collectors;
 
 import com.codecool.lorem.models.BoughtArtifactModel;
 
@@ -45,17 +45,12 @@ public class ArtifactsBoughtDao extends Dao<BoughtArtifactModel> {
     }
 
     public ArrayList<BoughtArtifactModel> getItemsByStudentId(Integer id) {
-        ArrayList<BoughtArtifactModel> studentsBoughtArtifacts = new ArrayList<>();
-
-        for (BoughtArtifactModel artifact:this.itemsList) {
-            if (artifact.getStudentId().equals(id)) {
-                studentsBoughtArtifacts.add(artifact);
-            }
-        }
-        return studentsBoughtArtifacts;
+        return this.itemsList.stream()
+                             .filter(artifact -> artifact.getStudentId().equals(id))
+                             .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public void addBoughtArtifactToDatabase(Integer artifactId, Integer studentId) {
+    public void addToDatabase(Integer artifactId, Integer studentId) {
         Statement stmt = null;
 
         try {

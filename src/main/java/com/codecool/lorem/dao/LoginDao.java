@@ -2,7 +2,11 @@ package com.codecool.lorem.dao;
 
 import com.codecool.lorem.models.PendingUser;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 
 public class LoginDao {
 
@@ -16,8 +20,7 @@ public class LoginDao {
                     "SELECT type, id FROM users WHERE login = '" + login + "' AND password = '" + password + "';");
 
             if (resultSet.next()) {
-                pendingUser = new PendingUser(resultSet.getInt("id"),
-                        resultSet.getString("type"));
+                pendingUser = new PendingUser(resultSet.getInt("id"), resultSet.getString("type"));
             } else {
                 throw new SQLException();
             }

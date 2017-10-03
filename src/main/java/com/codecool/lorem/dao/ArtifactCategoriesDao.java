@@ -10,30 +10,26 @@ public class ArtifactCategoriesDao extends Dao<ArtifactCategoryModel> {
     }
 
     private void readFromDatabase() {
-        Connection c = null;
-        Statement stmt = null;
-        ResultSet rs = null;
-
         try {
             Connection connection = DatabaseConnection.getConnection();
-            stmt = connection.createStatement();
-            rs = stmt.executeQuery("SELECT id, name FROM artifact_categories;");
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT id, name FROM artifact_categories;");
 
-            while (rs.next()) {
+            while (resultSet.next()) {
 
-                Integer id = rs.getInt("id");
-                String name = rs.getString("name");
+                Integer id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
 
                 this.itemsList.add(new ArtifactCategoryModel(id, name));
             }
-            rs.close();
-            stmt.close();
+            resultSet.close();
+            statement.close();
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
     }
 
-    public void addCategory(String name) {
+    public void addToDatabase(String name) {
         Connection c = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -61,13 +57,10 @@ public class ArtifactCategoriesDao extends Dao<ArtifactCategoryModel> {
     }
 
     public ArtifactCategoryModel getCategoryByName(String name) {
-
-        for (ArtifactCategoryModel category:this.itemsList) {
-            if (category.getName().equals(name)) {
-                return category;
-            }
-        }
-        return null;
+        return this.itemsList.stream()
+                             .filter(category -> category.getName().equals(name))
+                             .findFirst()
+                             .orElse(null);
     }
 
 }

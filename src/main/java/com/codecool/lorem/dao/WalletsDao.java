@@ -10,30 +10,11 @@ public class WalletsDao extends Dao<WalletModel> {
         readFromDatabase();
     }
 
-    public WalletModel getStudentWallet(Integer id) {
-        WalletModel wallet = null;
-
-        try {
-            Connection connection = DatabaseConnection.getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(
-                    "SELECT * FROM wallets WHERE student_id = " + id + ";");
-
-            if (resultSet.next()) {
-                Integer wallet_id = resultSet.getInt("id");
-                Integer balance = resultSet.getInt("balance");
-                Integer studentId = resultSet.getInt("student_id");
-
-                wallet = new WalletModel(wallet_id, balance, studentId);
-            }
-
-            resultSet.close();
-            statement.close();
-        } catch (SQLException e) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-        }
-
-        return wallet;
+    public WalletModel getStudentWallet(Integer studentId) {
+        return getItems().stream()
+                         .filter(item -> item.getStudentId().equals(studentId))
+                         .findFirst()
+                         .orElse(null);
     }
 
     public void updateWalletBalance(Integer student_id, Integer balance) {
@@ -49,8 +30,7 @@ public class WalletsDao extends Dao<WalletModel> {
         }
     }
 
-    public void readFromDatabase(){
-
+    private void readFromDatabase(){
         try {
             Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();
