@@ -48,23 +48,20 @@ public class StudentsDao extends Dao<StudentModel> {
         return result;
     }
 
-    public void addStudentToDatabase(String name, String surname, String login,
-                                            String password, String email, Integer classId) {
-
-        Statement statement = null;
-        Integer startingBalance = 1000;
+    public void addToDatabase(StudentModel student) {
 
         try {
             Connection connection = DatabaseConnection.getConnection();
-            statement = connection.createStatement();
+            Statement statement = connection.createStatement();
             String sql = String.format(
                     "INSERT INTO users (name, surname, login, password, email, type) " +
                     "VALUES ('%s', '%s', '%s', '%s', '%s', 'student'); " +
                     "INSERT INTO students_data (user_id, score, class_id) " +
-                    "VALUES (last_insert_rowid(), 0, '%d');" +
+                    "VALUES ('%d', '%d', '%d');" +
                     "INSERT INTO wallets (balance, student_id) " +
-                    "VALUES (%d, last_insert_rowid());", name, surname, login, password, email, classId, startingBalance);
-
+                    "VALUES ('%d', '%d');", student.getName(), student.getSurname(),
+                    student.getLogin(), student.getPassword(), student.getEmail(), student.getId(),
+                    student.getScore(), student.getClassId(), student.getScore(), student.getId());
 
             statement.executeUpdate(sql);
 
@@ -102,38 +99,6 @@ public class StudentsDao extends Dao<StudentModel> {
 
             resultSet.close();
             statement.close();
-        } catch (SQLException e) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-        }
-    }
-
-    public void loadStudentFromDbByLogin(String login){
-
-        try {
-            Connection connection = DatabaseConnection.getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(String.format(
-                    "SELECT * FROM users INNER JOIN students_data ON users.id = students_data.user_id;" +
-                    "WHERE login =  '%s';", login));
-
-            while (resultSet.next()) {
-
-                Integer user_id = resultSet.getInt("user_id");
-                String name = resultSet.getString("name");
-                String surname = resultSet.getString("surname");
-                String password = resultSet.getString("password");
-                String email = resultSet.getString("email");
-                Integer score = resultSet.getInt("score");
-                Integer classId = resultSet.getInt("class_id");
-
-                this.itemsList.add(
-                        new StudentModel(user_id, name, surname, login,
-                                password, email, score, classId));
-            }
-
-            resultSet.close();
-            statement.close();
-
         } catch (SQLException e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
