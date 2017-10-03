@@ -12,6 +12,10 @@ import com.codecool.lorem.views.MainView;
 
 public class StudentsDao extends Dao<StudentModel> {
 
+    public StudentsDao() {
+        readFromDatabase();
+    }
+
     public StudentModel createLoggedStudent(String id) {
         StudentModel result = null;
 
@@ -73,7 +77,7 @@ public class StudentsDao extends Dao<StudentModel> {
 
     }
 
-    public void loadStudentsFromDb(){
+    private void readFromDatabase(){
 
         try {
             Connection connection = DatabaseConnection.getConnection();
@@ -105,8 +109,8 @@ public class StudentsDao extends Dao<StudentModel> {
 
     public void loadStudentFromDbByLogin(String login){
 
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
-
+        try {
+            Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(String.format(
                     "SELECT * FROM users INNER JOIN students_data ON users.id = students_data.user_id;" +

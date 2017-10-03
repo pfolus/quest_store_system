@@ -8,6 +8,10 @@ import com.codecool.lorem.models.BoughtArtifactModel;
 
 public class ArtifactsBoughtDao extends Dao<BoughtArtifactModel> {
 
+    public ArtifactsBoughtDao() {
+        readFromDatabase();
+    }
+
     public void readFromDatabase() {
         Statement stmt = null;
         ResultSet rs = null;
@@ -70,7 +74,7 @@ public class ArtifactsBoughtDao extends Dao<BoughtArtifactModel> {
         }
     }
 
-    public void deleteArtifactFromDb(Integer id) {
+    public void updateBoughtArtifact(BoughtArtifactModel artifact) {
         Statement stmt = null;
 
         try {
@@ -80,21 +84,13 @@ public class ArtifactsBoughtDao extends Dao<BoughtArtifactModel> {
             stmt = c.createStatement();
 
             stmt.executeUpdate(String.format(
-                    "DELETE FROM bought_artifacts WHERE id = %d;", id));
+                    "UPDATE bought_artifacts SET is_used = '1' "
+                    + "WHERE id = '%d'", artifact.getId()));
 
             stmt.close();
             c.commit();
         } catch ( Exception e ) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-        }
-    }
-
-    public void deleteArtifactFromDao(Integer id) {
-        Iterator<BoughtArtifactModel> iterator = this.getItems().iterator();
-        while(iterator.hasNext()){
-            if(iterator.next().getId().equals(id)) {
-                iterator.remove();
-            }
+            System.err.println( e.getClass().getName() + ": " + e.getMessage());
         }
     }
 }
