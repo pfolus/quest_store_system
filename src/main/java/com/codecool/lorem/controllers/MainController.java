@@ -33,7 +33,8 @@ public class MainController {
 
         if (type.equals("student")) {
             StudentsDao studentsDao = new StudentsDao();
-            StudentController.runController(studentsDao.createLoggedStudent(String.valueOf(id)));
+            StudentController studentController = new StudentController();
+            studentController.runController(studentsDao.createLoggedStudent(String.valueOf(id)));
         } else if (type.equals("mentor")) {
             MentorsDao mentorsDao = new MentorsDao();
             MentorController mentorController = new MentorController();
