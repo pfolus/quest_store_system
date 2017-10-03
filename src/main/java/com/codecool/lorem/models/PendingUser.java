@@ -1,16 +1,16 @@
 package com.codecool.lorem.models;
 
-public class PendingUserModel {
+public class PendingUser {
 
-    private String id;
+    private Integer id;
     private String type;
 
-    public PendingUserModel(String id, String type) {
+    public PendingUser(Integer id, String type) {
         this.id = id;
         this.type = type;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 

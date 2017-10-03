@@ -11,7 +11,6 @@ public class ClassesDao extends Dao<ClassModel> {
     }
 
     private void readFromDatabase() {
-
         try {
             Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();

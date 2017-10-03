@@ -35,7 +35,7 @@ public class MentorController {
     public void runController(MentorModel mentor) {
 
         Integer choice = 0;
-        final int EXIT = 9;
+        final int EXIT = 9; 
 
         while (choice != EXIT) {
             MentorView.showMenu();

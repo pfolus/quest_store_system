@@ -47,6 +47,14 @@ public class UserModel extends AbstractItemModel {
         this.password = password;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public String getSurname() {
+        return this.surname;
+    }
+
     public String getFullName() {
         return this.name + " " + this.surname;
     }
