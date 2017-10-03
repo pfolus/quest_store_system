@@ -6,7 +6,11 @@ import com.codecool.lorem.models.QuestCategoryModel;
 
 public class QuestCategoriesDao extends Dao<QuestCategoryModel> {
 
-    public void loadQuestCategoriesFromDb(){
+    public QuestCategoriesDao() {
+        readFromDatabase();
+    }
+
+    private void readFromDatabase(){
 
         try {
             Connection connection = DatabaseConnection.getConnection();

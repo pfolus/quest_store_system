@@ -6,6 +6,10 @@ import java.sql.*;
 
 public class WalletsDao extends Dao<WalletModel> {
 
+    public WalletsDao() {
+        readFromDatabase();
+    }
+
     public WalletModel getStudentWallet(Integer id) {
         WalletModel wallet = null;
 
@@ -45,9 +49,10 @@ public class WalletsDao extends Dao<WalletModel> {
         }
     }
 
-    public void loadAllWalletsFromDb(){
+    public void readFromDatabase(){
 
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db")) {
+        try {
+            Connection connection = DatabaseConnection.getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM wallets;");
 

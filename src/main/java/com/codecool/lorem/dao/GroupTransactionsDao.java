@@ -29,13 +29,11 @@ public class GroupTransactionsDao extends Dao<GroupTransactionModel> {
 
                 Integer id = rs.getInt("id");
                 Integer artifactId = rs.getInt("artifact_id");
-                Integer studentsAccepted = rs.getInt("students_accepted");
-                Integer requiredAcceptances = rs.getInt("required_acceptances");
                 Integer studentId = rs.getInt("student_id");
                 Integer price = rs.getInt("price");
                 String status = rs.getString("status");
 
-                GroupTransactionModel transaction = new GroupTransactionModel(id, artifactId, studentsAccepted, requiredAcceptances, studentId, price, status);
+                GroupTransactionModel transaction = new GroupTransactionModel(id, artifactId, studentId, price, status);
 
                 this.itemsList.add(transaction);
             }
@@ -62,8 +60,6 @@ public class GroupTransactionsDao extends Dao<GroupTransactionModel> {
 
         Integer id = transaction.getId();
         Integer artifactId = transaction.getArtifactId();
-        Integer studentsAccepted = transaction.getStudentsAccepted();
-        Integer requiredAcceptances = transaction.getRequiredAcceptances();
         Integer studentId = transaction.getStudentId();
         Integer price = transaction.getPrice();
         String status = transaction.getStatus();
@@ -75,8 +71,8 @@ public class GroupTransactionsDao extends Dao<GroupTransactionModel> {
 
             stmt = c.createStatement();
 
-            stmt.executeUpdate("INSERT INTO group_transactions (id, artifact_id, students_accepted, required_acceptances, student_id, price, status)"
-                    + " VALUES (" + id + ", " + artifactId + ", " + studentsAccepted + ", " + requiredAcceptances + ", " + studentId + ", " + price + ",'" + status + "');");
+            stmt.executeUpdate("INSERT INTO group_transactions (id, artifact_id, student_id, price, status)"
+                    + " VALUES (" + id + ", " + artifactId + ", " + studentId + ", " + price + ",'" + status + "');");
 
             stmt.close();
             c.commit();
@@ -118,9 +114,7 @@ public class GroupTransactionsDao extends Dao<GroupTransactionModel> {
 
     public void markTransaction(GroupTransactionModel transaction, StudentModel student) {
 
-        Integer id = transaction.getId();
         Integer studentId = student.getId();
-        Integer acceptances = transaction.getStudentsAccepted();
         Statement stmt = null;
 //
         try {
@@ -129,9 +123,6 @@ public class GroupTransactionsDao extends Dao<GroupTransactionModel> {
 
             stmt = c.createStatement();
 
-            stmt.executeUpdate(String.format("UPDATE group_transactions SET students_accepted = " + acceptances + " WHERE id = " + id + ";"));
-            stmt.close();
-            c.commit();
             stmt.executeUpdate(String.format("UPDATE group_transactions SET status = 'Marked' WHERE student_id = " + studentId + ";"));
 
 
@@ -140,6 +131,11 @@ public class GroupTransactionsDao extends Dao<GroupTransactionModel> {
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
+    }
+
+    public boolean isTransactionAcceptedByAll(Integer transactionId) {
+        System.out.println("TODO xD");
+        return false;
     }
 
     //
