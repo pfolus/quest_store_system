@@ -5,7 +5,11 @@ import com.codecool.lorem.models.ArtifactCategoryModel;
 
 public class ArtifactCategoriesDao extends Dao<ArtifactCategoryModel> {
 
-    public void readFromDatabase() {
+    public ArtifactCategoriesDao() {
+        readFromDatabase();
+    }
+
+    private void readFromDatabase() {
         Connection c = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -54,6 +58,16 @@ public class ArtifactCategoriesDao extends Dao<ArtifactCategoryModel> {
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
+    }
+
+    public ArtifactCategoryModel getCategoryByName(String name) {
+
+        for (ArtifactCategoryModel category:this.itemsList) {
+            if (category.getName().equals(name)) {
+                return category;
+            }
+        }
+        return null;
     }
 
 }

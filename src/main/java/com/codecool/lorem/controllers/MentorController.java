@@ -87,7 +87,6 @@ public class MentorController {
         String name = MainView.getString("Provide artifact's name: ");
         String description = MainView.getString("Provide artifact's description: ");
         Integer price = MentorView.getIntInput("Provide artifact's price: ");
-
         listElements(artifactCategoriesDao);
         ArtifactCategoryModel category = chooseExistingObject(artifactCategoriesDao);
         this.artifactsDao.addArtifact(name, category.getId(), description, price);
@@ -133,7 +132,6 @@ public class MentorController {
         BoughtArtifactModel boughtArtifact = chooseExistingObject(boughtDao);
         boughtArtifact.markAsUsed();
         boughtDao.updateBoughtArtifact(boughtArtifact);
-
     }
 
     private void listBoughtArtifacts() {

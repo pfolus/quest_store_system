@@ -3,11 +3,16 @@ package com.codecool.lorem.dao;
 import java.sql.*;
 import java.util.ArrayList;
 
+import com.codecool.lorem.models.ArtifactCategoryModel;
 import com.codecool.lorem.models.ArtifactModel;
 
 public class ArtifactsDao extends Dao<ArtifactModel> {
 
-    public void readFromDatabase() {
+    public ArtifactsDao() {
+        readFromDatabase();
+    }
+
+    private void readFromDatabase() {
         Statement stmt = null;
         ResultSet rs = null;
 
@@ -61,41 +66,18 @@ public class ArtifactsDao extends Dao<ArtifactModel> {
         }
     }
 
-//    public ArtifactModel getArtifactById(Integer id) {
-//
-//        Connection c = null;
-//        Statement stmt = null;
-//        ResultSet rs = null;
-//        ArtifactModel artifact = null;
-//
-//        try {
-//
-//            c = DriverManager.getConnection("jdbc:sqlite:db/quest-store.db");
-//            c.setAutoCommit(false);
-//
-//            stmt = c.createStatement();
-//
-//            rs = stmt.executeQuery("SELECT * from artifacts WHERE id = " + id);
-//
-//            while (rs.next()) {
-//
-//                String name = rs.getString("name");
-//                String description = rs.getString("description");
-//                Integer price = rs.getInt("price");
-//                Integer categoryId = rs.getInt("artifact_category_id");
-//
-//                artifact = new ArtifactModel(id, name, categoryId, description, price);
-//            }
-//            stmt.close();
-//            c.commit();
-//            c.close();
-//
-//
-//        } catch ( Exception e ) {
-//            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-//        }
-//        return artifact;
-//    }
+    public ArrayList<ArtifactModel> getGroupArtifacts() {
 
+        ArtifactCategoriesDao artifactCategories = new ArtifactCategoriesDao();
+        ArrayList<ArtifactModel> groupArtifacts = new ArrayList<>();
+        Integer groupCategoryId = artifactCategories.getCategoryByName("Group").getId();
+
+        for (ArtifactModel artifact:this.itemsList) {
+            if (artifact.getCategoryId().equals(groupCategoryId)) {
+                groupArtifacts.add(artifact);
+            }
+        }
+        return groupArtifacts;
+    }
 
 }

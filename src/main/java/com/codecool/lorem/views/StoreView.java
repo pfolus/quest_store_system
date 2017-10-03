@@ -1,6 +1,8 @@
 package com.codecool.lorem.views;
 
 import com.codecool.lorem.models.ArtifactModel;
+import com.codecool.lorem.models.GroupTransactionModel;
+import com.codecool.lorem.models.StudentModel;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -10,6 +12,7 @@ public class StoreView {
     public static void showMenu() {
         String[] menuList = {"1. Buy an artifact",
                              "2. Buy an artifact with teammates",
+                             "3. Manage pending transactions",
                              "0. Exit"};
 
         for (String item : menuList) {
@@ -33,6 +36,14 @@ public class StoreView {
         return id;
     }
 
+    public static Integer chooseTransactionId() {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Provide transaction id or type 0 to exit: ");
+        Integer id = in.nextInt();
+
+        return id;
+    }
+
     public static Integer chooseOption() {
         Scanner in = new Scanner(System.in);
         System.out.println("Choose function number: ");
@@ -51,5 +62,25 @@ public class StoreView {
 
     public static void itemBoughtSuccesfully() {
         System.out.println("You bought an artifact.");
+    }
+
+    public static void showStudents(ArrayList<StudentModel> students) {
+        students.forEach(System.out::println);
+    }
+
+    public static void showTransactions(ArrayList<GroupTransactionModel> transactions) {
+        for (GroupTransactionModel transaction : transactions) {
+            System.out.println(transaction);
+        }
+    }
+
+    public static Integer acceptOrDeclineTransaction(GroupTransactionModel transaction) {
+        System.out.println(transaction);
+
+        Scanner in = new Scanner(System.in);
+        System.out.println("Type 0 to decline or 1 to accept: ");
+        Integer choice = in.nextInt();
+
+        return choice;
     }
 }

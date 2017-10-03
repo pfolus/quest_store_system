@@ -12,6 +12,10 @@ import com.codecool.lorem.views.MainView;
 
 public class StudentsDao extends Dao<StudentModel> {
 
+    public StudentsDao() {
+        loadStudentsFromDb();
+    }
+
     public StudentModel createLoggedStudent(String id) {
         StudentModel result = null;
 
@@ -73,7 +77,7 @@ public class StudentsDao extends Dao<StudentModel> {
 
     }
 
-    public void loadStudentsFromDb(){
+    private void loadStudentsFromDb(){
 
         try {
             Connection connection = DatabaseConnection.getConnection();
