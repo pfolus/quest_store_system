@@ -52,6 +52,7 @@ public class StudentsDao extends Dao<StudentModel> {
 
         try {
             Connection connection = DatabaseConnection.getConnection();
+            connection.setAutoCommit(false);
             Statement statement = connection.createStatement();
             String sql = String.format(
                     "INSERT INTO users (name, surname, login, password, email, type) " +
@@ -64,8 +65,10 @@ public class StudentsDao extends Dao<StudentModel> {
                     student.getScore(), student.getClassId(), student.getScore(), student.getId());
 
             statement.executeUpdate(sql);
-
             statement.close();
+
+            connection.commit();
+
         } catch (SQLException e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage());
         }
