@@ -15,52 +15,52 @@ import com.codecool.lorem.models.WalletModel;
 
 public class StudentController {
 
+    private StudentModel student;
     private LevelsDao levelsDao;
-    private WalletsDao walletsDao;
+    private WalletModel wallet;
     private ArtifactsBoughtDao boughtArtifactsDao;
 
-    public StudentController() {
+    public StudentController(StudentModel student) {
+        this.student = student;
         this.levelsDao = new LevelsDao();
-        this.walletsDao = new WalletsDao();
+        this.wallet = new WalletsDao().getStudentWallet(student.getId());
         this.boughtArtifactsDao = new ArtifactsBoughtDao();
     }
 
-    public void runController(StudentModel student) {
-
+    public void runController() {
         int choice = -1;
         final int EXIT = 0;
 
-        WalletModel wallet = this.walletsDao.getStudentWallet(student.getId());
-        StoreController storeController = new StoreController(this.walletsDao);
 
         while(choice != EXIT){
             StudentView.showMenu();
             choice = chooseOption();
 
             if (choice == 1) {
-                showWallet(wallet);
+                showWallet();
             } else if (choice == 2) {
-                storeController.runController(student, wallet);
+                StoreController storeController = new StoreController(this.student, this.wallet);
+                storeController.runController();
             } else if (choice == 3) {
-                showLevel(student);
+                showLevel();
             } else if (choice == 4) {
-                showBoughtArtifacts(student);
+                showBoughtArtifacts();
             }
         }
     }
 
-    public void showWallet(WalletModel wallet) {
-        Integer balance = wallet.getBalance();
+    public void showWallet() {
+        Integer balance = this.wallet.getBalance();
         StudentView.showCoinsBalance(balance);
     }
 
-    public void showLevel(StudentModel student) {
-        String levelName = this.levelsDao.checkLevel(student.getScore());
+    public void showLevel() {
+        String levelName = this.levelsDao.checkLevel(this.student.getScore());
         System.out.println(levelName);
     }
 
-    public void showBoughtArtifacts(StudentModel student) {
-        ArrayList<BoughtArtifactModel> boughtArtifacts = this.boughtArtifactsDao.getItemsByStudentId(student.getId());
+    public void showBoughtArtifacts() {
+        ArrayList<BoughtArtifactModel> boughtArtifacts = this.boughtArtifactsDao.getItemsByStudentId(this.student.getId());
         StudentView.showBoughtArtifacts(boughtArtifacts);
     }
 

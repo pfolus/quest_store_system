@@ -20,7 +20,6 @@ public class MentorController {
 
 
     public MentorController() {
-
         studentsDao = new StudentsDao();
         questsDao = new QuestsDao();
         classesDao = new ClassesDao();
@@ -32,7 +31,7 @@ public class MentorController {
         questsDoneDao = new QuestsDoneDao();
     }
 
-    public void runController(MentorModel mentor) {
+    public void runController() {
 
         Integer choice = 0;
         final int EXIT = 9;

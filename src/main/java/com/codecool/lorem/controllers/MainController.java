@@ -33,12 +33,11 @@ public class MainController {
 
         if (type.equals("student")) {
             StudentsDao studentsDao = new StudentsDao();
-            StudentController studentController = new StudentController();
-            studentController.runController(studentsDao.createLoggedStudent(String.valueOf(id)));
+            StudentController studentController = new StudentController(studentsDao.getById(id));
+            studentController.runController();
         } else if (type.equals("mentor")) {
-            MentorsDao mentorsDao = new MentorsDao();
             MentorController mentorController = new MentorController();
-            mentorController.runController(mentorsDao.getById(id));
+            mentorController.runController();
         } else if (type.equals("admin")) {
             AdminsDao adminsDao = new AdminsDao();
             AdminController adminController = new AdminController(adminsDao.getById(id));

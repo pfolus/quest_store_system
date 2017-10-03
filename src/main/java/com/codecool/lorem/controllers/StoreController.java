@@ -15,20 +15,23 @@ import com.codecool.lorem.models.WalletModel;
 
 public class StoreController {
 
+    private WalletModel wallet;
+    private StudentModel student;
     private WalletsDao walletsDao;
     private GroupTransactionsDao transactionsDao;
     private ArtifactsDao artifactsDao;
     private ArtifactsBoughtDao boughtArtifactsDao;
 
-    public StoreController(WalletsDao walletsDao) {
-
-        this.walletsDao = walletsDao;
+    public StoreController(StudentModel student, WalletModel wallet) {
+        this.student = student;
+        this.wallet = wallet;
+        this.walletsDao = new WalletsDao();
         this.transactionsDao = new GroupTransactionsDao();
         this.artifactsDao = new ArtifactsDao();
         this.boughtArtifactsDao = new ArtifactsBoughtDao();
     }
 
-    public void runController(StudentModel student, WalletModel wallet) {
+    public void runController() {
 
         int choice = -1;
         final int EXIT = 0;
@@ -38,17 +41,17 @@ public class StoreController {
             choice = chooseOption();
 
             if (choice == 1) {
-                buyArtifact(student, wallet);
+                buyArtifact();
             } else if (choice == 2) {
-                buyArtifactWithTeammates(student, wallet);
+                buyArtifactWithTeammates();
             } else if (choice == 3) {
-                managePendingTransactions(student, wallet);
+                managePendingTransactions();
             }
         }
     }
 
-    private void managePendingTransactions(StudentModel student, WalletModel wallet) {
-        Integer transactionId = chooseTransactionId(student);
+    private void managePendingTransactions() {
+        Integer transactionId = chooseTransactionId(this.student);
 
         if (!transactionId.equals(0)) {
             GroupTransactionModel transaction = this.transactionsDao.getById(transactionId);
@@ -58,7 +61,7 @@ public class StoreController {
                 this.transactionsDao.removeTransaction(transaction);
 
             } else if (choice.equals(1)) {
-                acceptTransaction(wallet, transaction, student);
+                acceptTransaction(this.wallet, transaction, this.student);
             }
         }
     }
@@ -116,14 +119,14 @@ public class StoreController {
     }
 
 
-    private void buyArtifact(StudentModel student, WalletModel wallet) {
+    private void buyArtifact() {
         StoreView.showArtifacts(this.artifactsDao.getItems());
         ArtifactModel artifact = chooseArtifactById(this.artifactsDao);
 
-        if (hasEnoughCoins(wallet, artifact.getPrice())) {
+        if (hasEnoughCoins(this.wallet, artifact.getPrice())) {
 
-            reduceWalletBalance(artifact.getPrice(), student);
-            addBoughtArtifactToDatabase(artifact, student);
+            reduceWalletBalance(artifact.getPrice(), this.student);
+            addBoughtArtifactToDatabase(artifact, this.student);
             StoreView.itemBoughtSuccesfully();
 
         } else {
@@ -165,16 +168,16 @@ public class StoreController {
         return id;
     }
 
-    private void buyArtifactWithTeammates(StudentModel student, WalletModel wallet) {
+    private void buyArtifactWithTeammates() {
         StoreView.showArtifacts(this.artifactsDao.getGroupArtifacts());
         ArtifactModel artifact = chooseArtifactById(this.artifactsDao);
 
-        ArrayList<StudentModel> buyers = chooseStudentsToBuyAnArtifact(student);
-        buyers.add(student);
+        ArrayList<StudentModel> buyers = chooseStudentsToBuyAnArtifact(this.student);
+        buyers.add(this.student);
 
         Integer pricePerStudent = artifact.getPrice() / buyers.size();
-        if (hasEnoughCoins(wallet, pricePerStudent)) {
-            createGroupTransactions(buyers, artifact, pricePerStudent, student);
+        if (hasEnoughCoins(this.wallet, pricePerStudent)) {
+            createGroupTransactions(buyers, artifact, pricePerStudent, this.student);
 
         } else {
             StoreView.notEnoughMoneyInfo();
