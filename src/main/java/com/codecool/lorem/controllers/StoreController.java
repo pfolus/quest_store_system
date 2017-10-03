@@ -47,12 +47,22 @@ public class StoreController {
                 transactions.removeTransaction(transaction);
 
             } else if (choice.equals(1)) {
-
+                transaction.setStatus();
                 transactions.markTransaction(transaction, student);
                 if (transactions.isTransactionAcceptedByAll(transactionId)) {
-                    System.out.println("DODAJ IM KURWA");
+                    addBoughtArtifactsToBuyers(transaction, transactions);
+
+                    }
                 }
             }
+        }
+
+    private static void addBoughtArtifactsToBuyers(GroupTransactionModel transaction, GroupTransactionsDao transactions) {
+        ArtifactsBoughtDao boughtArtifacts = new ArtifactsBoughtDao();
+
+        ArrayList<StudentModel> buyers = transactions.getTransactionParticipants(transaction.getId());
+        for (StudentModel s : buyers) {
+            boughtArtifacts.addToDatabase(transaction.getArtifactId(), s.getId());
         }
     }
 
