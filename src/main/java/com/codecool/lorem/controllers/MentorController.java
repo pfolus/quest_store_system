@@ -104,8 +104,6 @@ public class MentorController {
         String description = MainView.getString("Provide artifact's description: ");
         Integer price = MentorView.getIntInput("Provide artifact's price: ");
 
-        listElements(artifactCategoriesDao);
-
         Boolean artifactsListNotEmpty = listElements(artifactCategoriesDao);
         if (artifactsListNotEmpty){
             ArtifactCategoryModel category = chooseExistingObject(artifactCategoriesDao);
