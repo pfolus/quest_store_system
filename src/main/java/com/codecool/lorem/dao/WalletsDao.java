@@ -25,6 +25,7 @@ public class WalletsDao extends Dao<WalletModel> {
                 " WHERE student_id = " + student_id + ";");
 
             statement.close();
+            connection.commit();
         } catch (SQLException e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }

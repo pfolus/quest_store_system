@@ -32,7 +32,7 @@ public class StudentController {
             if (choice == 1) {
                 showWallet(wallet);
             } else if (choice == 2) {
-                StoreController.runController(student, wallet);
+                StoreController.runController(student, wallet, walletsDao);
             } else if (choice == 3) {
                 showLevel(levelsDao, student);
             } else if (choice == 4) {
@@ -69,17 +69,5 @@ public class StudentController {
             }
         }
         return choice;
-    }
-
-    public void buyArtifact() {
-
-    }
-
-    public void buyArtifactWithTeammates() {
-
-    }
-
-    public void showCoinsBalance(StudentModel student, WalletModel wallet) {
-        StudentView.showCoinsBalance(wallet.getBalance());
     }
 }
