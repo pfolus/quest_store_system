@@ -124,7 +124,8 @@ public class MentorController {
             if(questsListNotEmpty) {
                 QuestModel quest = chooseExistingObject(questsDao);
                 DoneQuestModel doneQuest = new DoneQuestModel(
-                        questsDoneDao.getNextId(), quest.getId(), student.getId());
+                        questsDoneDao.getNextId(), quest.getName(), quest.getCategoryId(),
+                        quest.getDescription(), quest.getPrize(), quest.getId(), student.getId());
 
                 questsDoneDao.addToDatabase(doneQuest);
                 questsDoneDao.addToList(doneQuest);
@@ -177,7 +178,6 @@ public class MentorController {
             }
             return true;
         } else return false;
-
     }
 
     private <T extends AbstractItemModel> T chooseExistingObject(Dao<T> dao) {

@@ -20,7 +20,9 @@ public class ArtifactsBoughtDao extends Dao<BoughtArtifactModel> {
             Connection c = DatabaseConnection.getConnection();
             stmt = c.createStatement();
             rs = stmt.executeQuery(
-                    "SELECT bought_artifacts.id, is_used, artifact_id, student_id, name, description, price, artifact_category_id FROM bought_artifacts INNER JOIN artifacts ON artifacts.id = bought_artifacts.artifact_id");
+                    "SELECT bought_artifacts.id, is_used, artifact_id, student_id, name, " +
+                        "description, price, artifact_category_id FROM bought_artifacts " +
+                        "INNER JOIN artifacts ON artifacts.id = bought_artifacts.artifact_id");
 
             while (rs.next()) {
 
