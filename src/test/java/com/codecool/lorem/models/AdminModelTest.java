@@ -7,6 +7,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class AdminModelTest {
 
     @Test
+    public void testIsIdNotNull() {
+        AdminModel admin = new AdminModel(2, "Bartek", "Kowal", "kowal123",
+                "kowal321",  "kowal@gmail.com");
+        assertNotNull(admin.getId());
+    }
+
+
+    @Test
     public void testIsNameIsNotNull() {
         AdminModel admin = new AdminModel(2, "Bartek", "Kowal", "kowal123",
                                           "kowal321",  "kowal@gmail.com");
@@ -39,6 +47,13 @@ class AdminModelTest {
         AdminModel admin = new AdminModel(2, "Bartek", "Kowal", "kowal123",
                 "kowal321",  "kowal@gmail.com");
         assertNotNull(admin.getEmail());
+    }
+
+    @Test
+    public void testIsFullNameIsNotNull() {
+        AdminModel admin = new AdminModel(2, "Bartek", "Kowal", "kowal123",
+                "kowal321",  "kowal@gmail.com");
+        assertNotNull(admin.getFullName());
     }
 
 
