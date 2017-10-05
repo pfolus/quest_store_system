@@ -1,5 +1,6 @@
 package com.codecool.lorem.models;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -7,54 +8,49 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class MentorModelTests {
 
-    @Test
-    public void testIsNameIsNotNull() {
-        MentorModel mentorModel = new MentorModel(1, "Tomasz", "Kowalski", "TomKow",
-                                                  "tom", "tomaszkowalski@gmail.com", 2);
-        assertNotNull(mentorModel.getName());
+    private MentorModel mentorModel;
+
+    @BeforeEach
+    public void initMentorModel() {
+        this.mentorModel = new MentorModel(1, "Tomasz", "Kowalski", "TomKow",
+                                            "tom", "tomaszkowalski@gmail.com", 2);
     }
 
     @Test
-    public void testIsSurnameIsNotNull() {
-        MentorModel mentorModel = new MentorModel(1, "Tomasz", "Kowalski", "TomKow",
-                "tom", "tomaszkowalski@gmail.com", 2);
-        assertNotNull(mentorModel.getSurname());
+    public void testName() {
+        assertEquals("Tomasz", mentorModel.getName());
     }
 
     @Test
-    public void testIsLoginIsNotNull() {
-        MentorModel mentorModel = new MentorModel(1, "Tomasz", "Kowalski", "TomKow",
-                                                  "tom", "tomaszkowalski@gmail.com", 2);
-        assertNotNull(mentorModel.getLogin());
+    public void testSurname() {
+        assertEquals("Kowalski", mentorModel.getSurname());
     }
 
     @Test
-    public void testIsPasswordIsNotNull() {
-        MentorModel mentorModel = new MentorModel(1, "Tomasz", "Kowalski", "TomKow",
-                "tom", "tomaszkowalski@gmail.com", 2);
-        assertNotNull(mentorModel.getPassword());
+    public void testLogin() {
+        assertEquals("TomKow", mentorModel.getLogin());
     }
 
     @Test
-    public void testIsEmailIsNotNull() {
-        MentorModel mentorModel = new MentorModel(1, "Tomasz", "Kowalski", "TomKow",
-                "tom", "tomaszkowalski@gmail.com", 2);
-        assertNotNull(mentorModel.getEmail());
+    public void testPassword() {
+        assertEquals("tom", mentorModel.getPassword());
+    }
+
+    @Test
+    public void testEmail() {
+        assertEquals("tomaszkowalski@gmail.com", mentorModel.getEmail());
     }
 
     @Test
     public void testGetClassId() {
-        MentorModel mentorModel = new MentorModel(1, "Tomasz", "Kowalski", "TomKow",
-                "tom", "tomaszkowalski@gmail.com", 2);
-
-        assertEquals(Integer.valueOf("2"), mentorModel.getClassId());
+        Integer expected = 2;
+        assertEquals(expected, mentorModel.getClassId());
     }
 
     @Test
     public void testSetClassId() {
-        MentorModel mentorModel = new MentorModel(1, "Tomasz", "Kowalski", "TomKow",
-                "tom", "tomaszkowalski@gmail.com", 2);
         mentorModel.setClassId(3);
-        assertEquals(Integer.valueOf("3"), mentorModel.getClassId());
+        Integer expected = 3;
+        assertEquals(expected, mentorModel.getClassId());
     }
 }
