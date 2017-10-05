@@ -1,57 +1,65 @@
 package com.codecool.lorem.models;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BoughtArtifactModelTest {
 
-    BoughtArtifactModel boughtArtifactModel = new BoughtArtifactModel(1, 2, 3, false,
-                                                                      "Private mentoring", 3,"learn", 200);
+    private BoughtArtifactModel boughtArtifactModel;
 
-    @Test
-    public void testIsArtifactidIsNotNull() {
-        assertNotNull(boughtArtifactModel.getArtifactId());
+    @BeforeEach
+    public void initBoughtArtifactModel() {
+        this.boughtArtifactModel  = new BoughtArtifactModel(1, 2, 3, false,
+                                                    "Private mentoring", 3,"learn", 200);
     }
 
     @Test
-    public void testIsStudentidIsNotNull() {
-        assertNotNull(boughtArtifactModel.getStudentId());
+    public void testGetArtifactid() {
+        Integer expected =2;
+        assertEquals(expected, this.boughtArtifactModel.getArtifactId());
     }
 
     @Test
-    public void testIsNameIsNotNull() {
-        assertNotNull(boughtArtifactModel.getName());
+    public void testGetStudentid() {
+        Integer expected = 3;
+        assertEquals(expected, this.boughtArtifactModel.getStudentId());
     }
 
     @Test
-    public void testIsDescriptionIsNotNull() {
-        assertNotNull(boughtArtifactModel.getDescription());
+    public void testGetName() {
+        assertEquals("Private mentoring", this.boughtArtifactModel.getName());
     }
 
     @Test
-    public void testIsPriceIsNotNull() {
-        assertNotNull(boughtArtifactModel.getPrice());
+    public void testGetDescription() {
+        assertEquals("learn", boughtArtifactModel.getDescription());
+    }
+
+    @Test
+    public void testGetPrice() {
+        Integer expected = 200;
+        assertEquals(expected, this.boughtArtifactModel.getPrice());
     }
 
     @Test
     public void testIsMarkChangeState() {
-        boughtArtifactModel.markAsUsed();
-        assertTrue(boughtArtifactModel.isUsed() == true);
+        this.boughtArtifactModel.markAsUsed();
+        assertTrue(this.boughtArtifactModel.isUsed() == true);
     }
 
     @Test
     public void testToStringStateUnused() {
         String patternString = "| Name: Private mentoring| Description: learn| Condition:  Unused| Price: 200";
-        assertEquals(patternString, boughtArtifactModel.toString());
+        assertEquals(patternString, this.boughtArtifactModel.toString());
     }
 
     @Test
     public void testToStringStateUsed() {
         boughtArtifactModel.markAsUsed();
         String patternString = "| Name: Private mentoring| Description: learn| Condition:  Used| Price: 200";
-        assertEquals(patternString, boughtArtifactModel.toString());
+        assertEquals(patternString, this.boughtArtifactModel.toString());
     }
 }
