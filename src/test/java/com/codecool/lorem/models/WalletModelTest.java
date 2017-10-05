@@ -1,5 +1,6 @@
 package com.codecool.lorem.models;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -7,30 +8,33 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class WalletModelTest {
 
-    WalletModel walletModel = new WalletModel(1, 2, 3);
+    WalletModel walletModel;
 
+    @BeforeEach
+    public void initMentorModel() {
+        this.walletModel = new WalletModel(1, 2, 3);
+    }
     @Test
-    public void testBalance() {
+    public void testGetBalance() {
         Integer expected = 2;
-        assertEquals(expected, walletModel.getBalance());
+        assertEquals(expected, this.walletModel.getBalance());
     }
 
     @Test
-    public void testStudentid() {
+    public void testGetStudentid() {
         Integer expected = 3;
-        assertEquals(expected, walletModel.getStudentId());
+        assertEquals(expected, this.walletModel.getStudentId());
     }
 
     @Test
     public void testReduceBalance() {
-        walletModel.reduceBalance(1);
-        assertTrue(walletModel.getBalance() == 1);
+        this.walletModel.reduceBalance(1);
+        assertTrue(this.walletModel.getBalance() == 1);
     }
 
     @Test
     public void testIncreaseBalance() {
-        walletModel.increaseBalance(1);
-        assertTrue(walletModel.getBalance() == 3);
+        this.walletModel.increaseBalance(1);
+        assertTrue(this.walletModel.getBalance() == 3);
     }
-
 }
