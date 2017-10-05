@@ -17,27 +17,27 @@ public class MentorModelTests {
     }
 
     @Test
-    public void testName() {
+    public void testGetName() {
         assertEquals("Tomasz", mentorModel.getName());
     }
 
     @Test
-    public void testSurname() {
+    public void testGetSurname() {
         assertEquals("Kowalski", mentorModel.getSurname());
     }
 
     @Test
-    public void testLogin() {
+    public void testGetLogin() {
         assertEquals("TomKow", mentorModel.getLogin());
     }
 
     @Test
-    public void testPassword() {
+    public void testGetPassword() {
         assertEquals("tom", mentorModel.getPassword());
     }
 
     @Test
-    public void testEmail() {
+    public void testGetEmail() {
         assertEquals("tomaszkowalski@gmail.com", mentorModel.getEmail());
     }
 
