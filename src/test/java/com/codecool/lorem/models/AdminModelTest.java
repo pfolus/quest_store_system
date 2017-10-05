@@ -41,7 +41,5 @@ class AdminModelTest {
     }
 
     @Test
-    public void testGetFullName() {
-        assertEquals("Bartek Kowal", admin.getFullName());
-    }
+    public void testGetFullName() { assertEquals("Bartek Kowal", admin.getFullName()); }
 }

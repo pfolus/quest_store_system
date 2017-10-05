@@ -9,8 +9,9 @@ class QuestModelTest {
     QuestModel quest = new QuestModel(3, "attendance", 3, "nothing", 240);
 
     @Test
-    public void testIsPrizeIsNotNull() {
-        assertNotNull(quest.getPrize());
+    public void testGetPrize() {
+        Integer expected = 240;
+        assertEquals(expected, quest.getPrize());
     }
 
     @Test
