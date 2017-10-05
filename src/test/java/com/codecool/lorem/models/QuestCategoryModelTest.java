@@ -9,8 +9,8 @@ class QuestCategoryModelTest {
     QuestCategoryModel questCategory = new QuestCategoryModel(2, "sport");
 
     @Test
-    public void testIsNameIsNotNull() {
-        assertNotNull(questCategory.getName());
+    public void testGetName() {
+        assertEquals("sport", questCategory.getName());
     }
 
     @Test
