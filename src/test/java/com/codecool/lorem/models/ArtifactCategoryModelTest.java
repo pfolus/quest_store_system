@@ -6,10 +6,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ArtifactCategoryModelTest {
 
-    @Test
-    public void testIsNameIsNotNull() {
-        ArtifactCategoryModel artifactCategory = new ArtifactCategoryModel(1,"Private Mentoring");
+    private ArtifactCategoryModel artifactCategory = new ArtifactCategoryModel(1,"Private Mentoring");
 
-        assertNotNull(artifactCategory.getName());
+    @Test
+    public void testName() {
+        String expected = "Private Mentoring";
+        assertEquals(expected, artifactCategory.getName());
     }
 }
