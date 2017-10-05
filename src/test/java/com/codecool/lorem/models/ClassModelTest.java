@@ -8,8 +8,8 @@ class ClassModelTest {
     private ClassModel classModel = new ClassModel(10, "krk17");
 
     @Test
-    public void testIsNameIsNotNull() {
-        assertNotNull(classModel.getName());
+    public void testGetName() {
+        assertEquals("krk17", classModel.getName());
     }
 
     @Test
