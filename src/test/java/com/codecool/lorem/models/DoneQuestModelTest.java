@@ -7,21 +7,24 @@ import static org.junit.jupiter.api.Assertions.*;
 class DoneQuestModelTest {
 
     DoneQuestModel doneQuest = new DoneQuestModel(1, "mentoring", 2, "take mentoring",
-            100,10, 12);
+                                                  100,10, 12);
 
     @Test
-    public void testIsGetQuestIdIsNotNull() {
-        assertNotNull(doneQuest.getQuestId());
+    public void testGetQuestId() {
+        Integer expected = 10;
+        assertEquals(expected, doneQuest.getQuestId());
     }
 
     @Test
-    public void testIsGetIdIsNotNull() {
-        assertNotNull(doneQuest.getId());
+    public void testGetId() {
+        Integer expected = 1;
+        assertEquals(expected, doneQuest.getId());
     }
 
     @Test
-    public void testIsStudentIdIsNotNull() {
-        assertNotNull(doneQuest.getStudentId());
+    public void testGetStudentId() {
+        Integer expected = 12;
+        assertEquals(expected, doneQuest.getStudentId());
     }
 
 }
