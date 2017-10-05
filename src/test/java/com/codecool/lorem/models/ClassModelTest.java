@@ -9,11 +9,11 @@ class ClassModelTest {
 
     @Test
     public void testGetName() {
-        assertEquals("krk17", classModel.getName());
+        assertEquals("krk17", this.classModel.getName());
     }
 
     @Test
     public void toStringTest() {
-        assertEquals("10. krk17", classModel.toString());
+        assertEquals("10. krk17", this.classModel.toString());
     }
 }

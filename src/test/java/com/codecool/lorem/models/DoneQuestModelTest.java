@@ -12,19 +12,19 @@ class DoneQuestModelTest {
     @Test
     public void testGetQuestId() {
         Integer expected = 10;
-        assertEquals(expected, doneQuest.getQuestId());
+        assertEquals(expected, this.doneQuest.getQuestId());
     }
 
     @Test
     public void testGetId() {
         Integer expected = 1;
-        assertEquals(expected, doneQuest.getId());
+        assertEquals(expected, this.doneQuest.getId());
     }
 
     @Test
     public void testGetStudentId() {
         Integer expected = 12;
-        assertEquals(expected, doneQuest.getStudentId());
+        assertEquals(expected, this.doneQuest.getStudentId());
     }
 
 }
