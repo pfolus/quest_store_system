@@ -10,13 +10,13 @@ class LevelModelTest {
 
     @Test
     public void testGetName() {
-        assertEquals("medium", level.getName());
+        assertEquals("medium", this.level.getName());
     }
 
     @Test
     public void testGetRequiredScore() {
         Integer expected = 12;
-        assertEquals(expected, level.getRequiredScore());
+        assertEquals(expected, this.level.getRequiredScore());
     }
 
 }
