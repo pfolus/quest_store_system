@@ -9,23 +9,25 @@ class ArtifactModelTest {
     private ArtifactModel artifactModel = new ArtifactModel(1,"Private Mentoring", 12,"opis",500);
 
     @Test
-    void testIsNameIsNotNull() {
-        assertNotNull(artifactModel.getName());
+    void testGetName() {
+        assertEquals("Private Mentoring", artifactModel.getName());
     }
 
     @Test
-    void testIsCategoryIdIsNotNull() {
-        assertNotNull(artifactModel.getCategoryId());
+    void testGetCategoryId() {
+        Integer expected = 12;
+        assertEquals(expected, artifactModel.getCategoryId());
     }
 
     @Test
-    void testDescriptionIsNotNull() {
-        assertNotNull(artifactModel.getDescription());
+    void testGetDescription() {
+        assertEquals("opis", artifactModel.getDescription());
     }
 
     @Test
-    void testPriceIsNotNull() {
-        assertNotNull(artifactModel.getPrice());
+    void testGetPrice() {
+        Integer expected = 500;
+        assertEquals(expected, artifactModel.getPrice());
     }
 
     @Test
