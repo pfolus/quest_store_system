@@ -10,37 +10,38 @@ class AdminModelTest {
             "kowal321",  "kowal@gmail.com");
 
     @Test
-    public void testIsIdNotNull() {
-        assertNotNull(admin.getId());
+    public void testGetId() {
+        Integer expected = 2;
+        assertEquals(expected, admin.getId());
     }
 
     @Test
-    public void testIsNameIsNotNull() {
-        assertNotNull(admin.getName());
+    public void testGetName() {
+        assertEquals("Bartek", admin.getName());
     }
 
     @Test
-    public void testIsSurnameIsNotNull() {
-        assertNotNull(admin.getSurname());
+    public void testGetSurname() {
+        assertEquals("Kowal", admin.getSurname());
     }
 
     @Test
-    public void testIsLoginIsNotNull() {
-        assertNotNull(admin.getLogin());
+    public void testGetLogin() {
+        assertEquals("kowal123", admin.getLogin());
     }
 
     @Test
-    public void testIsPasswordIsNotNull() {
-        assertNotNull(admin.getPassword());
+    public void testGetPassword() {
+        assertEquals("kowal321", admin.getPassword());
     }
 
     @Test
-    public void testIsEmailIsNotNull() {
-        assertNotNull(admin.getEmail());
+    public void testGetEmail() {
+        assertEquals("kowal@gmail.com", admin.getEmail());
     }
 
     @Test
-    public void testIsFullNameIsNotNull() {
-        assertNotNull(admin.getFullName());
+    public void testGetFullName() {
+        assertEquals("Bartek Kowal", admin.getFullName());
     }
 }

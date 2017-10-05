@@ -10,47 +10,50 @@ class StudentModelTest {
             "kowal321",  "kowal@gmail.com", 120, 2);
 
     @Test
-    public void testIsIdIsNotNull() {
-        assertNotNull(student.getId());
+    public void testGetId() {
+        Integer expected = 2;
+        assertEquals(expected, student.getId());
     }
 
     @Test
-    public void testIsNameIsNotNull() {
-        assertNotNull(student.getName());
+    public void testGetName() {
+        assertNotNull("Bartek", student.getName());
     }
 
     @Test
-    public void testIsSurnameIsNotNull() {
-        assertNotNull(student.getSurname());
+    public void testGetSurname() {
+        assertEquals("Kowal", student.getSurname());
     }
 
     @Test
-    public void testIsLoginIsNotNull() {
-        assertNotNull(student.getLogin());
+    public void testGetLogin() {
+        assertEquals("kowal123", student.getLogin());
     }
 
     @Test
-    public void testIsPasswordIsNotNull() {
-        assertNotNull(student.getPassword());
+    public void testGetPassword() {
+        assertEquals("kowal321", student.getPassword());
     }
 
     @Test
-    public void testIsEmailIsNotNull() {
-        assertNotNull(student.getEmail());
+    public void testGetEmail() {
+        assertEquals("kowal@gmail.com", student.getEmail());
     }
 
     @Test
-    public void testIsFullNameIsNotNull() {
-        assertNotNull(student.getFullName());
+    public void testGetFullName() {
+        assertEquals("Bartek Kowal", student.getFullName());
     }
 
     @Test
-    public void testIsScoreIsNotNull() {
-        assertNotNull(student.getScore());
+    public void testGetScore() {
+        Integer expected = 120;
+        assertEquals(expected, student.getScore());
     }
 
     @Test
-    public void testIsClassIdIsNotNull() {
-        assertNotNull(student.getClassId());
+    public void testGetClass() {
+        Integer expected = 2;
+        assertEquals(expected, student.getClassId());
     }
 }
