@@ -9,13 +9,14 @@ class LevelModelTest {
     LevelModel level = new LevelModel(1, 12, "medium");
 
     @Test
-    public void testIsNameIsNotNull() {
-        assertNotNull(level.getName());
+    public void testGetName() {
+        assertEquals("medium", level.getName());
     }
 
     @Test
-    public void testIsRequiredScoreIsNotNull() {
-        assertNotNull(level.getRequiredScore());
+    public void testGetRequiredScore() {
+        Integer expected = 12;
+        assertEquals(expected, level.getRequiredScore());
     }
 
 }
