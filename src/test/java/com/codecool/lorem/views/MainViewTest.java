@@ -14,7 +14,7 @@ public class MainViewTest {
     private MainView mainView;
 
     @BeforeEach
-    public void initBoughtArtifactModel() {
+    public void initObjects() {
         mainView = new MainView();
         byteArrayOutputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(byteArrayOutputStream));
