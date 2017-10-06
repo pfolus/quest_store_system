@@ -16,7 +16,7 @@ public class StudentViewTest {
     private StudentView studentView;
 
     @BeforeEach
-    public void initBoughtArtifactModel() {
+    public void initObjects() {
         studentView = new StudentView();
         byteArrayOutputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(byteArrayOutputStream));
