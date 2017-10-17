@@ -1,0 +1,23 @@
+body {
+    height: 100%;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100%;
+}
+
+.content img {
+    width: 50%;
+    height: 50%;
+}
+
+#login-form input {
+    background-color: white;
+    border: solid 0.5px;
+    border-color: #EAAC47;
+    color: #EAAC47;
+}
