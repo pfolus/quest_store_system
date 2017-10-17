@@ -1,68 +1,70 @@
-body {
-    height: 100%;
+html, body {
+    padding: 0;
+    margin: 0;
 }
 
-.content {
+/* This refers to login page */
+
+.login-page {
     display: flex;
+    position: fixed;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
-    min-height: 100%;
+    height: 100vh;
+    width: 100vw;
 }
 
-.content img {
-    width: 50%;
-    height: 50%;
+.login-page img {
+    width: 40%;
+    height: auto;
 }
 
-#login-form input {
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form input {
     background-color: white;
     border: solid 0.5px;
     border-color: #EAAC47;
-    color: #EAAC47;
 }
 
-.main {
+/* This refers to student page */
+
+.user-page {
     display: flex;
-    flex-direction: column;
-    align-content: space-between;
+    flex-direction: row;
     height: 100vh;
     width: 100vw;
-    overflow: auto;
 }
 
-.left_sidebar {
-    display: flex;
-    flex-direction: column;
+.left-sidebar {
+    width: 20%;
+    height: 100%;
     background-color: bisque;
     position: fixed;
-    min-height: 100%;
-    /*flex: 1 1 auto;*/
-    /*overflow: auto;*/
-    /*float: left;*/
-    max-width: 20vw;
-
-}
-
-.fixed_left_sidebar {
-    display: block;
-    /*position: fixed;*/
-    /*display: flex;*/
-    /*background-color: bisque;*/
-    /*min-width: 100%;*/
-    /*flex-direction: column;*/
-}
-
-.left_sidebar img {
-    height: 5%;
-    width: 5%;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-.inner_content {
+.left-sidebar img {
+    width: 20%;
+    height: auto;
+}
+
+.center {
+    width: 60%;
+    margin-left: 20%;
+    display: flex;
     flex-direction: column;
-    height: 100%;
-    width: 100%;
-    overflow: auto;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.right-sidebar {
+    width: 20%;
+    background-color: bisque;
 }
