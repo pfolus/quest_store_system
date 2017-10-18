@@ -34,20 +34,21 @@ html, body {
 /* This refers to student page */
 
 .user-page {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
     height: 100vh;
     width: 100vw;
 }
 
 .left-sidebar {
-    width: 20%;
+    grid-column: 1;
     height: 100%;
-    background-color: bisque;
+    width: 20%;
     position: fixed;
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+    background-color: bisque;
 }
 
 .left-sidebar img {
@@ -56,8 +57,7 @@ html, body {
 }
 
 .center {
-    width: 60%;
-    margin-left: 20%;
+    grid-column: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -65,6 +65,9 @@ html, body {
 }
 
 .right-sidebar {
-    width: 20%;
+    grid-column: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: bisque;
 }
