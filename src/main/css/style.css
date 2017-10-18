@@ -31,7 +31,7 @@ html, body {
     border-color: #EAAC47;
 }
 
-/* This refers to student page */
+/* This refers to all pages */
 
 .user-page {
     display: grid;
@@ -58,14 +58,20 @@ html, body {
 
 .center {
     grid-column: 2;
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    background-color: darkblue;
 }
 
 .right-sidebar {
     grid-column: 3;
+    position: fixed;
+    height: 100%;
+    width: 20%;
+    right: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
