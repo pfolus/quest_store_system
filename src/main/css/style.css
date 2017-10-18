@@ -156,6 +156,8 @@ html, body {
 }
 
 .center-middle-paragraphs {
+    border-bottom-style: ridge;
+    border-width: 5px;
     display: grid;
     grid-template-columns: 33% 33% 33%;
 }
@@ -202,4 +204,39 @@ html, body {
     flex-direction: column;
     align-items: center;
     background-color: #F2F2F2;
+}
+
+/*Student store*/
+
+.center-middle-buttons {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    width: 100%;
+    margin-top: 100px;
+}
+
+.center-middle-buttons div {
+    border-style: inset;
+    border-width: 10px;
+    margin-left: 30px;
+    border-color: grey;
+    background-color: lightgrey;
+    text-align: center;
+    padding: 20px;
+}
+
+.center-middle-buttons div h1 {
+    font-size: 20px;
+}
+
+.center-middle-buttons #artifacts {
+    grid-column: 1;
+}
+
+.center-middle-buttons #group {
+    grid-column: 2;
+}
+
+.center-middle-buttons #manage {
+    grid-column: 3;
 }
