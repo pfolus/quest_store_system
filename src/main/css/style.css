@@ -1,6 +1,7 @@
 html, body {
     padding: 0;
     margin: 0;
+    background-color: #F2F2F2;
 }
 
 /* This refers to login page */
@@ -35,25 +36,62 @@ html, body {
 
 .user-page {
     display: grid;
-    grid-template-columns: 20% 60% 20%;
+    grid-template-columns: 15% 70% 15%;
     height: 100vh;
     width: 100vw;
+    background-color: #F2F2F2;
 }
 
 .left-sidebar {
     grid-column: 1;
     height: 100%;
-    width: 20%;
+    width: 15%;
     position: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: bisque;
+    background-color: #F2F2F2;
 }
 
+.left-sidebar .menu {
+    display: flex;
+    position: relative;
+    top: 40px;
+    flex-direction: column;
+}
+
+.left-sidebar .menu li {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0px;
+    margin-left: -10px;
+    border-bottom-style: outset;
+}
+
+.left-sidebar .menu a {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    padding: 20px 40px;
+    font-family: "Lato";
+}
+
+.left-sidebar .menu li:hover {
+    background-color: darkgray;
+}
 .left-sidebar img {
-    width: 20%;
+    position: relative;
+    /*top: 20px;*/
+    width: 35%;
+    /*height: auto;*/
+}
+
+.left-sidebar #logo {
+    width: 40%;
+    position: relative;
     height: auto;
+    top: 25px;
 }
 
 .center {
@@ -63,17 +101,98 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: darkblue;
+    background-color: white;
+    background-color: #F2F2F2;
+}
+
+.center-top {
+    background-image: url(../data/images/forest.jpg);
+    height: 350px;
+    width: 100%;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: "Montserrat";
+    color: white;
+}
+
+.center-top h1 {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-size: 60px;
+    position: relative;
+    top: 70px;
+}
+.center-middle {
+    margin-top: 220px;
+    width: 100%;
+    height: 500px;
+    background-color: #F2F2F2;
+}
+.center-middle-header {
+    width: 100%;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 300px;
+    background-image: url(../data/images/wood.jpg);
+}
+
+.center-middle-header h1 {
+    position: relative;
+    top: 90px;
+    color: white;
+    font-family: "Montserrat";
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.center-middle-paragraphs {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
+.center-middle-paragraphs h1 {
+    font-family: Oswald;
+    margin-top: 80px;
+    color: #FDA729;
+    font-size: 40px;
+    text-align: center;
+}
+
+.center-middle-paragraphs p {
+    font-family: Helvetica;
+    width: 100%;
+    font-size: 15px;
+    margin-top: -20px;
+    text-align: center;
+}
+
+
+#earn {
+    grid-column: 1;
+    margin-left: 50px;
+}
+
+#artifacts {
+    grid-column: 2;
+    margin-left: 50px;
+}
+
+#fun {
+    grid-column: 3;
+    margin-left: 50px;
 }
 
 .right-sidebar {
     grid-column: 3;
     position: fixed;
     height: 100%;
-    width: 20%;
+    width: 15%;
     right: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: bisque;
+    background-color: #F2F2F2;
 }
