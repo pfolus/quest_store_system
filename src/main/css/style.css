@@ -35,7 +35,7 @@ html, body {
 .login-form {
     border-radius: 25px;
     padding: 40px 100px;
-    background-color: #EAF6FF;
+    background-color: #276FBF;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -52,7 +52,7 @@ html, body {
     border-radius: 25px;
     background-color: white;
     border: solid 0.5px;
-    border-color: #EAAC47;
+    border-color: #1D518B;
     display: flex;
     justify-content: center;
 }
@@ -219,7 +219,7 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #EAF6FF;
+    background-color: #F6F4F3;
 }
 
 /*Student store*/
@@ -327,16 +327,17 @@ th, td {
 
 .mentor:hover {
     border-radius: 25px;
-    background-color: #f2f2f2;
+    background-color: #183059;
 }
 
 .mentors_table {
     margin-top: 50px;
-    width: 100%;
+    width: 90%;
     border-radius: 25px;
     display: flex;
     justify-content: center;
-    background-color: #f2ad1f;
+    color: white;
+    background-color: #276FBF;
 }
 
 .add_button {
@@ -353,7 +354,8 @@ th, td {
 .add {
     margin-top: 50px;
     border-radius: 25px;
-    background-color: #f2ad1f;
+    background-color: #276FBF;
+    color: white;
     display: flex;
     padding: 40px;
     flex-direction: column;
@@ -373,7 +375,7 @@ th, td {
     border-radius: 25px;
     background-color: white;
     border: solid 0.5px;
-    border-color: #EAAC47;
+    border-color: #1D518B;
     outline: none;
 }
 
