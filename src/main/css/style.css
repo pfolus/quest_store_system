@@ -60,6 +60,11 @@ html, body {
     background-color: #F2F2F2;
 }
 
+.left-sidebar a {
+    display: flex;
+    align-items: center;
+}
+
 .left-sidebar .menu {
     display: flex;
     position: relative;
@@ -95,11 +100,14 @@ html, body {
     /*height: auto;*/
 }
 
-.left-sidebar #logo {
+.left-sidebar a {
     width: 40%;
-    position: relative;
+    margin-top: 25px;
+}
+
+.left-sidebar #logo {
+    width: 100%;
     height: auto;
-    top: 25px;
 }
 
 .center {
@@ -271,6 +279,45 @@ html, body {
 
 .center-middle-buttons #manage {
     grid-column: 3;
+}
+
+/*Admins managing*/
+
+table, td, th {
+    text-align: left;
+    font-family: Lato;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+}
+
+th, td {
+    padding: 15px;
+}
+
+tr:hover {
+    border-radius: 25px;
+    background-color: #f2f2f2;
+}
+
+.mentors_table {
+    margin-top: 50px;
+    width: 100%;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    background-color: #f2ad1f;
+}
+
+.mentor_add_button {
+    align-self: flex-end;
+}
+
+.mentor_add_button img {
+    width: 35%;
+    height: auto;
 }
 
 /*student_store_artifacts*/
