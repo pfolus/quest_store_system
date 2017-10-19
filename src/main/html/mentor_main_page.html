@@ -10,7 +10,7 @@
 <body class="user-page">
 
     <div class="left-sidebar">
-        <img id="logo" src="../data/images/small_logo.png" onclick="openContent(event, 'main')">
+        <a><img id="logo" src="../data/images/small_logo.png" onclick="openContent(event, 'main')"></a>
         <div class="menu">
         <ul>
             <li><a onclick="openContent(event, 'showArtifacts')"><img src="../data/images/artifacts.png" />&nbsp;&nbsp;&nbsp;Artifacts</a></li>
@@ -20,11 +20,11 @@
         </div>
     </div>
 
-    <div id = "main" class="center tabcontent">
+    <div class="center">
         <div class="center-top">
             <h1>Welcome to QuestStore!</h1>
         </div>
-        <div class="center-middle">
+        <div id="main" class="center-middle tabcontent">
             <div class="center-middle-header">
                 <h1>What is a QuestStore?</h1>
             </div>
@@ -49,7 +49,117 @@
         </div>
     </div>
 
-    <div id = "showStudents" class="center tabcontent">
+    <div id="seeStudent" class="tabcontent center">
+        <div class="studentPanel">
+            <img src="../data/images/avatar.png"/>
+            <p class="first_page">Kamil</p>
+            <p class="first_page">Nowak</p>
+            <p class="first_page">100 Coolcoins</p>
+            <h2 class="on_hover" onclick="openContent(event, 'markDoneQuests')">Mark done quest</h2>
+            <h2 class="on_hover" onclick="openContent(event, 'editStudent')">Edit profile</h2>
+            <h2 class="on_hover" onclick="openContent(event, 'markUsedArtifacts')">Mark used artifact</h2>
+        </div>
+
+    </div>
+
+    <div id="editStudent" class="tabcontent center">
+        <div class="studentPanel">
+            <p>Edit Student</p>
+            <img src="../data/images/avatar.png"/>
+            <p>Provide details:</p>
+            <input type="text" name="name" placeholder="New student's name:">
+            <input type="text" name="surname" placeholder="New student's surname:">
+            <input type="text" name="login" placeholder="New login:">
+            <input type="text" name="password" placeholder="New password:">
+            <div class="addStudentButton"><img src="../data/images/plus-button.png" onclick="openContent(event, 'main')"></div>
+        </div>
+    </div>
+
+
+    <div id="addStudent" class="tabcontent center">
+        <div class="studentPanel">
+            <img src="../data/images/avatar.png"/>
+            <p>Provide details:</p>
+            <input type="text" name="name" placeholder="Enter student's name:">
+            <input type="text" name="surname" placeholder="Enter student's surname:">
+            <input type="text" name="login" placeholder="Enter login:">
+            <input type="text" name="password" placeholder="Enter password:">
+            <p>Select class:</p>
+            <select name="select_class">
+                <option value="2016-1">2016-1</option>
+                <option value="2017-1">2017-1</option>
+            </select>
+            <div class="addStudentButton"><img src="../data/images/plus-button.png" onclick="openContent(event, 'main')"></div>
+        </div>
+    </div>
+
+    <div id="addArtifact" class="tabcontent center">
+        <div class="studentPanel">
+            <img src="../data/images/artifacts.png"/>
+            <p>Provide details:</p>
+            <input type="text" name="name" placeholder="Enter artifact's name:">
+            <input type="text" name="price" placeholder="Enter price:">
+            <p>Select class:</p>
+            <select name="select_class">
+                <option value="basic">basic</option>
+                <option value="magic">magic</option>
+                <option value="special">special</option>
+            </select>
+            <div class="addStudentButton"><img src="../data/images/plus-button.png" onclick="openContent(event, 'main')"></div>
+        </div>
+    </div>
+
+    <div id="markDoneQuests" class="tabcontent center">
+        <table>
+            <tr>
+                <th>Quest Name</th>
+                <th>Category</th>
+                <th>Price</th>
+            </tr>
+            <tr class="row" onclick="openContent(event, 'main')">
+                <td>Przynieś</td>
+                <td>Basic</td>
+                <td>350</td>
+            </tr>
+            <tr class="row" onclick="openContent(event, 'main')">
+                <td>Zanieś</td>
+                <td>Hard</td>
+                <td>555</td>
+            </tr>
+            <tr class="row" onclick="openContent(event, 'main')">
+                <td>Pozamiataj</td>
+                <td>Special</td>
+                <td>1500</td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="markUsedArtifacts" class="tabcontent center">
+        <table>
+            <tr>
+                <th>Artifact's name</th>
+                <th>Category</th>
+                <th>Price</th>
+            </tr>
+            <tr class="row" onclick="openContent(event, 'main')">
+                <td>Kijek</td>
+                <td>Magic</td>
+                <td>1380</td>
+            </tr>
+            <tr class="row" onclick="openContent(event, 'main')">
+                <td>Szczota</td>
+                <td>Basic</td>
+                <td>255</td>
+            </tr>
+            <tr class="row" onclick="openContent(event, 'main')">
+                <td>Berło króla sedesu</td>
+                <td>Basic</td>
+                <td>100</td>
+            </tr>
+        </table>
+    </div>
+
+    <div id = "showStudents" class="tabcontent center">
         <div class="dropdown">
             <button class="classesButton">Classes</button>
             <div class="dropdown-content" style="left:0;">
@@ -65,20 +175,20 @@
                     <th>Lastname</th>
                     <th>email</th>
                 </tr>
-                <tr>
+                <tr class="row" onclick="openContent(event, 'seeStudent')">
                     <td>Michau</td>
                     <td>Kuciapski</td>
                     <td>mkuć@wp.pl</td>
                 </tr>
-                <tr>
+                <tr class="row" onclick="openContent(event, 'seeStudent')">
                     <td>Kamil</td>
                     <td>Przydrożny</td>
                     <td>przydrozna@to.swinia</td>
                 </tr>
-                <tr>
-                    <td>Paweł</td>
-                    <td>Ham</td>
-                    <td>hamak@to.swinia</td>
+                <tr class="row" onclick="openContent(event, 'seeStudent')">
+                    <td>Tadeusz</td>
+                    <td>Memegalski</td>
+                    <td>bedziesz@pan.wmemie</td>
                 </tr>
             </table>
 
@@ -91,12 +201,12 @@
                     <th>Lastname</th>
                     <th>email</th>
                 </tr>
-                <tr>
+                <tr class="row" onclick="openContent(event, 'seeStudent')">
                     <td>Kamil</td>
                     <td>Nowak</td>
                     <td>qam13@wp.pl</td>
                 </tr>
-                <tr>
+                <tr class="row" onclick="openContent(event, 'seeStudent')">
                     <td>Kamil</td>
                     <td>Postrożny</td>
                     <td>ajax@to.swinia</td>
@@ -105,14 +215,40 @@
         </div>
 
         <div class="addButton">
-            <a onclick="openContent(event, 'addStudent')"><img src="../data/images/plus-button.png" width="32"/>&nbsp;&nbsp;&nbsp;Add student</a>
+            <a onclick="openContent(event, 'addStudent')"><img src="../data/images/plus-button.png" width="32"/>&nbsp;&nbsp;&nbsp;Add new Student</a>
         </div>
 
     </div>
     <div id = "showArtifacts" class="center tabcontent">
-        <p>ARTIFACTS</p>
-        <p>xDxDDDDDDDDDDDDDD</p>
 
+        <div class="center-middle-artifacts">
+            <div class="artifact">
+                <img src="../data/images/bear.png"/>
+                <p class="first_page">SZMACIURA NIEDŹWIEDZICA</p>
+                <p class="first_page">Price: 200</p>
+                <p class="on_hover">Ten artefakt jest super i daje ci super moce, serio</p>
+            </div>
+
+
+            <div class="artifact">
+                <img src="../data/images/bullbasaur.png"/>
+                <p class="first_page">BULLBASAUR</p>
+                <p class="first_page">Price: 1000</p>
+                <p class="on_hover">To jest taki pokemon z takiej bajki o tytule pokemon</p>
+            </div>
+
+            <div class="artifact">
+                <img src="../data/images/spaghetti.png"/>
+                <p class="first_page">WŁOSKIE SPADŻETTI</p>
+                <p class="first_page">Price: 2137</p>
+                <p class="on_hover">To jest super makaron, odnawia ci 5 HP</p>
+            </div>
+
+        </div>
+
+        <div class="addButton">
+            <a onclick="openContent(event, 'addArtifact')"><img src="../data/images/plus-button.png" width="32"/>&nbsp;&nbsp;&nbsp;Add new Artifact</a>
+        </div>
     </div>
 
     <div class="right-sidebar">
