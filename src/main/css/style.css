@@ -33,9 +33,9 @@ html, body {
 
 
 .login-form {
-    border-radius: 25px;
+    border-radius: 10px;
     padding: 40px 100px;
-    background-color: #276FBF;
+    background-color: #245487;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -49,7 +49,7 @@ html, body {
     margin: 5px;
     outline: none;
     text-align: center;
-    border-radius: 25px;
+    border-radius: 5px;
     background-color: white;
     border: solid 0.5px;
     border-color: #1D518B;
@@ -85,6 +85,7 @@ html, body {
 .left-sidebar a {
     display: flex;
     align-items: center;
+    transition: all 0.5s ease-in-out;
 }
 
 .left-sidebar .menu {
@@ -97,9 +98,11 @@ html, body {
 .left-sidebar .menu li {
     display: flex;
     flex-direction: column;
-    margin: 20px 0px;
+    /*margin: 20px 0px;*/
     margin-left: -10px;
+    border-radius: 10px;
     border-bottom-style: outset;
+    transition: all 0.5s;
 }
 
 .left-sidebar .menu a {
@@ -145,14 +148,15 @@ html, body {
 }
 
 .center-middle {
-    margin-top: 220px;
+    margin-top: 100px;
+
     width: 100%;
     height: 500px;
     background-color: #F6F4F3;
 }
 .center-middle-header {
     width: 100%;
-    background-size: contain;
+    background-size: cover;
     background-attachment: fixed;
     height: 300px;
     background-image: url(../data/images/cover.jpeg);
@@ -174,6 +178,7 @@ html, body {
     border-width: 5px;
     display: grid;
     grid-template-columns: 33% 33% 33%;
+    margin-bottom: 80px;
 }
 
 .center-middle-paragraphs h1 {
@@ -190,6 +195,7 @@ html, body {
     font-size: 15px;
     margin-top: -20px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 
@@ -220,6 +226,26 @@ html, body {
     background-color: #F6F4F3;
 }
 
+
+.right-sidebar-content {
+    background-color: #dbd9d9;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-family: Lato;
+    padding: 30px;
+}
+
+.right-sidebar-content img {
+    border-color: lightgrey;
+    border-style: solid;
+    border-radius: 100%;
+    border-width: 1px;
+    display: flex;
+    align-self: center;
+}
+
 /*Student store*/
 
 .center-top {
@@ -230,6 +256,7 @@ html, body {
     background-attachment: fixed;
     font-family: "Montserrat";
     color: white;
+    margin-top: 40px;
 }
 
 .center-top h1 {
@@ -258,11 +285,13 @@ html, body {
     border-color: #AF5B5B;
     background-color: #D3A5A5;
     text-align: center;
+    border-radius: 20px;
     padding: 20px;
     transition: all 0.7s;
     cursor: pointer;
     min-width: 190px;
     min-height: 120px;
+    transition: all 0.5s ease-in-out;
 }
 
 .center-middle-buttons a {
@@ -400,6 +429,7 @@ th, td {
     height: 180px;
     cursor: pointer;
     outline: none;
+    border-radius: 5%;
 }
 
 
@@ -482,7 +512,7 @@ th, td {
 /*Student transactions*/
 
 .transactions_table {
-    margin-top: 50px;
+    margin-top: 80px;
     width: 70%;
     border-radius: 25px;
     padding: 20px;
@@ -492,6 +522,7 @@ th, td {
     align-self: center;
     background-color: #245487;
     color: #EAF6FF;
+    cursor: pointer;
 }
 
 #transactions-content {
@@ -499,5 +530,8 @@ th, td {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+#transactions-content .center-top {
+    margin-top: -255px;
 }
 
