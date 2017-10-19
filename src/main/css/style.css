@@ -297,7 +297,12 @@ th, td {
     padding: 15px;
 }
 
-tr:hover {
+.mentors_table .header {
+    border-bottom-style: outset;
+    border-radius: 25px;
+}
+
+.mentor:hover {
     border-radius: 25px;
     background-color: #f2f2f2;
 }
@@ -311,13 +316,42 @@ tr:hover {
     background-color: #f2ad1f;
 }
 
-.mentor_add_button {
+.add_button {
+    margin-top: 20px;
     align-self: flex-end;
 }
 
-.mentor_add_button img {
+.add_button img {
+    align-self: flex-end;
     width: 35%;
     height: auto;
+}
+
+.add {
+    margin-top: 50px;
+    border-radius: 25px;
+    background-color: #f2ad1f;
+    display: flex;
+    padding: 40px;
+    flex-direction: column;
+}
+
+.add form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.add input, select {
+    height: 25px;
+    width: 300px;
+    margin: 5px;
+    text-align: center;
+    border-radius: 25px;
+    background-color: white;
+    border: solid 0.5px;
+    border-color: #EAAC47;
+    outline: none;
 }
 
 /*student_store_artifacts*/
