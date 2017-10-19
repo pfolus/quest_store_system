@@ -87,6 +87,7 @@ html, body {
 .left-sidebar .menu li:hover {
     background-color: darkgray;
 }
+
 .left-sidebar img {
     position: relative;
     /*top: 20px;*/
