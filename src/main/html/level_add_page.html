@@ -6,12 +6,12 @@
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Oswald:700" rel="stylesheet">
-    <title>Experience levels</title>
+    <title>Add level</title>
 </head>
 <body class="user-page">
 
 <div class="left-sidebar">
-    <a href="admin_main_page.html"><img href="admin_main_page.html" id="logo" src="../data/images/small_logo.png"></a>
+    <a href="admin_main_page.html"><img id="logo" src="../data/images/small_logo.png"></a>
     <div class="menu">
         <ul>
             <li><a href="mentors_managing.html"><img src="../data/images/avatar.png"/>&nbsp;&nbsp;&nbsp;Mentors</a></li>
@@ -22,34 +22,16 @@
 </div>
 
 <div class="center">
-
     <div class="center-top">
-        <h1>Classes</h1>
+        <h1>Add class</h1>
     </div>
 
-    <div class="mentors_table">
-        <table>
-            <tr class="header">
-                <th>Experience level</th>
-                <th>Coolcoins needed</th>
-            </tr>
-            <tr class="mentor">
-                <th>Noob</th>
-                <th>0</th>
-            </tr>
-            <tr class="mentor">
-                <th>Medium</th>
-                <th>1000</th>
-            </tr>
-            <tr class="mentor">
-                <th>Pro Uber</th>
-                <th>Over 9k</th>
-            </tr>
-        </table>
-    </div>
-
-    <div class="add_button">
-        <a href="level_add_page.html"><img src="../data/images/plus-button.png"></a>
+    <div class="add">
+        <form>
+            <input type="text" name="name" placeholder="Level">
+            <input type="number" name="coins" placeholder="Coins needed" min="0"><br>
+            <input type="submit" value="Add">
+        </form>
     </div>
 
 </div>
