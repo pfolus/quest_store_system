@@ -48,17 +48,33 @@
             </div>
         </div>
     </div>
+
     <div id="seeStudent" class="tabcontent center">
         <div class="studentPanel">
             <img src="../data/images/avatar.png"/>
             <p class="first_page">Kamil</p>
             <p class="first_page">Nowak</p>
             <p class="first_page">100 Coolcoins</p>
-            <h2 class="on_hover">Mark done quest</h2>
-            <h2 class="on_hover">Edit profile</h2>
-            <h2 class="on_hover">Mark used artifact</h2>
+            <h2 class="on_hover" onclick="openContent(event, 'markDoneQuests')">Mark done quest</h2>
+            <h2 class="on_hover" onclick="openContent(event, 'editStudent')">Edit profile</h2>
+            <h2 class="on_hover" onclick="openContent(event, 'markUsedArtifacts')">Mark used artifact</h2>
+        </div>
+
+    </div>
+
+    <div id="editStudent" class="tabcontent center">
+        <div class="studentPanel">
+            <p>Edit Student</p>
+            <img src="../data/images/avatar.png"/>
+            <p>Provide details:</p>
+            <input type="text" name="name" placeholder="New student's name:">
+            <input type="text" name="surname" placeholder="New student's surname:">
+            <input type="text" name="login" placeholder="New login:">
+            <input type="text" name="password" placeholder="New password:">
+            <div class="addStudentButton"><img src="../data/images/plus-button.png" onclick="openContent(event, 'main')"></div>
         </div>
     </div>
+
 
     <div id="addStudent" class="tabcontent center">
         <div class="studentPanel">
@@ -93,7 +109,57 @@
         </div>
     </div>
 
-    <div id = "showStudents" class="center tabcontent">
+    <div id="markDoneQuests" class="tabcontent center">
+        <table>
+            <tr>
+                <th>Quest Name</th>
+                <th>Category</th>
+                <th>Price</th>
+            </tr>
+            <tr class="row" onclick="openContent(event, 'main')">
+                <td>Przynieś</td>
+                <td>Basic</td>
+                <td>350</td>
+            </tr>
+            <tr class="row" onclick="openContent(event, 'main')">
+                <td>Zanieś</td>
+                <td>Hard</td>
+                <td>555</td>
+            </tr>
+            <tr class="row" onclick="openContent(event, 'main')">
+                <td>Pozamiataj</td>
+                <td>Special</td>
+                <td>1500</td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="markUsedArtifacts" class="tabcontent center">
+        <table>
+            <tr>
+                <th>Artifact's name</th>
+                <th>Category</th>
+                <th>Price</th>
+            </tr>
+            <tr class="row" onclick="openContent(event, 'main')">
+                <td>Kijek</td>
+                <td>Magic</td>
+                <td>1380</td>
+            </tr>
+            <tr class="row" onclick="openContent(event, 'main')">
+                <td>Szczota</td>
+                <td>Basic</td>
+                <td>255</td>
+            </tr>
+            <tr class="row" onclick="openContent(event, 'main')">
+                <td>Berło króla sedesu</td>
+                <td>Basic</td>
+                <td>100</td>
+            </tr>
+        </table>
+    </div>
+
+    <div id = "showStudents" class="tabcontent center">
         <div class="dropdown">
             <button class="classesButton">Classes</button>
             <div class="dropdown-content" style="left:0;">
@@ -120,9 +186,9 @@
                     <td>przydrozna@to.swinia</td>
                 </tr>
                 <tr class="row" onclick="openContent(event, 'seeStudent')">
-                    <td>Paweł</td>
-                    <td>Ham</td>
-                    <td>hamak@to.swinia</td>
+                    <td>Tadeusz</td>
+                    <td>Memegalski</td>
+                    <td>bedziesz@pan.wmemie</td>
                 </tr>
             </table>
 

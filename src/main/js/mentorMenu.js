@@ -11,7 +11,7 @@ function openContent(evt, contentName) {
 
 
 function openSubContent(evt, contentName) {
-    var i;
+    var i, studentcontent;
 
     studentcontent = document.getElementsByClassName("subcontent");
     for (i = 0; i < studentcontent.length; i++) {
