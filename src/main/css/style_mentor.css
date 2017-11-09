@@ -1,0 +1,209 @@
+div.left-sidebar .logo:hover {
+    background: none;
+}
+
+.tabcontent {
+    display: none;
+    align-items: center;
+}
+
+.subcontent {
+    display: none;
+    align-items: center;
+}
+
+.classesButton {
+    background-color: #276FBF;
+    color: white;
+    padding: 10px 35px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.classesButton:hover {
+    background-color: #1D518B;
+}
+
+.left-sidebar li {
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    font-family: Lato;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.4);
+    z-index: 1;
+    text-align: center;
+
+}
+
+.dropdown-content p {
+    color: black;
+    padding: 20px;
+    display: block;
+    cursor: pointer;
+}
+
+.dropdown-content p:hover {background-color: #276FBF}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.center .addButton {
+    position: relative;
+    display: block;
+    margin: auto;
+    cursor: pointer;
+    width: 200px;
+}
+
+.center .addButton a:hover {
+    background-color: #276FBF;
+}
+
+.center .addButton a {
+
+    border-bottom-style: outset;
+    padding-bottom: 15px;
+    padding-top: 25px;
+    font-family: Lato;
+}
+
+.center .addButton img {
+    margin-top: 30px;
+}
+
+.center table {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: auto;
+    border: 1px;
+    border-radius: 10px;
+}
+
+.center table .row:hover {
+    background-color: #276FBF;
+    cursor: pointer;
+}
+
+th, td {
+    text-align: left;
+    border: 1px solid black;
+    padding: 15px 30px;
+    box-shadow: 5px 5px 16px 0px rgba(0,0,0,0.4);
+    border: 3px;
+
+}
+
+.studentPanel {
+    border-style: inset;
+    border-color: lightslategray;
+    background-color: #276FBF;
+    padding: 80px 20px;
+    width: 150px;
+    height: 280px;
+    z-index: 1;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.studentPanel p {
+    /*padding-top: 20px;*/
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-family: Lato;
+}
+
+.studentPanel .on_hover {
+    display: none;
+    font-size: 13px;
+}
+
+.studentPanel:hover .first_page {
+    display: none;
+}
+
+.studentPanel:hover .on_hover {
+    display: inherit;
+}
+
+.studentPanel:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.studentPanel a {
+    text-decoration: none;
+}
+
+.studentPanel a:hover, p:hover, h2:hover {
+    cursor: default;
+}
+
+.studentPanel img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 64px;
+    height: 64px;
+}
+.studentPanel h2 {
+    position: relative;
+    border-style: outset;
+    padding: 15px;
+    border-color: dimgray;
+    background-color: #c9c3c3;
+
+    color: black;
+    width: 100px;
+}
+
+.studentPanel h2:hover {
+    background-color: #276FBF;
+}
+
+.studentPanel h2:hover:after {
+    content: "\00a0✓";
+    /*white-space: pre;*/
+}
+
+#showStudents {
+    min-height: 400px;
+}
+
+.studentPanel select, input {
+    width: 150px;
+    border-radius: 0px;
+    padding: 3px 0px;
+}
+
+.addStudentButton img {
+    margin-top: 25px;
+    width: 25px;
+    height: 25px;
+}
+
+.addStudentButton img:hover {
+    margin-top: 25px;
+    width: 35px;
+    height: 35px;
+    background-color: #1D518B;
+    border-radius: 10px;
+}
+
